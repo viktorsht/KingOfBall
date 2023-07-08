@@ -11,10 +11,10 @@ class CardProfile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.asset(ImagesApp.escudoTeam),
-          Column(
+          const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
                 "River Futebol Club FC",
                 style: TextStyle(

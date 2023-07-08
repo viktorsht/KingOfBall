@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:rei_da_bola/app/modules/login/models/login_model.dart';
-import 'package:rei_da_bola/shared/api/api_headers.dart';
+import 'package:rei_da_bola/app/modules/shared/api/api_headers.dart';
 
-import '../../../../shared/api/routes_api.dart';
+import '../../shared/api/routes_api.dart';
 
-class LoginService{
+class LoginServices{
   final headersApi = DefaultHeadersApi();
   Future<String> postLoginApi(LoginModel body) async {
     final url = Uri.parse(RoutersApi.login);

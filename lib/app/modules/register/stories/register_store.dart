@@ -6,16 +6,22 @@ class RegisterStore = RegisterStoreImpl with _$RegisterStore;
 
 abstract class RegisterStoreImpl with Store{
   @observable
-  String user = "";
+  String firstNameUser = "";
 
   @action
-  void setUser(String value) => user = value;
+  void setFirstNameUser(String value) => firstNameUser = value;
+
+  @observable
+  String lastNameUser = "";
+
+  @action
+  void setLastNameUser(String value) => lastNameUser = value;
   
   @observable
-  String team = "";
+  String nick = "";
 
   @action
-  void setTeam(String value) => team = value;
+  void setNick(String value) => nick = value;
 
   @observable
   String email = "";
@@ -35,11 +41,17 @@ abstract class RegisterStoreImpl with Store{
   @action
   void togglePasswordLook() => passwordLook = !passwordLook;
 
-  @computed
-  bool get isUserValid => user.length >= 6;
+  @action
+  void clearValues(){
+    firstNameUser = '';
+    lastNameUser = '';
+    nick = '';
+    email = '';
+    password = '';
+  }
 
   @computed
-  bool get isTeamValid => team.length >= 6;
+  bool get isUserNickValid => firstNameUser.isNotEmpty && lastNameUser.isNotEmpty && nick.isNotEmpty;
 
   @computed
   bool get isPasswordValid => password.length >= 6;
@@ -48,6 +60,6 @@ abstract class RegisterStoreImpl with Store{
   bool get isEmailValid => RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$').hasMatch(email);
 
   @computed
-  bool get isFormValid => isEmailValid && isPasswordValid && isUserValid && isTeamValid;
+  bool get isFormValid => isEmailValid && isPasswordValid && isUserNickValid;
 
 }

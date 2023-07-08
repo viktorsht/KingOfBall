@@ -9,19 +9,12 @@ part of 'register_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$RegisterStore on RegisterStoreImpl, Store {
-  Computed<bool>? _$isUserValidComputed;
+  Computed<bool>? _$isUserNickValidComputed;
 
   @override
-  bool get isUserValid =>
-      (_$isUserValidComputed ??= Computed<bool>(() => super.isUserValid,
-              name: 'RegisterStoreImpl.isUserValid'))
-          .value;
-  Computed<bool>? _$isTeamValidComputed;
-
-  @override
-  bool get isTeamValid =>
-      (_$isTeamValidComputed ??= Computed<bool>(() => super.isTeamValid,
-              name: 'RegisterStoreImpl.isTeamValid'))
+  bool get isUserNickValid =>
+      (_$isUserNickValidComputed ??= Computed<bool>(() => super.isUserNickValid,
+              name: 'RegisterStoreImpl.isUserNickValid'))
           .value;
   Computed<bool>? _$isPasswordValidComputed;
 
@@ -45,35 +38,51 @@ mixin _$RegisterStore on RegisterStoreImpl, Store {
               name: 'RegisterStoreImpl.isFormValid'))
           .value;
 
-  late final _$userAtom =
-      Atom(name: 'RegisterStoreImpl.user', context: context);
+  late final _$firstNameUserAtom =
+      Atom(name: 'RegisterStoreImpl.firstNameUser', context: context);
 
   @override
-  String get user {
-    _$userAtom.reportRead();
-    return super.user;
+  String get firstNameUser {
+    _$firstNameUserAtom.reportRead();
+    return super.firstNameUser;
   }
 
   @override
-  set user(String value) {
-    _$userAtom.reportWrite(value, super.user, () {
-      super.user = value;
+  set firstNameUser(String value) {
+    _$firstNameUserAtom.reportWrite(value, super.firstNameUser, () {
+      super.firstNameUser = value;
     });
   }
 
-  late final _$teamAtom =
-      Atom(name: 'RegisterStoreImpl.team', context: context);
+  late final _$lastNameUserAtom =
+      Atom(name: 'RegisterStoreImpl.lastNameUser', context: context);
 
   @override
-  String get team {
-    _$teamAtom.reportRead();
-    return super.team;
+  String get lastNameUser {
+    _$lastNameUserAtom.reportRead();
+    return super.lastNameUser;
   }
 
   @override
-  set team(String value) {
-    _$teamAtom.reportWrite(value, super.team, () {
-      super.team = value;
+  set lastNameUser(String value) {
+    _$lastNameUserAtom.reportWrite(value, super.lastNameUser, () {
+      super.lastNameUser = value;
+    });
+  }
+
+  late final _$nickAtom =
+      Atom(name: 'RegisterStoreImpl.nick', context: context);
+
+  @override
+  String get nick {
+    _$nickAtom.reportRead();
+    return super.nick;
+  }
+
+  @override
+  set nick(String value) {
+    _$nickAtom.reportWrite(value, super.nick, () {
+      super.nick = value;
     });
   }
 
@@ -129,22 +138,33 @@ mixin _$RegisterStore on RegisterStoreImpl, Store {
       ActionController(name: 'RegisterStoreImpl', context: context);
 
   @override
-  void setUser(String value) {
+  void setFirstNameUser(String value) {
     final _$actionInfo = _$RegisterStoreImplActionController.startAction(
-        name: 'RegisterStoreImpl.setUser');
+        name: 'RegisterStoreImpl.setFirstNameUser');
     try {
-      return super.setUser(value);
+      return super.setFirstNameUser(value);
     } finally {
       _$RegisterStoreImplActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void setTeam(String value) {
+  void setLastNameUser(String value) {
     final _$actionInfo = _$RegisterStoreImplActionController.startAction(
-        name: 'RegisterStoreImpl.setTeam');
+        name: 'RegisterStoreImpl.setLastNameUser');
     try {
-      return super.setTeam(value);
+      return super.setLastNameUser(value);
+    } finally {
+      _$RegisterStoreImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setNick(String value) {
+    final _$actionInfo = _$RegisterStoreImplActionController.startAction(
+        name: 'RegisterStoreImpl.setNick');
+    try {
+      return super.setNick(value);
     } finally {
       _$RegisterStoreImplActionController.endAction(_$actionInfo);
     }
@@ -184,15 +204,26 @@ mixin _$RegisterStore on RegisterStoreImpl, Store {
   }
 
   @override
+  void clearValues() {
+    final _$actionInfo = _$RegisterStoreImplActionController.startAction(
+        name: 'RegisterStoreImpl.clearValues');
+    try {
+      return super.clearValues();
+    } finally {
+      _$RegisterStoreImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-user: ${user},
-team: ${team},
+firstNameUser: ${firstNameUser},
+lastNameUser: ${lastNameUser},
+nick: ${nick},
 email: ${email},
 password: ${password},
 passwordLook: ${passwordLook},
-isUserValid: ${isUserValid},
-isTeamValid: ${isTeamValid},
+isUserNickValid: ${isUserNickValid},
 isPasswordValid: ${isPasswordValid},
 isEmailValid: ${isEmailValid},
 isFormValid: ${isFormValid}

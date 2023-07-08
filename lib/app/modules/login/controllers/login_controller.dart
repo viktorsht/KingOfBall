@@ -22,7 +22,7 @@ abstract class LoginControllerImpl with Store{
   @action
   Future<String> login(String email, String password) async {
     stateController = 'loading';
-    final loginService = LoginService();
+    final loginService = LoginServices();
     final body = LoginModel(email: email, password: password);
     try {
       token = await loginService.postLoginApi(body);

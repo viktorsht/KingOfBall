@@ -52,7 +52,8 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
               const CardProfile(),
               Container(color: Colors.amber,),
               Container(color: Colors.red,),
-              Container(color: Colors.blue,)
+              Container(color: Colors.blue,),
+              Container(color: Colors.black,),
             ],
           )
         ),

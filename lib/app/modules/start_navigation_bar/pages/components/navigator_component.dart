@@ -45,12 +45,10 @@ class NavigatorComponent extends StatelessWidget {
               icon: Icon(Icons.info),
               label: 'Geral',
             ),
-            /*
             BottomNavigationBarItem(
               icon: Icon(Icons.more_horiz),
               label: 'Mais',
             ),
-            */
           ],
         ),
       ),

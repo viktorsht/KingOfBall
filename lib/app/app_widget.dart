@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
-import 'package:rei_da_bola/app/modules/login/stores/login_store.dart';
-import 'package:rei_da_bola/app/modules/register/stores/register_store.dart';
+import 'package:rei_da_bola/app/modules/login/stories/login_store.dart';
+import 'package:rei_da_bola/app/modules/register/stories/register_store.dart';
 
 import 'modules/login/controllers/login_controller.dart';
+import 'modules/register/controllers/register_user_controller.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -15,7 +16,7 @@ class AppWidget extends StatelessWidget {
       providers: [
         Provider<LoginController>(create: (_) => LoginController(),),
         Provider<LoginStore>(create: (_) => LoginStore(),),
-        //Provider<RegisterController>(create: (_) => RegisterController(),),
+        Provider<RegisterController>(create: (_) => RegisterController(),),
         Provider<RegisterStore>(create: (_) => RegisterStore(),),
       ],
       child: MaterialApp.router(

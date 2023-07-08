@@ -25,8 +25,35 @@ mixin _$NavigationStore on NavigationStoreImpl, Store {
     });
   }
 
+  late final _$pageControllerAtom =
+      Atom(name: 'NavigationStoreImpl.pageController', context: context);
+
+  @override
+  PageController get pageController {
+    _$pageControllerAtom.reportRead();
+    return super.pageController;
+  }
+
+  @override
+  set pageController(PageController value) {
+    _$pageControllerAtom.reportWrite(value, super.pageController, () {
+      super.pageController = value;
+    });
+  }
+
   late final _$NavigationStoreImplActionController =
       ActionController(name: 'NavigationStoreImpl', context: context);
+
+  @override
+  void setPageController(PageController controller) {
+    final _$actionInfo = _$NavigationStoreImplActionController.startAction(
+        name: 'NavigationStoreImpl.setPageController');
+    try {
+      return super.setPageController(controller);
+    } finally {
+      _$NavigationStoreImplActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void changeTab(int index) {
@@ -42,7 +69,8 @@ mixin _$NavigationStore on NavigationStoreImpl, Store {
   @override
   String toString() {
     return '''
-currentIndex: ${currentIndex}
+currentIndex: ${currentIndex},
+pageController: ${pageController}
     ''';
   }
 }

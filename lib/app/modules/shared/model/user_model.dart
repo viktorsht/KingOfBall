@@ -1,27 +1,44 @@
 class UserModel {
-  String? name;
-  String? team;
+  int? id;
   String? email;
-  String? passowrd;
-  String? id;
+  void emailVerifiedAt;
+  String? firstName;
+  String? lastName;
+  String? nick;
+  String? createdAt;
+  String? updatedAt;
 
-  UserModel({this.name, this.team, this.email, this.passowrd, this.id});
+  UserModel(
+      {this.id,
+      this.email,
+      this.emailVerifiedAt,
+      this.firstName,
+      this.lastName,
+      this.nick,
+      this.createdAt,
+      this.updatedAt});
 
   UserModel.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    team = json['team'];
-    email = json['email'];
-    passowrd = json['passowrd'];
     id = json['id'];
+    email = json['email'];
+    //emailVerifiedAt = json['email_verified_at'];
+    firstName = json['first_name'];
+    lastName = json['last_name'];
+    nick = json['nick'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['team'] = team;
-    data['email'] = email;
-    data['passowrd'] = passowrd;
     data['id'] = id;
+    data['email'] = email;
+    //data['email_verified_at'] = emailVerifiedAt;
+    data['first_name'] = firstName;
+    data['last_name'] = lastName;
+    data['nick'] = nick;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

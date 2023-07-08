@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
-import 'package:rei_da_bola/app/modules/login/stores/login_store.dart';
+import 'package:rei_da_bola/app/modules/login/stories/login_store.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/icons/icons_app.dart';
 import 'package:rei_da_bola/design_system/images/images_app.dart';
@@ -11,6 +11,7 @@ import 'package:rei_da_bola/design_system/widgets/widget_loading.dart';
 import '../../../../../design_system/widgets/widget_form_field.dart';
 import '../../../../../design_system/widgets/widget_text_app.dart';
 import '../../../../design_system/widgets/widget_snackbar.dart';
+import '../../../../shared/token/token_manager.dart';
 import '../../../routes/routes_app.dart';
 import '../../shared/components/password_look.dart';
 import '../controllers/login_controller.dart';
@@ -23,6 +24,7 @@ class LoginPage extends StatelessWidget {
     final store = Provider.of<LoginStore>(context);
     final loginController = Provider.of<LoginController>(context);
     final colors = ColorsAppDefault();
+    final tokenManager = TokenManager();
     //final loginController = LoginController();
     return Form(
       child: Scaffold(
@@ -70,11 +72,13 @@ class LoginPage extends StatelessWidget {
                     : TextButton(
                       onPressed: () async {
                         if(store.isFormValid){
-                          await loginController.login(store.email, store.password);
+                          String token = await loginController.login(store.email, store.password);
                           if(loginController.stateController == 'sucess'){
-                            Modular.to.navigate(RoutesModulesApp.routerHomeModule);
+                            tokenManager.setToken(token);
+                            Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
                           }
                           else{
+                            // resolver este warnnig depois
                             WidgetSnackBar.show(
                               context: context,
                               message: 'Email ou senha incorretos',

@@ -1,4 +1,4 @@
-import 'package:rei_da_bola/shared/api/api.dart';
+import 'package:rei_da_bola/app/modules/shared/api/api.dart';
 
 class RoutersApi{
   
