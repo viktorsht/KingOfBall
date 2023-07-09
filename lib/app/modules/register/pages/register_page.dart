@@ -24,6 +24,8 @@ class RegisterPage extends StatelessWidget {
     final registerController = Provider.of<RegisterController>(context);
 
     final formKey = GlobalKey<FormState>();
+
+    String msgUser ='';
     
     return Form(
       key: formKey,
@@ -60,7 +62,7 @@ class RegisterPage extends StatelessWidget {
                 const SizedBox(height: 16,),
                 Observer(
                   builder: (_) => WidgetFormField(
-                    hint: 'Nome de Usuário',
+                    hint: 'Nome de usuário',
                     onChanged: store.setNick,
                     prefix: Image.asset(IconsApp.team),
                     obscure: false,
@@ -99,43 +101,70 @@ class RegisterPage extends StatelessWidget {
                     return registerController.stateController == StateResponse.loading
                     ? const WidgetLoading(width: 5, thickness: 0.9)
                     : TextButton(
-                        onPressed: () async {
-                          if(store.isFormValid){
-                            await registerController.registerUser(
-                              store.firstNameUser, 
-                              store.lastNameUser, 
-                              store.nick, 
-                              store.email, 
-                              store.password);
-                            if(registerController.stateController == StateResponse.sucess){
-                              final snackBar = SnackBar(
-                                content: Text('Cadastro concluído com sucesso!', style: TextStyle(color: colors.black),),
-                                duration: const Duration(seconds: 3),
-                                backgroundColor: colors.white,
-                              );
-                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                              //store.clearValues(); // talve possa me gerar aluns bugs se eu apagar ou não os campos e querer usar depois
-                              //Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
-                            }
-                          }
-                          else{
+                      onPressed: () async {
+                        if(!store.isValidFields){
+                          msgUser = 'Campos não preenchidos';
+                        }
+                        else if (!store.isEmailValid){
+                          msgUser = 'Email inválido ou não inserido';
+                        }
+                        else if (!store.isPasswordValid){
+                          msgUser = 'A senha inválida! Use mais de 8 dígitos, caractere especial, uma letra maiúscula e um número';
+                        }
+                        else if(store.isFormValid){
+                          await registerController.registerUser(
+                            store.firstNameUser, 
+                            store.lastNameUser, 
+                            store.nick, 
+                            store.email, 
+                            store.password);
+                          if(registerController.stateController == StateResponse.sucess){
                             final snackBar = SnackBar(
-                              content: const Text('Opss! Dados inválidos, tente novamente!'),
+                              content: Text('Cadastro concluído com sucesso!', style: TextStyle(color: colors.black),),
                               duration: const Duration(seconds: 3),
-                              backgroundColor: colors.red,
+                              backgroundColor: colors.white,
                             );
                             ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            //store.clearValues(); // talve possa me gerar aluns bugs se eu apagar ou não os campos e querer usar depois
+                            //Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
                           }
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const WidgetTextApp(widgetText: "Registrar",),
-                            const SizedBox(width: 10,),
-                            Image.asset(ImagesApp.entrarWhite),
-                          ],
-                        )
-                      );
+                          else if(registerController.stateController == StateResponse.error){
+                            if(registerController.hasEmail && registerController.hasNick){
+                              msgUser = "Email e nome de usuário em uso";
+                            }
+                            else if(registerController.hasNick == true){
+                              msgUser = 'Nome de usuário não disponível';
+                            }
+                            else if(registerController.hasEmail == true){
+                              msgUser = 'Email já está em uso em outra conta';
+                            }
+                          }
+                        }
+                        if(registerController.stateController != StateResponse.sucess){
+                          // quero evitar o bug de colocar o SnackBar de sucesso e depois de um erro qualquer 
+                          final snackBar = SnackBar(
+                            content: Text(
+                              msgUser,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16
+                              ),
+                            ),      
+                            duration: const Duration(seconds: 3),
+                            backgroundColor: colors.red,
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const WidgetTextApp(widgetText: "Registrar",),
+                          const SizedBox(width: 10,),
+                          Image.asset(ImagesApp.entrarWhite),
+                        ],
+                      )
+                    );
                   }
                 ),
               ],

@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:mobx/mobx.dart';
+import 'package:rei_da_bola/app/modules/register/models/error.dart';
 import 'package:rei_da_bola/app/modules/register/models/register_user_model.dart';
 import 'package:rei_da_bola/app/modules/register/models/register_user_sucess_model.dart';
 
@@ -15,11 +18,30 @@ abstract class RegisterControllerImpl with Store{
   @observable
   String stateController = StateResponse.start;
 
-  @observable
-  String token = '';
-
   @action
   void setStateController(String value) => stateController = value;
+
+  @observable
+  bool hasEmail = false;
+
+  @observable
+  bool hasNick = false;
+
+  @action
+  void contarElementosNoJSON(dynamic exception) {
+    if (exception is RegisterUserException) {
+      Map<String, dynamic> errors = exception.errors;
+
+
+      if (errors.containsKey('nick')) {
+        hasNick = true;
+      }
+
+      if (errors.containsKey('email')) {
+        hasEmail = true;
+      }
+    }
+  }
 
   @action
   Future<RegisterUserSucessModel> registerUser(String firstNameUser, String lastNameUser, String nick, String email, String password) async {
@@ -32,9 +54,9 @@ abstract class RegisterControllerImpl with Store{
       stateController = StateResponse.sucess;
     } catch (e) {
       stateController = StateResponse.error;
-      print("${e}");
+      contarElementosNoJSON(e);
+      //rethrow;
       //final erro = Errors.fromJson(e.toString());
-
     }
     return retorno;
   }

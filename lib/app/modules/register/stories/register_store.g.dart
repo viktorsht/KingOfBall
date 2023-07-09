@@ -9,12 +9,12 @@ part of 'register_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$RegisterStore on RegisterStoreImpl, Store {
-  Computed<bool>? _$isUserNickValidComputed;
+  Computed<bool>? _$isValidFieldsComputed;
 
   @override
-  bool get isUserNickValid =>
-      (_$isUserNickValidComputed ??= Computed<bool>(() => super.isUserNickValid,
-              name: 'RegisterStoreImpl.isUserNickValid'))
+  bool get isValidFields =>
+      (_$isValidFieldsComputed ??= Computed<bool>(() => super.isValidFields,
+              name: 'RegisterStoreImpl.isValidFields'))
           .value;
   Computed<bool>? _$isPasswordValidComputed;
 
@@ -37,6 +37,22 @@ mixin _$RegisterStore on RegisterStoreImpl, Store {
       (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid,
               name: 'RegisterStoreImpl.isFormValid'))
           .value;
+
+  late final _$sucessRegisterAtom =
+      Atom(name: 'RegisterStoreImpl.sucessRegister', context: context);
+
+  @override
+  bool get sucessRegister {
+    _$sucessRegisterAtom.reportRead();
+    return super.sucessRegister;
+  }
+
+  @override
+  set sucessRegister(bool value) {
+    _$sucessRegisterAtom.reportWrite(value, super.sucessRegister, () {
+      super.sucessRegister = value;
+    });
+  }
 
   late final _$firstNameUserAtom =
       Atom(name: 'RegisterStoreImpl.firstNameUser', context: context);
@@ -138,6 +154,17 @@ mixin _$RegisterStore on RegisterStoreImpl, Store {
       ActionController(name: 'RegisterStoreImpl', context: context);
 
   @override
+  void setSucessRegister() {
+    final _$actionInfo = _$RegisterStoreImplActionController.startAction(
+        name: 'RegisterStoreImpl.setSucessRegister');
+    try {
+      return super.setSucessRegister();
+    } finally {
+      _$RegisterStoreImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setFirstNameUser(String value) {
     final _$actionInfo = _$RegisterStoreImplActionController.startAction(
         name: 'RegisterStoreImpl.setFirstNameUser');
@@ -217,13 +244,14 @@ mixin _$RegisterStore on RegisterStoreImpl, Store {
   @override
   String toString() {
     return '''
+sucessRegister: ${sucessRegister},
 firstNameUser: ${firstNameUser},
 lastNameUser: ${lastNameUser},
 nick: ${nick},
 email: ${email},
 password: ${password},
 passwordLook: ${passwordLook},
-isUserNickValid: ${isUserNickValid},
+isValidFields: ${isValidFields},
 isPasswordValid: ${isPasswordValid},
 isEmailValid: ${isEmailValid},
 isFormValid: ${isFormValid}

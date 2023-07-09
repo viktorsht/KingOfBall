@@ -25,19 +25,35 @@ mixin _$RegisterController on RegisterControllerImpl, Store {
     });
   }
 
-  late final _$tokenAtom =
-      Atom(name: 'RegisterControllerImpl.token', context: context);
+  late final _$hasEmailAtom =
+      Atom(name: 'RegisterControllerImpl.hasEmail', context: context);
 
   @override
-  String get token {
-    _$tokenAtom.reportRead();
-    return super.token;
+  bool get hasEmail {
+    _$hasEmailAtom.reportRead();
+    return super.hasEmail;
   }
 
   @override
-  set token(String value) {
-    _$tokenAtom.reportWrite(value, super.token, () {
-      super.token = value;
+  set hasEmail(bool value) {
+    _$hasEmailAtom.reportWrite(value, super.hasEmail, () {
+      super.hasEmail = value;
+    });
+  }
+
+  late final _$hasNickAtom =
+      Atom(name: 'RegisterControllerImpl.hasNick', context: context);
+
+  @override
+  bool get hasNick {
+    _$hasNickAtom.reportRead();
+    return super.hasNick;
+  }
+
+  @override
+  set hasNick(bool value) {
+    _$hasNickAtom.reportWrite(value, super.hasNick, () {
+      super.hasNick = value;
     });
   }
 
@@ -66,10 +82,22 @@ mixin _$RegisterController on RegisterControllerImpl, Store {
   }
 
   @override
+  void contarElementosNoJSON(dynamic exception) {
+    final _$actionInfo = _$RegisterControllerImplActionController.startAction(
+        name: 'RegisterControllerImpl.contarElementosNoJSON');
+    try {
+      return super.contarElementosNoJSON(exception);
+    } finally {
+      _$RegisterControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 stateController: ${stateController},
-token: ${token}
+hasEmail: ${hasEmail},
+hasNick: ${hasNick}
     ''';
   }
 }

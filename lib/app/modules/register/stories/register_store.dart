@@ -5,6 +5,13 @@ part 'register_store.g.dart';
 class RegisterStore = RegisterStoreImpl with _$RegisterStore;
 
 abstract class RegisterStoreImpl with Store{
+
+  @observable
+  bool sucessRegister = false;
+
+  @action
+  void setSucessRegister() => sucessRegister = true;
+
   @observable
   String firstNameUser = "";
 
@@ -51,15 +58,19 @@ abstract class RegisterStoreImpl with Store{
   }
 
   @computed
-  bool get isUserNickValid => firstNameUser.isNotEmpty && lastNameUser.isNotEmpty && nick.isNotEmpty;
+  bool get isValidFields => firstNameUser.isNotEmpty && lastNameUser.isNotEmpty && nick.isNotEmpty;
 
   @computed
-  bool get isPasswordValid => password.length >= 6;
+  bool get isPasswordValid =>
+    password.length >= 8 &&
+    password.contains(RegExp(r'[A-Z]')) &&
+    password.contains(RegExp(r'\d')) &&
+    password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
 
   @computed
   bool get isEmailValid => RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$').hasMatch(email);
 
   @computed
-  bool get isFormValid => isEmailValid && isPasswordValid && isUserNickValid;
+  bool get isFormValid => isEmailValid && isPasswordValid && isValidFields;
 
 }
