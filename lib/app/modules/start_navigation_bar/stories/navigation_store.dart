@@ -13,6 +13,10 @@ abstract class NavigationStoreImpl with Store{
   @observable
   late PageController pageController;
 
+   NavigationStoreImpl() {
+    pageController = PageController();
+  }
+
   @action
   void setPageController(PageController controller){
     pageController = controller;

@@ -17,18 +17,13 @@ class StartNavigationBarPage extends StatefulWidget {
 class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
 
   late NavigationStore navigationStore;
-/*
+  
+  final pageViewController = PageController();
+
   @override
   void dispose() {
     super.dispose();
-    navigationStore = NavigationStore();
-  }*/
-
-  @override
-  void initState() {
-    super.initState();
-    navigationStore = NavigationStore();
-    navigationStore.setPageController(PageController());
+    pageViewController.dispose();
   }
 
   @override
@@ -47,7 +42,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
       body: Center(
         child: Observer(
           builder: (_) => PageView(
-            controller: navigationStore.pageController,
+            controller: pageViewController,
             children: [
               const CardProfile(),
               Container(color: Colors.amber,),
@@ -59,11 +54,11 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
         ),
       ),
       bottomNavigationBar: AnimatedBuilder(
-        animation: navigationStore.pageController,
+        animation: pageViewController,
         builder: (context, snapshot) {
           return NavigatorComponent(
             color: colors,
-            navigationStore: navigationStore,
+            navigationStore: pageViewController,
           );
         }
       )

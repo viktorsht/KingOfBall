@@ -3,7 +3,7 @@ import 'package:rei_da_bola/app/modules/register/models/error.dart';
 import 'package:rei_da_bola/app/modules/register/models/register_user_model.dart';
 import 'package:rei_da_bola/app/modules/register/models/register_user_sucess_model.dart';
 
-import '../../shared/api/state_response.dart';
+import '../../../../shared/api/state_response.dart';
 import '../services/register_services.dart';
 
 part 'register_user_controller.g.dart';

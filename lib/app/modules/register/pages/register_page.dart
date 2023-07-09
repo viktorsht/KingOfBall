@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/register/controllers/register_user_controller.dart';
 import 'package:rei_da_bola/app/modules/register/stories/register_store.dart';
-import 'package:rei_da_bola/app/modules/shared/api/state_response.dart';
+import 'package:rei_da_bola/shared/api/state_response.dart';
 import 'package:rei_da_bola/app/modules/shared/components/password_look.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/icons/icons_app.dart';

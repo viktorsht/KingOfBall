@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:rei_da_bola/app/modules/start_navigation_bar/stories/navigation_store.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
 class NavigatorComponent extends StatelessWidget {
 
   final ColorsAppDefault color;
-  final NavigationStore navigationStore;
+  final PageController navigationStore;
   
   const NavigatorComponent({
     super.key, 
@@ -24,8 +23,8 @@ class NavigatorComponent extends StatelessWidget {
         child: BottomNavigationBar(
           //backgroundColor: color.green,
           type: BottomNavigationBarType.fixed,
-          currentIndex: navigationStore.pageController.page?.round() ?? 0,
-          onTap: (index) => navigationStore.pageController.jumpToPage(index),
+          currentIndex: navigationStore.page?.round() ?? 0,
+          onTap: (index) => navigationStore.jumpToPage(index),
           selectedItemColor: color.white,
           unselectedItemColor: color.gray,
           items: const [
