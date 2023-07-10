@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
-import 'package:rei_da_bola/app/modules/register/controllers/register_user_controller.dart';
-import 'package:rei_da_bola/app/modules/register/stories/register_store.dart';
+import 'package:rei_da_bola/app/modules/register_user/controllers/register_user_controller.dart';
+import 'package:rei_da_bola/app/modules/register_user/stories/register_store.dart';
 import 'package:rei_da_bola/app/routes/routes_app.dart';
 import 'package:rei_da_bola/shared/api/state_response.dart';
 import 'package:rei_da_bola/app/modules/shared/components/password_look.dart';
@@ -66,7 +66,7 @@ class RegisterPage extends StatelessWidget {
                   builder: (_) => WidgetFormField(
                     hint: 'Nome de usuário',
                     onChanged: store.setNick,
-                    prefix: Image.asset(IconsApp.team),
+                    prefix: Image.asset(IconsApp.arroba),
                     obscure: false,
                     enable: true,
                   ),
@@ -76,7 +76,7 @@ class RegisterPage extends StatelessWidget {
                   builder: (_) => WidgetFormField(
                     hint: 'Email',
                     onChanged: store.setEmail,
-                    prefix: Image.asset(IconsApp.arroba),
+                    prefix: Image.asset(IconsApp.email),
                     obscure: false,
                     enable: true,
                   ),
@@ -128,8 +128,9 @@ class RegisterPage extends StatelessWidget {
                             );
                             ScaffoldMessenger.of(context).showSnackBar(snackBar);
                             await Future.delayed(const Duration(seconds: 3));
-                            store.clearValues(); // talve possa me gerar aluns bugs se eu apagar ou não os campos e querer usar depois
-                            Modular.to.navigate(RoutesModulesApp.routerLoginModule);
+                            //store.clearValues(); // talve possa me gerar aluns bugs se eu apagar ou não os campos e querer usar depois
+                            //Modular.to.navigate(RoutesModulesApp.routerLoginModule);
+                            Modular.to.navigate(RoutesModulesApp.routerTeamVirtualRegisterModule);
                           }
                           else if(registerController.stateController == StateResponse.error){
                             if(registerController.hasEmail && registerController.hasNick){
@@ -169,6 +170,36 @@ class RegisterPage extends StatelessWidget {
                       )
                     );
                   }
+                ),
+                const SizedBox(height: 16,),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: TextButton(
+                    onPressed: (){
+                      Modular.to.navigate(RoutesModulesApp.routerLoginModule);
+                    }, 
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      //crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Já tenho conta: ",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: colors.white
+                          ),
+                        ),
+                        Text(
+                          "Fazer login",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: colors.white
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),

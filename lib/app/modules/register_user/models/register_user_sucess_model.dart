@@ -1,4 +1,4 @@
-import 'package:rei_da_bola/app/modules/register/models/register_user_model.dart';
+import 'package:rei_da_bola/app/modules/register_user/models/register_user_model.dart';
 
 class RegisterUserSucessModel {
   String? msg;

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:rei_da_bola/app/modules/register/models/error.dart';
-import 'package:rei_da_bola/app/modules/register/models/register_user_model.dart';
-import 'package:rei_da_bola/app/modules/register/models/register_user_sucess_model.dart';
+import 'package:rei_da_bola/app/modules/register_user/models/error.dart';
+import 'package:rei_da_bola/app/modules/register_user/models/register_user_model.dart';
+import 'package:rei_da_bola/app/modules/register_user/models/register_user_sucess_model.dart';
 import 'package:rei_da_bola/shared/api/api_headers.dart';
 
 import '../../../../shared/api/routes_api.dart';

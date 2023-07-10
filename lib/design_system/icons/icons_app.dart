@@ -6,4 +6,6 @@ class IconsApp {
   static const passwordLook = '${pathIcons}password_look.png';
   static const team = '${pathIcons}team.png';
   static const user = '${pathIcons}user.png';
+  static const email = '${pathIcons}email.png';
+
 }

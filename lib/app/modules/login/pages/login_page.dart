@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget {
                   builder: (_) => WidgetFormField(
                     hint: 'Email' ,
                     textInputType: TextInputType.emailAddress,
-                    prefix: Image.asset(IconsApp.arroba),
+                    prefix: Image.asset(IconsApp.email),
                     obscure: false,
                     enable: true,
                     onChanged: store.setEmail,

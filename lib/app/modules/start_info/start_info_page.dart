@@ -18,7 +18,7 @@ class _StartInfoPageState extends State<StartInfoPage> {
   @override
   Widget build(BuildContext context) {
     final colorsApp = ColorsAppDefault();
-    final butonApp = ButtonAppDefault();
+    final buttonApp = ButtonAppDefault();
     return SafeArea(
       child: Scaffold(
         backgroundColor: colorsApp.green,
@@ -37,7 +37,7 @@ class _StartInfoPageState extends State<StartInfoPage> {
               ),
               const SizedBox(height: 100,),
               ElevatedButton(
-                style: butonApp.themeButtonAppPrimary,
+                style: buttonApp.themeButtonAppPrimary,
                 onPressed: () {
                   Modular.to.navigate(RoutesModulesApp.routerLoginModule);
                 }, 

@@ -33,7 +33,7 @@ class NavigatorComponent extends StatelessWidget {
               label: 'Início',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.table_chart),
               label: 'Tabela',
             ),
             BottomNavigationBarItem(
