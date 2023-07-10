@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rei_da_bola/app/modules/login/login_module.dart';
-import 'package:rei_da_bola/app/modules/login/pages/login_page.dart';
 import 'package:rei_da_bola/app/modules/register/register_module.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/pages/start_navigation_bar_page.dart';
 import 'package:rei_da_bola/shared/api/api_headers.dart';
@@ -26,7 +25,7 @@ class AppModule extends Module {
         future: Modular.get<AuthController>().checkTokenValidity(),
         builder: (_, snapshot){
           return snapshot.hasData
-          ? snapshot.data! ? const StartNavigationBarPage() : const LoginPage()
+          ? snapshot.data! ? const StartNavigationBarPage() : const StartInfoPage()
           : const StartInfoPage();
         }
       ),

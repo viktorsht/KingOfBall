@@ -34,9 +34,12 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
         backgroundColor: colors.green,
         centerTitle: true,
         elevation: 0.0,
-        title: Image.asset(
-          ImagesApp.brasaoTeam,
-          height: 50,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 10, bottom: 10),
+          child: Image.asset(
+            ImagesApp.brasaoTeam,
+            height: 50,
+          ),
         ),
       ),
       body: Center(

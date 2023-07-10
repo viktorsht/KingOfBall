@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/register/controllers/register_user_controller.dart';
 import 'package:rei_da_bola/app/modules/register/stories/register_store.dart';
+import 'package:rei_da_bola/app/routes/routes_app.dart';
 import 'package:rei_da_bola/shared/api/state_response.dart';
 import 'package:rei_da_bola/app/modules/shared/components/password_look.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
@@ -25,8 +27,8 @@ class RegisterPage extends StatelessWidget {
 
     final formKey = GlobalKey<FormState>();
 
-    String msgUser ='';
-    
+    String msgUser = 'Ocorreu um erro inesperado, tente mais tarde';
+
     return Form(
       key: formKey,
       child: Scaffold(
@@ -125,8 +127,9 @@ class RegisterPage extends StatelessWidget {
                               backgroundColor: colors.white,
                             );
                             ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                            //store.clearValues(); // talve possa me gerar aluns bugs se eu apagar ou não os campos e querer usar depois
-                            //Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
+                            await Future.delayed(const Duration(seconds: 3));
+                            store.clearValues(); // talve possa me gerar aluns bugs se eu apagar ou não os campos e querer usar depois
+                            Modular.to.navigate(RoutesModulesApp.routerLoginModule);
                           }
                           else if(registerController.stateController == StateResponse.error){
                             if(registerController.hasEmail && registerController.hasNick){

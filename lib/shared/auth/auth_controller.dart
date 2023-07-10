@@ -12,6 +12,7 @@ class AuthController {
   bool isAuthenticated = false;
 
   Future<bool> checkTokenValidity() async {
+    _tokenManager.removeToken();
     String? storedToken = await _tokenManager.getToken();
     isAuthenticated = storedToken != null ? await verifyTokenValidity(storedToken) : false;
     return isAuthenticated;

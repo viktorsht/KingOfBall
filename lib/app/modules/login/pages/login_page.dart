@@ -25,6 +25,7 @@ class LoginPage extends StatelessWidget {
     final loginController = Provider.of<LoginController>(context);
     final colors = ColorsAppDefault();
     final tokenManager = TokenManager();
+    //final heightRegister = MediaQuery.of(context).size.height * 0.2;
     //final loginController = LoginController();
     return Form(
       child: Scaffold(
@@ -107,6 +108,36 @@ class LoginPage extends StatelessWidget {
                       )
                     );
                   }
+                ),
+                const SizedBox(height: 16,),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: TextButton(
+                    onPressed: (){
+                      Modular.to.navigate(RoutesModulesApp.routerRegisterModule);
+                    }, 
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      //crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Não tenho conta: ",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: colors.white
+                          ),
+                        ),
+                        Text(
+                          "Registrar-se",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: colors.white
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
