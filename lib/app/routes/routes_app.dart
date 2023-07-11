@@ -5,4 +5,5 @@ class RoutesModulesApp {
   static const routerStartNavigationBarModule  = '/startNavigationBar';
   static const routerTeamVirtualRegisterModule = '/teamVirtualRegister';
   static const routerTeamVirtualModule = '/routerTeamVirtualModule';
+  static const routerHomePage = '/homePage';
 }
