@@ -26,7 +26,7 @@ class NavigatorComponent extends StatelessWidget {
           currentIndex: navigationStore.page?.round() ?? 0,
           onTap: (index) => navigationStore.jumpToPage(index),
           selectedItemColor: color.white,
-          unselectedItemColor: color.gray,
+          unselectedItemColor: color.white54,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

@@ -130,7 +130,7 @@ class RegisterPage extends StatelessWidget {
                             await Future.delayed(const Duration(seconds: 3));
                             //store.clearValues(); // talve possa me gerar aluns bugs se eu apagar ou não os campos e querer usar depois
                             //Modular.to.navigate(RoutesModulesApp.routerLoginModule);
-                            Modular.to.navigate(RoutesModulesApp.routerTeamVirtualRegisterModule);
+                            Modular.to.navigate(RoutesModulesApp.routerHomePage);
                           }
                           else if(registerController.stateController == StateResponse.error){
                             if(registerController.hasEmail && registerController.hasNick){

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/components/card/card_profile.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/components/card_profile/card_profile.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
-import 'components/featured_player.dart';
-import 'components/patrimony.dart';
-import 'components/punctuations.dart';
+import 'components/buttons/climb_now.dart';
+import 'components/card_info/featured_player.dart';
+import 'components/buttons/next_round.dart';
+import 'components/card_info/patrimony.dart';
+import 'components/card_info/punctuations.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,6 +16,7 @@ class HomePage extends StatelessWidget {
     final colors = ColorsAppDefault();
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 40,),
           const CardProfile(),
@@ -41,6 +44,23 @@ class HomePage extends StatelessWidget {
                 playerPoints: '23,7', 
               ),
             ],
+          ),
+          const SizedBox(height: 40,),
+          ClimbNowButton(
+            onPressed: (){},
+            heightClimbNowButton: 60,
+            widthClimbNowButton: 350,
+            text: "ESCALAR AGORA",
+            colors: colors,
+          ),
+          const SizedBox(height: 30,),
+          NextRoundButton(
+            colors: colors, 
+            heightNextRoundButton: 80,
+            widthNextRoundButton: 350,
+            onPressed: (){},
+            numberRound: '3',
+            timeRound: '2d 13h 27m',
           )
         ],
       )

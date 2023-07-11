@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:rei_da_bola/design_system/buttons/app_butons.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
 import '../../../../../design_system/icons/icons_app.dart';
@@ -15,7 +12,6 @@ class TeamVirtualRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
-    final buttonApp = ButtonAppDefault();
     return Scaffold(
       backgroundColor: colors.green,
       body: SingleChildScrollView(

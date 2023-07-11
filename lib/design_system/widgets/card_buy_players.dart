@@ -24,10 +24,10 @@ class CardBuyPlayers extends StatelessWidget {
               ImagesApp.jogador1,
               height: 60,
             ),
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'Fulano',
                   style: TextStyle(
@@ -51,10 +51,10 @@ class CardBuyPlayers extends StatelessWidget {
                 fontSize: 20,
               ),
             ),
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   '16.80',
                   style: TextStyle(
@@ -71,10 +71,10 @@ class CardBuyPlayers extends StatelessWidget {
                 ),
               ],
             ),
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   '16.80',
                   style: TextStyle(
@@ -91,10 +91,10 @@ class CardBuyPlayers extends StatelessWidget {
                 ),
               ],
             ),
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   '16.80',
                   style: TextStyle(
@@ -121,8 +121,8 @@ class CardBuyPlayers extends StatelessWidget {
                 )
               ),
               onPressed: (){}, 
-              child: Row(
-                children: const [
+              child: const Row(
+                children: [
                   Text(
                     "COMPRAR",
                     style: TextStyle(

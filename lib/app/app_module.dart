@@ -4,7 +4,6 @@ import 'package:rei_da_bola/app/modules/login/login_module.dart';
 import 'package:rei_da_bola/app/modules/register_user/register_module.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/home_module.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/pages/start_navigation_bar_page.dart';
-import 'package:rei_da_bola/app/modules/team_virtual/register/pages/team_virtual_register_page.dart';
 import 'package:rei_da_bola/app/modules/team_virtual/team_virtual_module.dart';
 import 'package:rei_da_bola/shared/api/api_headers.dart';
 import 'package:rei_da_bola/app/modules/start_info/start_info_page.dart';
@@ -32,14 +31,6 @@ class AppModule extends Module {
         }
       ),
     ),
-
-     // este child route é um teste.
-    /*
-    ChildRoute(
-      RoutesModulesApp.routerRootModule, 
-      child: (context, args) =>  const TeamVirtualRegisterPage()
-    ),
-    */
 
     ModuleRoute(RoutesModulesApp.routerLoginModule, module: LoginModule()),
     ModuleRoute(RoutesModulesApp.routerRegisterModule, module: RegisterModule()),

@@ -20,7 +20,7 @@ class Punctuations extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(20),
         color: colors.greenLight
       ),
       height: height,

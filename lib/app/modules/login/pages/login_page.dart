@@ -74,7 +74,6 @@ class LoginPage extends StatelessWidget {
                       onPressed: () async {
                         if(store.isFormValid){
                           String token = await loginController.login(store.email, store.password);
-                          print(token);
                           if(loginController.stateController == 'sucess'){
                             tokenManager.setToken(token);
                             Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);

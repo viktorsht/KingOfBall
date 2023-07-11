@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/images/images_app.dart';
 
 class ProfileHome extends StatelessWidget {
@@ -7,12 +6,12 @@ class ProfileHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = ColorsAppDefault();
+    //final colors = ColorsAppDefault();
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          width: 60,
+          width: 100,
           child: Image.asset(
             ImagesApp.escudoTeam
             )
