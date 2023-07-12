@@ -12,4 +12,5 @@ class ImagesApp {
   static const jogador2 = '${pathImages}jogador2.png';
   static const jogador3 = '${pathImages}jogador3.png';
   static const apitoWhite = '${pathImages}apito_white.png';
+  static const trofeu = '${pathImages}trofeu.png';
 }

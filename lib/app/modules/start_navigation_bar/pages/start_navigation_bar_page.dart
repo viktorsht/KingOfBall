@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/home_page.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/table/pages/table_page.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/pages/team_page.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/pages/components/navigator_component.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/stories/navigation_store.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
@@ -66,8 +68,9 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
             controller: pageViewController,
             children: [
               HomePage(cardProfileController: cardProfileController,),
-              Container(color: Colors.amber,),
-              Container(color: Colors.red,),
+              const TablePage(),
+              const TeamPage(),
+              //Container(color: Colors.yellow,),
               Container(color: Colors.blue,),
               Container(color: Colors.black,),
             ],

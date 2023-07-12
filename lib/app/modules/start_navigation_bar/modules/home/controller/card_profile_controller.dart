@@ -1,5 +1,4 @@
 import 'package:mobx/mobx.dart';
-import 'package:rei_da_bola/app/modules/login/models/login_model.dart';
 import 'package:rei_da_bola/app/modules/shared/models/user_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/services/card_profile_services.dart';
 import 'package:rei_da_bola/shared/token/token_manager.dart';

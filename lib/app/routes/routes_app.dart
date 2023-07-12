@@ -7,5 +7,6 @@ class RoutesModulesApp {
   static const routerTeamVirtualModule = '/routerTeamVirtualModule';
   static const routerHomeModule = '/homePage';
   static const routerDrawerModule = '/drawer';
-
+  static const routerTableModule = '/table';
+  static const routerTeamModule = '/team';
 }
