@@ -6,6 +6,10 @@ import 'package:rei_da_bola/app/modules/start_navigation_bar/stories/navigation_
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/images/images_app.dart';
 
+import '../../../../shared/token/token_manager.dart';
+import '../modules/drawer/pages/drawer_page.dart';
+import '../modules/home/controller/card_profile_controller.dart';
+
 
 class StartNavigationBarPage extends StatefulWidget {
   const StartNavigationBarPage({super.key});
@@ -19,6 +23,14 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
   late NavigationStore navigationStore;
   
   final pageViewController = PageController();
+  final cardProfileController = CardProfileController(); // esta aqui pro causa do Drawer
+
+  @override
+  void initState() {
+    super.initState();
+    final tokenManager = TokenManager();
+    cardProfileController.initProfile(tokenManager);
+  }
 
   @override
   void dispose() {
@@ -42,12 +54,18 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
           ),
         ),
       ),
+      drawer: Observer(
+        builder: (_) => DrawerPage(
+          colors: colors,
+          user: cardProfileController.user,
+        ),
+      ),
       body: Center(
         child: Observer(
           builder: (_) => PageView(
             controller: pageViewController,
             children: [
-              const HomePage(),
+              HomePage(cardProfileController: cardProfileController,),
               Container(color: Colors.amber,),
               Container(color: Colors.red,),
               Container(color: Colors.blue,),

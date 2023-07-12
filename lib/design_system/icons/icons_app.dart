@@ -10,4 +10,5 @@ class IconsApp {
   static const email = '${pathIcons}email.png';
   static const editar = '${pathIcons}editar.png';
   static const clock = '${pathIcons}clock.png';
+  static const userDrawer = '${pathIcons}user_drawer.png';
 }

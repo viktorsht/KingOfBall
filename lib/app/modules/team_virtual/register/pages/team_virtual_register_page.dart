@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rei_da_bola/app/modules/team_virtual/register/stories/team_virtual_register_store.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
 import '../../../../../design_system/icons/icons_app.dart';
@@ -12,6 +14,7 @@ class TeamVirtualRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
+    final store = Provider.of<TeamVirtualRegisterStore>(context);
     return Scaffold(
       backgroundColor: colors.green,
       body: SingleChildScrollView(
@@ -41,19 +44,19 @@ class TeamVirtualRegisterPage extends StatelessWidget {
             WidgetFormField(
               hint: 'Nome do time' ,
               textInputType: TextInputType.emailAddress,
-              prefix: Image.asset(IconsApp.email),
+              prefix: Image.asset(IconsApp.team),
               obscure: false,
               enable: true,
-              //onChanged: store.setEmail,
+              onChanged: store.setNameTeam,
             ),
             const SizedBox(height: 16,),
             WidgetFormField(
               hint: 'Abreviação do time' ,
               textInputType: TextInputType.emailAddress,
-              prefix: Image.asset(IconsApp.email),
+              prefix: Image.asset(IconsApp.team),
               obscure: false,
               enable: true,
-              //onChanged: store.setEmail,
+              onChanged: store.setAbbreviationTeam,
             ),
             const SizedBox(height: 16,),
             TextButton(
