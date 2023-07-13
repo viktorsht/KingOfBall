@@ -9,6 +9,7 @@ import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/images/images_app.dart';
 
 import '../../../../shared/token/token_manager.dart';
+import '../../teste/teste.dart';
 import '../modules/drawer/pages/drawer_page.dart';
 import '../modules/home/controller/card_profile_controller.dart';
 
@@ -71,7 +72,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
               const TablePage(),
               const TeamPage(),
               //Container(color: Colors.yellow,),
-              Container(color: Colors.blue,),
+              MyHomePage(),
               Container(color: Colors.black,),
             ],
           )

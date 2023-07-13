@@ -6,12 +6,14 @@ class WidgetTextApp extends StatelessWidget {
   final String widgetText;
   final Color? color;
   final double? size;
+  final double? maxWidth;
 
   const WidgetTextApp({
     super.key, 
     required this.widgetText, 
     this.size,
-    this.color,
+    this.color, 
+    this.maxWidth,
   });
 
 

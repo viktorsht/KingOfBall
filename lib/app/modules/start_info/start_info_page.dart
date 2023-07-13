@@ -35,6 +35,7 @@ class _StartInfoPageState extends State<StartInfoPage> {
                 widgetText: 'conquiste a coroa.',
                 color: colorsApp.white,
               ),
+              
               const SizedBox(height: 100,),
               ElevatedButton(
                 style: buttonApp.themeButtonAppPrimary,
