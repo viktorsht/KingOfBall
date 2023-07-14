@@ -57,6 +57,22 @@ mixin _$RegisterController on RegisterControllerImpl, Store {
     });
   }
 
+  late final _$userIdAtom =
+      Atom(name: 'RegisterControllerImpl.userId', context: context);
+
+  @override
+  int? get userId {
+    _$userIdAtom.reportRead();
+    return super.userId;
+  }
+
+  @override
+  set userId(int? value) {
+    _$userIdAtom.reportWrite(value, super.userId, () {
+      super.userId = value;
+    });
+  }
+
   late final _$registerUserAsyncAction =
       AsyncAction('RegisterControllerImpl.registerUser', context: context);
 
@@ -82,6 +98,17 @@ mixin _$RegisterController on RegisterControllerImpl, Store {
   }
 
   @override
+  void cleanFiels() {
+    final _$actionInfo = _$RegisterControllerImplActionController.startAction(
+        name: 'RegisterControllerImpl.cleanFiels');
+    try {
+      return super.cleanFiels();
+    } finally {
+      _$RegisterControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void contarElementosNoJSON(dynamic exception) {
     final _$actionInfo = _$RegisterControllerImplActionController.startAction(
         name: 'RegisterControllerImpl.contarElementosNoJSON');
@@ -97,7 +124,8 @@ mixin _$RegisterController on RegisterControllerImpl, Store {
     return '''
 stateController: ${stateController},
 hasEmail: ${hasEmail},
-hasNick: ${hasNick}
+hasNick: ${hasNick},
+userId: ${userId}
     ''';
   }
 }

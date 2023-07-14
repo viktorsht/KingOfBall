@@ -14,6 +14,7 @@ import '../../../../design_system/widgets/widget_snackbar.dart';
 import '../../../../shared/token/token_manager.dart';
 import '../../../routes/routes_app.dart';
 import '../../shared/components/password_look.dart';
+import '../../start_navigation_bar/modules/home/controller/card_profile_controller.dart';
 import '../controllers/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
@@ -76,6 +77,13 @@ class LoginPage extends StatelessWidget {
                           String token = await loginController.login(store.email, store.password);
                           if(loginController.stateController == 'sucess'){
                             tokenManager.setToken(token);
+                            /*
+                            final cardProfileController = CardProfileController(); // esta aqui pro causa do Drawer
+                            //await cardProfileController.infoProfileUser(tokenManager);
+                            if(cardProfileController.hasTeam == false){
+                              Modular.to.navigate(RoutesModulesApp.routerTeamVirtualRegisterModule);
+                            }
+                            */
                             Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
                           }
                           else{

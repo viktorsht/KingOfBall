@@ -12,6 +12,8 @@ import '../../../../shared/token/token_manager.dart';
 import '../../teste/teste.dart';
 import '../modules/drawer/pages/drawer_page.dart';
 import '../modules/home/controller/card_profile_controller.dart';
+import '../modules/more/controller/more_controller.dart';
+import '../modules/more/pages/more_page.dart';
 
 
 class StartNavigationBarPage extends StatefulWidget {
@@ -27,12 +29,14 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
   
   final pageViewController = PageController();
   final cardProfileController = CardProfileController(); // esta aqui pro causa do Drawer
-
+  final moreController = MoreController();
+  
   @override
   void initState() {
     super.initState();
     final tokenManager = TokenManager();
     cardProfileController.initProfile(tokenManager);
+    moreController.listaRodadas();
   }
 
   @override
@@ -71,9 +75,9 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
               HomePage(cardProfileController: cardProfileController,),
               const TablePage(),
               const TeamPage(),
-              //Container(color: Colors.yellow,),
-              MyHomePage(),
-              Container(color: Colors.black,),
+              Container(color: Colors.yellow,),
+              //MyHomePage(),
+              MorePage(moreController: moreController,),
             ],
           )
         ),

@@ -5,6 +5,7 @@ class UserModel {
   String? firstName;
   String? lastName;
   String? nick;
+  int? accessLevelId;
   String? createdAt;
   String? updatedAt;
 
@@ -15,6 +16,7 @@ class UserModel {
       this.firstName,
       this.lastName,
       this.nick,
+      this.accessLevelId,
       this.createdAt,
       this.updatedAt});
 
@@ -25,6 +27,7 @@ class UserModel {
     firstName = json['first_name'];
     lastName = json['last_name'];
     nick = json['nick'];
+    accessLevelId = json['accessLevelId'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
@@ -37,6 +40,7 @@ class UserModel {
     data['first_name'] = firstName;
     data['last_name'] = lastName;
     data['nick'] = nick;
+    data['accessLevelId'] = accessLevelId;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     return data;

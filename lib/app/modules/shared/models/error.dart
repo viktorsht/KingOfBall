@@ -1,7 +1,7 @@
-class RegisterUserException implements Exception {
+class ErrorRegisterExceptionModel implements Exception {
   final Map<String, dynamic> errors;
 
-  RegisterUserException(this.errors);
+  ErrorRegisterExceptionModel(this.errors);
 
   @override
   String toString() {

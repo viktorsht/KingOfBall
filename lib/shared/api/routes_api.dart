@@ -7,5 +7,6 @@ class RoutersApi{
   static String refesh = '${Api.urlApi}refesh';
   static String me = '${Api.urlApi}me';
   static String soccerMatch = '${Api.urlApi}soccerMatch';
+  static String teamGame = '${Api.urlApi}teamGame';
 
 }

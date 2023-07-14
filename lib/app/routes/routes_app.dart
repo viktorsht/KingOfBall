@@ -9,4 +9,5 @@ class RoutesModulesApp {
   static const routerDrawerModule = '/drawer';
   static const routerTableModule = '/table';
   static const routerTeamModule = '/team';
+  static const routerMoreModule = '/more';
 }

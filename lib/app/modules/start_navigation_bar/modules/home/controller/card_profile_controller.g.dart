@@ -41,12 +41,54 @@ mixin _$CardProfileController on CardProfileControllerImpl, Store {
     });
   }
 
+  late final _$hasTeamAtom =
+      Atom(name: 'CardProfileControllerImpl.hasTeam', context: context);
+
+  @override
+  bool get hasTeam {
+    _$hasTeamAtom.reportRead();
+    return super.hasTeam;
+  }
+
+  @override
+  set hasTeam(bool value) {
+    _$hasTeamAtom.reportWrite(value, super.hasTeam, () {
+      super.hasTeam = value;
+    });
+  }
+
+  late final _$teamGameModelAtom =
+      Atom(name: 'CardProfileControllerImpl.teamGameModel', context: context);
+
+  @override
+  TeamGameModel get teamGameModel {
+    _$teamGameModelAtom.reportRead();
+    return super.teamGameModel;
+  }
+
+  @override
+  set teamGameModel(TeamGameModel value) {
+    _$teamGameModelAtom.reportWrite(value, super.teamGameModel, () {
+      super.teamGameModel = value;
+    });
+  }
+
   late final _$profileAsyncAction =
       AsyncAction('CardProfileControllerImpl.profile', context: context);
 
   @override
   Future<UserModel> profile(TokenManager tokenManager) {
     return _$profileAsyncAction.run(() => super.profile(tokenManager));
+  }
+
+  late final _$infoProfileUserAsyncAction = AsyncAction(
+      'CardProfileControllerImpl.infoProfileUser',
+      context: context);
+
+  @override
+  Future<TeamGameModel> infoProfileUser(TokenManager tokenManager) {
+    return _$infoProfileUserAsyncAction
+        .run(() => super.infoProfileUser(tokenManager));
   }
 
   late final _$initProfileAsyncAction =
@@ -57,11 +99,27 @@ mixin _$CardProfileController on CardProfileControllerImpl, Store {
     return _$initProfileAsyncAction.run(() => super.initProfile(tokenManager));
   }
 
+  late final _$CardProfileControllerImplActionController =
+      ActionController(name: 'CardProfileControllerImpl', context: context);
+
+  @override
+  void cleanField() {
+    final _$actionInfo = _$CardProfileControllerImplActionController
+        .startAction(name: 'CardProfileControllerImpl.cleanField');
+    try {
+      return super.cleanField();
+    } finally {
+      _$CardProfileControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 stateController: ${stateController},
-user: ${user}
+user: ${user},
+hasTeam: ${hasTeam},
+teamGameModel: ${teamGameModel}
     ''';
   }
 }

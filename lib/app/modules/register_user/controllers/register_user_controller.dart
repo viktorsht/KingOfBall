@@ -1,9 +1,10 @@
 import 'package:mobx/mobx.dart';
-import 'package:rei_da_bola/app/modules/register_user/models/error.dart';
+import 'package:rei_da_bola/app/modules/shared/models/error.dart';
 import 'package:rei_da_bola/app/modules/register_user/models/register_user_model.dart';
 import 'package:rei_da_bola/app/modules/register_user/models/register_user_sucess_model.dart';
 
 import '../../../../shared/api/state_response.dart';
+import '../../../../shared/token/token_manager.dart';
 import '../services/register_services.dart';
 
 part 'register_user_controller.g.dart';
@@ -24,10 +25,20 @@ abstract class RegisterControllerImpl with Store{
 
   @observable
   bool hasNick = false;
+  
+  @observable
+  int? userId;
+
+  @action
+  void cleanFiels(){
+    stateController = StateResponse.start;
+    hasEmail = false;
+    hasNick = false;
+  }
 
   @action
   void contarElementosNoJSON(dynamic exception) {
-    if (exception is RegisterUserException) {
+    if (exception is ErrorRegisterExceptionModel) {
       Map<String, dynamic> errors = exception.errors;
 
 
@@ -45,7 +56,7 @@ abstract class RegisterControllerImpl with Store{
   Future<RegisterUserSucessModel> registerUser(String firstNameUser, String lastNameUser, String nick, String email, String password) async {
     stateController = StateResponse.loading;
     final registerService = RegisterServices();
-    var retorno = RegisterUserSucessModel();
+    RegisterUserSucessModel retorno = RegisterUserSucessModel();
     final body = RegisterUserModel(firstName: firstNameUser,lastName: lastNameUser,nick: nick,email: email,password: password);
     try {
       retorno = await registerService.postRegisterUserApi(body);

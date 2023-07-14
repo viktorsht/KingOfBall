@@ -1,14 +1,14 @@
-import 'package:rei_da_bola/app/modules/register_user/models/register_user_model.dart';
+import 'package:rei_da_bola/app/modules/shared/models/user_model.dart';
 
 class RegisterUserSucessModel {
   String? msg;
-  RegisterUserModel? user;
+  UserModel? user;
 
   RegisterUserSucessModel({this.msg, this.user});
 
   RegisterUserSucessModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
-    user = json['user'] != null ? RegisterUserModel.fromJson(json['user']) : null;
+    user = json['user'] != null ? UserModel.fromJson(json['user']) : null;
   }
 
   Map<String, dynamic> toJson() {

@@ -24,7 +24,6 @@ class RegisterPage extends StatelessWidget {
     final colors = ColorsAppDefault();
     final store = Provider.of<RegisterStore>(context);
     final registerController = Provider.of<RegisterController>(context);
-
     final formKey = GlobalKey<FormState>();
 
     String msgUser = 'Ocorreu um erro inesperado, tente mais tarde';
@@ -129,8 +128,9 @@ class RegisterPage extends StatelessWidget {
                             ScaffoldMessenger.of(context).showSnackBar(snackBar);
                             await Future.delayed(const Duration(seconds: 3));
                             //store.clearValues(); // talve possa me gerar aluns bugs se eu apagar ou não os campos e querer usar depois
-                            //Modular.to.navigate(RoutesModulesApp.routerLoginModule);
-                            Modular.to.navigate(RoutesModulesApp.routerTeamVirtualModule);
+                            //registerController.cleanFiels();
+                            Modular.to.navigate(RoutesModulesApp.routerLoginModule);
+                            //Modular.to.navigate(RoutesModulesApp.routerTeamVirtualModule);
                           }
                           else if(registerController.stateController == StateResponse.error){
                             if(registerController.hasEmail && registerController.hasNick){
