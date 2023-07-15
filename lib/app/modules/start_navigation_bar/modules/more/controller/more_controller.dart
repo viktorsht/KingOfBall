@@ -12,27 +12,56 @@ abstract class MoreControllerImpl with Store{
   @observable
   String stateController = StateResponse.start;
 
+  @observable
+  int numRodadas = 0;
 
   @observable
   List<SoccerMatchModel> listSoccerMatch = [];
+
+  @action
+  void setList(value) => listSoccerMatch = value;
 
   @observable
   MoreServices moreServices = MoreServices();
 
   @observable
   TokenManager tokenManager = TokenManager();
+
+  @action
+  void setNumRodadas() => numRodadas++;
+
+  @action
+  void countRound(List<SoccerMatchModel> list){
+    int rodada = 1;
+    for (var i = 0; i < list.length; i++) {
+      if(rodada != list[i].championshipRoundId){
+        rodada = list[i].championshipRoundId!;
+        setNumRodadas();
+      }
+    }
+  } 
+
   
   @action
-  Future<void> listaRodadas() async {
+  Future<List<SoccerMatchModel>> listaRodadas() async {
+    List<SoccerMatchModel> list = [];
     StateResponse.loading;
     try{
       String token = (await tokenManager.getToken())!;
-      listSoccerMatch = await moreServices.postMoreServices(token);
-      print(listSoccerMatch);
+      list = await moreServices.postMoreServices(token);
       StateResponse.sucess;
     } catch(e){
       StateResponse.error;
     }
+    return list;
+  }
+
+  @action
+  Future<void> initMore() async {
+    listSoccerMatch = await listaRodadas();
+    setList(listSoccerMatch); // necessário estar aqui
+    countRound(listSoccerMatch);
+    print(numRodadas);
   }
   
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-import 'package:rei_da_bola/app/modules/register_user/controllers/register_user_controller.dart';
+//import 'package:rei_da_bola/app/modules/register_user/controllers/register_user_controller.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/shared/token/token_manager.dart';
 import '../../../../../../design_system/icons/icons_app.dart';
@@ -21,7 +21,7 @@ class TeamVirtualRegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
     final store = Provider.of<TeamVirtualRegisterStore>(context);
-    final storeRegisterUserId = Provider.of<RegisterController>(context);
+    //final storeRegisterUserId = Provider.of<RegisterController>(context);
     final registerTVController = Provider.of<RegisterTeamVirtualController>(context);
     String msgUser = 'Ocorreu um erro inesperado, tente mais tarde';
     return Scaffold(

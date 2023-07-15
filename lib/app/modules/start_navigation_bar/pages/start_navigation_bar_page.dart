@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/controller/start_controller.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/home_page.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/table/pages/table_page.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/pages/team_page.dart';
@@ -28,15 +30,17 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
   late NavigationStore navigationStore;
   
   final pageViewController = PageController();
-  final cardProfileController = CardProfileController(); // esta aqui pro causa do Drawer
-  final moreController = MoreController();
+  final startController = StartController(); // esta aqui pro causa do Drawer
+  late MoreController moreController;
   
   @override
   void initState() {
     super.initState();
-    final tokenManager = TokenManager();
-    cardProfileController.initProfile(tokenManager);
-    moreController.listaRodadas();
+    //final tokenManager = TokenManager();
+    //cardProfileController.initProfile(tokenManager);
+    //moreController = Modular.get<MoreController>();
+    //moreController.initMore();
+    startController.initStartnavigationBar();
   }
 
   @override
@@ -64,7 +68,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
       drawer: Observer(
         builder: (_) => DrawerPage(
           colors: colors,
-          user: cardProfileController.user,
+          user: startController.user,
         ),
       ),
       body: Center(
@@ -72,12 +76,12 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
           builder: (_) => PageView(
             controller: pageViewController,
             children: [
-              HomePage(cardProfileController: cardProfileController,),
+              HomePage(teamGameModel: startController.teamGameModel,),
               const TablePage(),
               const TeamPage(),
               Container(color: Colors.yellow,),
               //MyHomePage(),
-              MorePage(moreController: moreController,),
+              const MorePage(),
             ],
           )
         ),

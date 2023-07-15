@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/models/team_game_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/components/card_profile/card_profile.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import '../controller/card_profile_controller.dart';
@@ -11,11 +12,11 @@ import 'components/card_info/punctuations.dart';
 
 class HomePage extends StatelessWidget {
 
-  final CardProfileController cardProfileController;
+  final TeamGameModel teamGameModel;
   
   const HomePage({
     super.key, 
-    required this.cardProfileController
+    required this.teamGameModel
   });  
   
   @override
@@ -27,9 +28,8 @@ class HomePage extends StatelessWidget {
         children: [
           const SizedBox(height: 40,),
           Observer(
-            builder:(context) => CardProfile(
-              //userModel: cardProfileController.user,
-              teamGameModel: cardProfileController.teamGameModel,
+            builder:(_) => CardProfile(
+              teamGameModel: teamGameModel,
             )
           ),
           const SizedBox(height: 40,),

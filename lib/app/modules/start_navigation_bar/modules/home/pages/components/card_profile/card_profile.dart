@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rei_da_bola/app/modules/shared/models/user_model.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/models/team_game_model.dart';
 
 import '../../../../../../../../design_system/icons/icons_app.dart';
@@ -19,7 +19,6 @@ class CardProfile extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        //ProfileHome(tokenManager: tokenManager,),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -33,19 +32,23 @@ class CardProfile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "River Futebool Clube FC",
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
+                Observer(
+                  builder:(_) => Text(
+                    teamGameModel.name ==  null ? 'Não tem time' : "${teamGameModel.name}",
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                    ),
                   ),
                 ),
-                Text(
-                  "@1berto_jr",
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    //color: colors.gray
+                Observer(
+                  builder:(_) => Text(
+                    teamGameModel.name ==  null ? 'Não tem time' : "@${teamGameModel.user}",
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      //color: colors.gray
+                    ),
                   ),
                 ),
               ],

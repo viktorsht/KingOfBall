@@ -36,58 +36,62 @@ class CardGameRound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: color.whiteLigth,
-        borderRadius: BorderRadius.circular(25),
-      ),
-      height: 80,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Image.asset(
-            pathFristTeam,
-            height: 60,
-          ),
-          Text(
-            nameFristTeam,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: color.whiteLigth,
+          borderRadius: BorderRadius.circular(25),
+        ),
+        height: 70,
+        //width: 100,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Image.asset(
+              pathFristTeam,
+              height: 30,
             ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            Text(
+              nameFristTeam,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "X", 
+                  style: TextStyle(
+                    color: color.green,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
               Text(
-                "X", 
-                style: TextStyle(
-                  color: color.green,
-                  fontSize: 40,
+                gameTime,
+                style: const TextStyle(
+                  fontSize: 12,
                   fontWeight: FontWeight.bold
                 ),
               ),
+              ],
+            ),
             Text(
-              gameTime,
+              nameSecondTeam,
               style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
               ),
             ),
-            ],
-          ),
-          Text(
-            nameSecondTeam,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
+            Image.asset(
+              pathSecondTeam,
+              height: 30,
             ),
-          ),
-          Image.asset(
-            pathSecondTeam,
-            height: 60,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
