@@ -4,7 +4,6 @@ import 'package:rei_da_bola/app/modules/register_user/models/register_user_model
 import 'package:rei_da_bola/app/modules/register_user/models/register_user_sucess_model.dart';
 
 import '../../../../shared/api/state_response.dart';
-import '../../../../shared/token/token_manager.dart';
 import '../services/register_services.dart';
 
 part 'register_user_controller.g.dart';

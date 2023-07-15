@@ -14,7 +14,6 @@ import '../../../../design_system/widgets/widget_snackbar.dart';
 import '../../../../shared/token/token_manager.dart';
 import '../../../routes/routes_app.dart';
 import '../../shared/components/password_look.dart';
-import '../../start_navigation_bar/modules/home/controller/card_profile_controller.dart';
 import '../controllers/login_controller.dart';
 
 class LoginPage extends StatelessWidget {

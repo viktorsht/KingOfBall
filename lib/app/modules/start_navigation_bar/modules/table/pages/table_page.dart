@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/table/pages/components/general_league.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
-import '../../../../../../design_system/images/images_app.dart';
-import '../../../../../../design_system/widgets/card_ranking.dart';
-
 class TablePage extends StatelessWidget {
   
   const TablePage({super.key});

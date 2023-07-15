@@ -61,7 +61,6 @@ abstract class MoreControllerImpl with Store{
     listSoccerMatch = await listaRodadas();
     setList(listSoccerMatch); // necessário estar aqui
     countRound(listSoccerMatch);
-    print(numRodadas);
   }
   
 }

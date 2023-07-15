@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:rei_da_bola/design_system/images/images_app.dart';
 
 import '../../../../../../../../../shared/token/token_manager.dart';
-import '../../../../controller/card_profile_controller.dart';
 
 class ProfileHome extends StatelessWidget {
   final TokenManager tokenManager;

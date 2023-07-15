@@ -56,7 +56,6 @@ abstract class StartControllerImpl with Store{
     if(token != null){
       try {
         retorno = await startServices.getInfoProfileUser(token);
-        print('object');
         stateController = StateResponse.sucess;
       } catch (e) {
         stateController = StateResponse.error;
@@ -72,6 +71,5 @@ abstract class StartControllerImpl with Store{
   Future<void> initStartnavigationBar() async {
     user = await drawerUser();
     teamGameModel = await cardProfileUser();
-    print(teamGameModel.toJson());
   }
 }

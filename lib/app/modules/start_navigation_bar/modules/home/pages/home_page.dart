@@ -3,7 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/models/team_game_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/components/card_profile/card_profile.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
-import '../controller/card_profile_controller.dart';
 import 'components/buttons/climb_now.dart';
 import 'components/card_info/featured_player.dart';
 import 'components/buttons/next_round.dart';

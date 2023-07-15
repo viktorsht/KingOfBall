@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/controller/start_controller.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/home_page.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/table/pages/table_page.dart';
@@ -10,10 +9,7 @@ import 'package:rei_da_bola/app/modules/start_navigation_bar/stories/navigation_
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/images/images_app.dart';
 
-import '../../../../shared/token/token_manager.dart';
-import '../../teste/teste.dart';
 import '../modules/drawer/pages/drawer_page.dart';
-import '../modules/home/controller/card_profile_controller.dart';
 import '../modules/more/controller/more_controller.dart';
 import '../modules/more/pages/more_page.dart';
 

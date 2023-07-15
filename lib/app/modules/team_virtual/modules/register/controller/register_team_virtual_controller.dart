@@ -57,19 +57,18 @@ abstract class RegisterTeamVirtualControllerImpl with Store{
     var retorno = RegisterTeamVirtualSucessModel();
     final body = RegisterTeamVirtualModel(name: name,abb: abb,userId: userId);
     final tokenManager = TokenManager();
-    print("object");
     String? token = await tokenManager.getToken();
-    print(token);
-    try {
-      retorno = await registerService.postRegisterTeamVirtualApi(body, token!);
-      print(retorno);
-      //userId = retorno.user?.id;
-      stateController = StateResponse.sucess;
-    } catch (e) {
+    if(token != null){
+      try {
+        retorno = await registerService.postRegisterTeamVirtualApi(body, token);
+        stateController = StateResponse.sucess;
+      } catch (e) {
+        stateController = StateResponse.error;
+        contarElementosNoJSON(e);
+      }
+    }
+    else{
       stateController = StateResponse.error;
-      contarElementosNoJSON(e);
-      //rethrow;
-      //final erro = Errors.fromJson(e.toString());
     }
     return retorno;
   }

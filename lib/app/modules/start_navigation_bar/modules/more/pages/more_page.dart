@@ -2,13 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/more/controller/more_controller.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
-import 'package:rei_da_bola/design_system/images/images_app.dart';
-import 'package:rei_da_bola/design_system/widgets/loading_app.dart';
-import 'package:rei_da_bola/shared/api/state_response.dart';
-
-import '../../../../../../design_system/widgets/card_game_round.dart';
-import '../../../../../../design_system/widgets/widget_loading.dart';
-import '../../../../../../shared/format_date_time.dart';
 import 'components/championship_round_page.dart';
 
 class MorePage extends StatefulWidget {

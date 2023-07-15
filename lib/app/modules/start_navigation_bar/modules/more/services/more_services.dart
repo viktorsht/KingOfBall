@@ -15,7 +15,6 @@ class MoreServices{
       url,
       headers: headersApi.headers,
     );
-    print("Status CODE: ${response.statusCode}");
 
     final list = jsonDecode(response.body) as List;
     return list.map((json) => SoccerMatchModel.fromJson(json)).toList();
