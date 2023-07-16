@@ -8,5 +8,6 @@ class RoutersApi{
   static String me = '${Api.urlApi}me';
   static String soccerMatch = '${Api.urlApi}soccerMatch';
   static String teamGame = '${Api.urlApi}teamGame';
+  static String playerEdition = '${Api.urlApi}playerEdition';
 
 }

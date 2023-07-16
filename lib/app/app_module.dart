@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:rei_da_bola/app/modules/buy/buy_module.dart';
 import 'package:rei_da_bola/app/modules/login/login_module.dart';
 import 'package:rei_da_bola/app/modules/register_user/register_module.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/home_module.dart';
@@ -74,6 +75,7 @@ class AppModule extends Module {
     ModuleRoute(RoutesModulesApp.routerTableModule, module: TableModule()),
     ModuleRoute(RoutesModulesApp.routerTeamModule, module: TeamModule()),
     ModuleRoute(RoutesModulesApp.routerMoreModule, module: MoreModule()),
+    ModuleRoute(RoutesModulesApp.routerBuyModule, module: BuyModule()),
 
   ];
 }

@@ -1,6 +1,6 @@
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/more/models/champion_ship_round.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/more/models/stadium_football.dart';
-import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/more/models/team_edition.dart';
+import 'package:rei_da_bola/app/modules/shared/models/team_edition.dart';
 
 import 'champion_ship_edition.dart';
 

@@ -1,5 +1,5 @@
 
-import '../../../../teste/player_model.dart';
+import 'package:rei_da_bola/app/modules/shared/models/team_model.dart';
 
 class TeamEdition {
   int? id;

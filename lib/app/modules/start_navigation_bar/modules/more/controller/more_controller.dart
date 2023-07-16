@@ -45,13 +45,13 @@ abstract class MoreControllerImpl with Store{
   @action
   Future<List<SoccerMatchModel>> listaRodadas() async {
     List<SoccerMatchModel> list = [];
-    StateResponse.loading;
+    stateController = StateResponse.loading;
     try{
       String token = (await tokenManager.getToken())!;
       list = await moreServices.postMoreServices(token);
-      StateResponse.sucess;
+      stateController = StateResponse.sucess;
     } catch(e){
-      StateResponse.error;
+      stateController = StateResponse.error;
     }
     return list;
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/models/team_game_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/components/card_profile/card_profile.dart';
+import 'package:rei_da_bola/app/routes/routes_app.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'components/buttons/climb_now.dart';
 import 'components/card_info/featured_player.dart';
@@ -58,7 +60,9 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 40,),
           ClimbNowButton(
-            onPressed: (){},
+            onPressed: (){
+              Modular.to.navigate(RoutesModulesApp.routerBuyModule);
+            },
             heightClimbNowButton: 60,
             widthClimbNowButton: 350,
             text: "ESCALAR AGORA",
