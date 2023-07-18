@@ -27,24 +27,24 @@ class BuyModel {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     player =
-        json['player'] != null ? new PlayerModel.fromJson(json['player']) : null;
+        json['player'] != null ? PlayerModel.fromJson(json['player']) : null;
     teamEdition = json['team_edition'] != null
-        ? new TeamEdition.fromJson(json['team_edition'])
+        ? TeamEdition.fromJson(json['team_edition'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['player_id'] = this.playerId;
-    data['team_edition_id'] = this.teamEditionId;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    if (this.player != null) {
-      data['player'] = this.player!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['player_id'] = playerId;
+    data['team_edition_id'] = teamEditionId;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    if (player != null) {
+      data['player'] = player!.toJson();
     }
-    if (this.teamEdition != null) {
-      data['team_edition'] = this.teamEdition!.toJson();
+    if (teamEdition != null) {
+      data['team_edition'] = teamEdition!.toJson();
     }
     return data;
   }

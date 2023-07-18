@@ -89,10 +89,7 @@ abstract class BuyControllerImpl with Store{
   Future<void> initBuy() async {
   List<BuyModel> list = [];
     list = await players();
-    //setList(listBuy);
-    print(list.length);
     setList(groupItemsByAbb(list));
-    print(listBuy.length);
   }
   
 }

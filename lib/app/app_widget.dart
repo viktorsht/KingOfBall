@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
+import 'package:rei_da_bola/app/modules/buy/stories/buy_store.dart';
 import 'package:rei_da_bola/app/modules/login/stories/login_store.dart';
 import 'package:rei_da_bola/app/modules/register_user/stories/register_store.dart';
 
@@ -23,7 +24,8 @@ class AppWidget extends StatelessWidget {
         Provider<RegisterStore>(create: (_) => RegisterStore(),),
         Provider<TeamVirtualRegisterStore>(create: (_) => TeamVirtualRegisterStore(),),
         Provider<RegisterTeamVirtualController>(create: (_) => RegisterTeamVirtualController(),),
-        Provider<CardProfileController>(create: (_) => CardProfileController())
+        Provider<CardProfileController>(create: (_) => CardProfileController()),
+        Provider<BuyStore>(create: (_) => BuyStore())
       ],
       child: MaterialApp.router(
         title: 'Rei da Bola',

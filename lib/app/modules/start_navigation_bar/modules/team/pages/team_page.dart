@@ -48,7 +48,7 @@ class TeamPage extends StatelessWidget {
           SizedBox(
             height: heigth * 0.7,
             width: width,
-            child: MyHomePage(
+            child: FootballField(
               width: width,
               height: heigth,
               fieldH: fieldH,

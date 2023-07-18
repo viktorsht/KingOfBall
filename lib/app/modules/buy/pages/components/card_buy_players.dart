@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
+import 'package:rei_da_bola/app/modules/buy/models/buy_model.dart';
+import 'package:rei_da_bola/app/modules/buy/stories/buy_store.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
 class CardBuyPlayers extends StatelessWidget {
@@ -8,7 +12,7 @@ class CardBuyPlayers extends StatelessWidget {
   final String namePlayer;
   final String positionAbb;
   final String nameTeam;
-  final int numb;
+  final BuyModel player;
   
   const CardBuyPlayers({
     super.key, 
@@ -16,11 +20,13 @@ class CardBuyPlayers extends StatelessWidget {
     required this.namePlayer, 
     required this.positionAbb, 
     required this.nameTeam, 
-    required this.image, required this.numb
+    required this.image, 
+    required this.player
   });
 
   @override
   Widget build(BuildContext context) {
+    final store = Provider.of<BuyStore>(context);
     return Container(
       decoration: BoxDecoration(
         color: color.whiteLigth,
@@ -39,7 +45,7 @@ class CardBuyPlayers extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                namePlayer,
+                player.player!.firstname!,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -74,56 +80,25 @@ class CardBuyPlayers extends StatelessWidget {
               ),
             ],
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              elevation: 0.0,
-              // talvez seja preciso mudar a cor do botão dependendo do valor que o cara tiver
-              backgroundColor: color.green, 
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)
-              )
+          Observer(
+            builder:(_) => ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                elevation: 0.0,
+                // talvez seja preciso mudar a cor do botão dependendo do valor que o cara tiver
+                backgroundColor: color.green, 
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)
+                )
+              ),
+              onPressed: store.isButtonValid ? (){ store.addPlayerToVirtualTeam(player);} : null, 
+              child: const Text(
+                "COMPRAR",
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
             ),
-            onPressed: (){}, 
-            child: const Text(
-                  "COMPRAR",
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-                /*
-            child: const Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 2
-                  ),
-                  child: Icon(
-                    Icons.done,
-                    size: 18,
-                    weight: 50,
-                  ),
-                ),
-                Text(
-                  "COMPRAR",
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 2
-                  ),
-                  child: Icon(
-                    Icons.done,
-                    size: 18,
-                    weight: 12,
-                  ),
-                ),
-              ],
-            ),
-                */
           ),
         ],
       ),

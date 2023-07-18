@@ -3,12 +3,12 @@ import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/pages/
 
 import '../../../../../../../../design_system/images/images_app.dart';
 
-class MyHomePage extends StatelessWidget {
+class FootballField extends StatelessWidget {
   final double width;
   final double height;
   final double fieldH;
 
-  const MyHomePage({
+  const FootballField({
     super.key, 
     required this.width, 
     required this.height, 
@@ -29,7 +29,10 @@ class MyHomePage extends StatelessWidget {
                 fit: BoxFit.fill,
               ),
             ),
-            //IconButton(onPressed: (){}, icon: Icon(Icons.abc)),
+            /*IconButton(
+              onPressed: (){}, 
+              icon: const Icon(Icons.add, color: Colors.white,)
+            ),*/
             Player(
                 image: ImagesApp.goleiro,
                 name: 'Lala1',
