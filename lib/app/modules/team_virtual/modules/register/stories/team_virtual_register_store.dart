@@ -34,7 +34,7 @@ abstract class TeamVirtualRegisterStoreImpl with Store{
   bool get isValidFields => nameTeam.isNotEmpty && abbreviationTeam.isNotEmpty;
 
   @computed
-  bool get isNameTeamValid => nameTeam.length >= 6;
+  bool get isNameTeamValid => nameTeam.length >= 4;
 
   @computed
   bool get isAbbreviationTeam => abbreviationTeam.length >= 3;

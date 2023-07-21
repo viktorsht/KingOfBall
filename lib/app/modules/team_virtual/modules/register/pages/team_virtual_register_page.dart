@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
-//import 'package:rei_da_bola/app/modules/register_user/controllers/register_user_controller.dart';
+import 'package:rei_da_bola/app/routes/routes_app.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
-import 'package:rei_da_bola/shared/token/token_manager.dart';
 import '../../../../../../design_system/icons/icons_app.dart';
 import '../../../../../../design_system/images/images_app.dart';
 import '../../../../../../design_system/widgets/widget_form_field.dart';
@@ -14,8 +14,8 @@ import '../controller/register_team_virtual_controller.dart';
 import '../stories/team_virtual_register_store.dart';
 
 class TeamVirtualRegisterPage extends StatelessWidget {
-  final int? userId;
-  const TeamVirtualRegisterPage({super.key, this.userId});
+  final int user;
+  const TeamVirtualRegisterPage({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -84,9 +84,7 @@ class TeamVirtualRegisterPage extends StatelessWidget {
                       msgUser = 'Abreviação inválida! Use apenas 3 letras';
                     }
                     if(store.isValidFields){
-                      final tokenManager = TokenManager();
-                      int? userId = await tokenManager.getUserId();
-                      await registerTVController.registerTeamVirtual(store.nameTeam, store.abbreviationTeam, userId!);
+                      await registerTVController.registerTeamVirtual(store.nameTeam, store.abbreviationTeam, user);
                       if(registerTVController.stateController == StateResponse.sucess){
                         final snackBar = SnackBar(
                           content: Text('Cadastro do time concluído com sucesso!', style: TextStyle(color: colors.black),),
@@ -94,6 +92,8 @@ class TeamVirtualRegisterPage extends StatelessWidget {
                           backgroundColor: colors.white,
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        await Future.delayed(const Duration(seconds: 3));
+                        Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
                       }
                       else if (registerTVController.stateController == StateResponse.error){
                         if(registerTVController.hasName && registerTVController.hasAbb){

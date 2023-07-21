@@ -27,6 +27,12 @@ abstract class CardProfileControllerImpl with Store{
   TeamGameModel teamGameModel = TeamGameModel();
 
   @action
+  void setTeamGameModel(value) => teamGameModel = value;
+
+  @action
+  TeamGameModel getTeamGameModel() => teamGameModel;
+   
+  @action
   void cleanField(){
     stateController = '';
   }
@@ -51,17 +57,15 @@ abstract class CardProfileControllerImpl with Store{
     String token = (await tokenManager.getToken())!;
     stateController = StateResponse.loading;
     final cardProfileService = CardProfileServices();
-    TeamGameModel teamGameModel = TeamGameModel();
+    TeamGameModel team = TeamGameModel();
     try {
-      teamGameModel = await cardProfileService.getInfoProfileUser(token);
-      //hasTeam = (teamGameModel == null);       
+      team = await cardProfileService.getInfoProfileUser(token);
       stateController = StateResponse.sucess;
     } catch (e) {
       stateController = StateResponse.error;
     }
-    return teamGameModel;
+    return team;
   }
-
   @action
   Future<void>initProfile(TokenManager tokenManager) async {
     teamGameModel = await infoProfileUser(tokenManager);

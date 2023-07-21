@@ -49,14 +49,17 @@ abstract class RegisterTeamVirtualControllerImpl with Store{
       }
     }
   }
+  @observable
+  RegisterTeamVirtualServices registerService = RegisterTeamVirtualServices();
+  
+  @observable
+  TokenManager tokenManager = TokenManager();
 
   @action
   Future<RegisterTeamVirtualSucessModel> registerTeamVirtual(String name, String abb, int userId) async {
     stateController = StateResponse.loading;
-    final registerService = RegisterTeamVirtualServices();
-    var retorno = RegisterTeamVirtualSucessModel();
     final body = RegisterTeamVirtualModel(name: name,abb: abb,userId: userId);
-    final tokenManager = TokenManager();
+    RegisterTeamVirtualSucessModel retorno = RegisterTeamVirtualSucessModel();
     String? token = await tokenManager.getToken();
     if(token != null){
       try {

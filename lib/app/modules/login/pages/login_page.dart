@@ -3,10 +3,12 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/login/stories/login_store.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/models/team_game_model.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/icons/icons_app.dart';
 import 'package:rei_da_bola/design_system/images/images_app.dart';
 import 'package:rei_da_bola/design_system/widgets/widget_loading.dart';
+import 'package:rei_da_bola/shared/api/state_response.dart';
 
 import '../../../../../design_system/widgets/widget_form_field.dart';
 import '../../../../../design_system/widgets/widget_text_app.dart';
@@ -14,6 +16,7 @@ import '../../../../design_system/widgets/widget_snackbar.dart';
 import '../../../../shared/token/token_manager.dart';
 import '../../../routes/routes_app.dart';
 import '../../shared/components/password_look.dart';
+import '../../start_navigation_bar/modules/home/controller/card_profile_controller.dart';
 import '../controllers/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
@@ -68,22 +71,37 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 16,),
                 Observer(
                   builder: (_) {
-                    return loginController.stateController == 'loading' 
+                    return loginController.stateController == StateResponse.loading || loginController.stateTeamController == StateResponse.loading
                     ? const WidgetLoading(width: 5, thickness: 0.9) 
                     : TextButton(
                       onPressed: () async {
                         if(store.isFormValid){
                           String token = await loginController.login(store.email, store.password);
-                          if(loginController.stateController == 'sucess'){
-                            tokenManager.setToken(token);
+                          if(loginController.stateController == StateResponse.sucess){
+                            await tokenManager.setToken(token);
+                            String idUser = await loginController.userIdMe(token);
+                            //List<TeamGameModel> team = [];
+                            TeamGameModel team = await loginController.checkTeamVirtual(token, idUser);
+                            if(loginController.stateTeamController == StateResponse.sucess){
+                              final cardHome = CardProfileController();
+                              cardHome.setTeamGameModel(team);
+                              Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
+                            }
+                            else if(loginController.stateTeamController != StateResponse.sucess){
+                              Modular.to.navigate(RoutesModulesApp.routerTeamVirtualModule, arguments: int.parse(idUser));
+                            }
+                            //print(team[0].name);
                             /*
+                            else{
+                              Modular.to.navigate(RoutesModulesApp.routerTeamVirtualRegisterModule);
+                            }
                             final cardProfileController = CardProfileController(); // esta aqui pro causa do Drawer
                             //await cardProfileController.infoProfileUser(tokenManager);
                             if(cardProfileController.hasTeam == false){
                               Modular.to.navigate(RoutesModulesApp.routerTeamVirtualRegisterModule);
                             }
-                            */
                             Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
+                            */
                           }
                           else{
                             // resolver este warnnig depois

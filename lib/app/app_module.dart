@@ -28,7 +28,8 @@ class AppModule extends Module {
     Bind.singleton((i) => AuthController()),
     Bind.singleton((i) => TokenManager()),
     Bind.singleton((i) => ExitApp()),
-    Bind.singleton((i) => RegisterController())
+    Bind.singleton((i) => RegisterController()),
+    //Bind((i) => CardProfileController()),
   ];
 
   @override

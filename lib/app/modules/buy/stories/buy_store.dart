@@ -1,6 +1,4 @@
 
-import 'dart:async';
-
 import 'package:mobx/mobx.dart';
 import 'package:rei_da_bola/app/modules/buy/models/buy_model.dart';
 
@@ -53,7 +51,6 @@ abstract class BuyStoreImpl with Store{
   @action
   void addPlayerToVirtualTeam(BuyModel player){
     String position = player.player!.position!.abb!;
-    print(position);
     if(position == 'GOL' && goleiro == 0){
       setTeamList(player);
       goleiro++;
@@ -78,8 +75,6 @@ abstract class BuyStoreImpl with Store{
       setTeamList(player);
       meia++;
     }
-    print(zagueiro);
-
 
   }
   

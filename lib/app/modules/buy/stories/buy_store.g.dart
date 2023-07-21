@@ -9,6 +9,26 @@ part of 'buy_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$BuyStore on BuyStoreImpl, Store {
+  Computed<bool>? _$isGolAddComputed;
+
+  @override
+  bool get isGolAdd => (_$isGolAddComputed ??=
+          Computed<bool>(() => super.isGolAdd, name: 'BuyStoreImpl.isGolAdd'))
+      .value;
+  Computed<bool>? _$isZagAddComputed;
+
+  @override
+  bool get isZagAdd => (_$isZagAddComputed ??=
+          Computed<bool>(() => super.isZagAdd, name: 'BuyStoreImpl.isZagAdd'))
+      .value;
+  Computed<bool>? _$isButtonValidComputed;
+
+  @override
+  bool get isButtonValid =>
+      (_$isButtonValidComputed ??= Computed<bool>(() => super.isButtonValid,
+              name: 'BuyStoreImpl.isButtonValid'))
+          .value;
+
   late final _$teamListAtom =
       Atom(name: 'BuyStoreImpl.teamList', context: context);
 
@@ -165,7 +185,10 @@ zagueiro: ${zagueiro},
 lateral: ${lateral},
 meia: ${meia},
 volante: ${volante},
-atacante: ${atacante}
+atacante: ${atacante},
+isGolAdd: ${isGolAdd},
+isZagAdd: ${isZagAdd},
+isButtonValid: ${isButtonValid}
     ''';
   }
 }

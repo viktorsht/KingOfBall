@@ -91,6 +91,39 @@ mixin _$RegisterTeamVirtualController
     });
   }
 
+  late final _$registerServiceAtom = Atom(
+      name: 'RegisterTeamVirtualControllerImpl.registerService',
+      context: context);
+
+  @override
+  RegisterTeamVirtualServices get registerService {
+    _$registerServiceAtom.reportRead();
+    return super.registerService;
+  }
+
+  @override
+  set registerService(RegisterTeamVirtualServices value) {
+    _$registerServiceAtom.reportWrite(value, super.registerService, () {
+      super.registerService = value;
+    });
+  }
+
+  late final _$tokenManagerAtom = Atom(
+      name: 'RegisterTeamVirtualControllerImpl.tokenManager', context: context);
+
+  @override
+  TokenManager get tokenManager {
+    _$tokenManagerAtom.reportRead();
+    return super.tokenManager;
+  }
+
+  @override
+  set tokenManager(TokenManager value) {
+    _$tokenManagerAtom.reportWrite(value, super.tokenManager, () {
+      super.tokenManager = value;
+    });
+  }
+
   late final _$registerTeamVirtualAsyncAction = AsyncAction(
       'RegisterTeamVirtualControllerImpl.registerTeamVirtual',
       context: context);
@@ -139,7 +172,9 @@ stateController: ${stateController},
 hasName: ${hasName},
 hasAbb: ${hasAbb},
 hasUserId: ${hasUserId},
-userId: ${userId}
+userId: ${userId},
+registerService: ${registerService},
+tokenManager: ${tokenManager}
     ''';
   }
 }

@@ -70,6 +70,6 @@ abstract class StartControllerImpl with Store{
   @action
   Future<void> initStartnavigationBar() async {
     user = await drawerUser();
-    teamGameModel = await cardProfileUser();
+    //teamGameModel = await cardProfileUser();
   }
 }

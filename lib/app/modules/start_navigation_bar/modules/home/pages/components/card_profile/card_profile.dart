@@ -34,7 +34,7 @@ class CardProfile extends StatelessWidget {
               children: [
                 Observer(
                   builder:(_) => Text(
-                    teamGameModel.name ==  null ? 'Não tem time' : "${teamGameModel.name}",
+                    teamGameModel.name ==  null ? 'Carregando...' : "${teamGameModel.name}",
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold
@@ -43,7 +43,7 @@ class CardProfile extends StatelessWidget {
                 ),
                 Observer(
                   builder:(_) => Text(
-                    teamGameModel.name ==  null ? 'Não tem time' : "@${teamGameModel.user}",
+                    teamGameModel.abb ==  null ? 'Carregando...' : "@${teamGameModel.abb}",
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,

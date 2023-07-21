@@ -10,7 +10,7 @@ class TeamVirtualRegisterModule extends Module {
   List<ModularRoute> get routes => [
     ChildRoute(
       RoutesModulesApp.routerRootModule, 
-      child: (context, args) => const TeamVirtualRegisterPage()
+      child: (_, args) => TeamVirtualRegisterPage(user: args.data,)
     ),
   ];
 

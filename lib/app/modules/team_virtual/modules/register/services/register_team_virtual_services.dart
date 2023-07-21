@@ -9,7 +9,7 @@ import '../model/register_team_virtual_sucess_model.dart';
 class RegisterTeamVirtualServices{
 
   Future<RegisterTeamVirtualSucessModel> postRegisterTeamVirtualApi(RegisterTeamVirtualModel body, String token) async {
-    final url = Uri.parse(RoutersApi.register);
+    final url = Uri.parse(RoutersApi.teamGame);
     final headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
@@ -17,14 +17,12 @@ class RegisterTeamVirtualServices{
   };
     final response = await http.post(
       url,
-      headers: headers,
       body: jsonEncode(body.toJson()),
+      headers: headers,
     );
-
     if(response.statusCode == 201){
       final json = jsonDecode(response.body);
-      final userJson = json['user'];
-      return RegisterTeamVirtualSucessModel.fromJson(userJson);
+      return RegisterTeamVirtualSucessModel.fromJson(json);
     }
     else if(response.statusCode == 422){
       final json = jsonDecode(response.body);

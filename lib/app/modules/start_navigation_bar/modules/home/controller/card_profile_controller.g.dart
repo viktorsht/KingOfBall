@@ -103,6 +103,28 @@ mixin _$CardProfileController on CardProfileControllerImpl, Store {
       ActionController(name: 'CardProfileControllerImpl', context: context);
 
   @override
+  void setTeamGameModel(dynamic value) {
+    final _$actionInfo = _$CardProfileControllerImplActionController
+        .startAction(name: 'CardProfileControllerImpl.setTeamGameModel');
+    try {
+      return super.setTeamGameModel(value);
+    } finally {
+      _$CardProfileControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  TeamGameModel getTeamGameModel() {
+    final _$actionInfo = _$CardProfileControllerImplActionController
+        .startAction(name: 'CardProfileControllerImpl.getTeamGameModel');
+    try {
+      return super.getTeamGameModel();
+    } finally {
+      _$CardProfileControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void cleanField() {
     final _$actionInfo = _$CardProfileControllerImplActionController
         .startAction(name: 'CardProfileControllerImpl.cleanField');

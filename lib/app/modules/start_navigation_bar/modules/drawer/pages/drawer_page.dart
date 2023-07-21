@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rei_da_bola/app/modules/shared/models/user_model.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/icons/icons_app.dart';
-import 'package:rei_da_bola/shared/exit/change_account.dart';
 import 'package:rei_da_bola/shared/exit/exit_app.dart';
+
+import '../../../../../routes/routes_app.dart';
 
 class DrawerPage extends StatelessWidget {
   
@@ -20,7 +22,6 @@ class DrawerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final exitApp = ExitApp();
-    final changeAccount = ChangeAccountApp();
     return Drawer(
       backgroundColor: colors.whiteLigth,
       child: ListView(
@@ -59,13 +60,14 @@ class DrawerPage extends StatelessWidget {
             title: const Text('Home'),
             onTap: () {
               // Implement your navigation logic here
-              Navigator.pop(context); // Close the drawer
+              Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
+              //Navigator.pop(context); // Close the drawer
             },
           ),
           ListTile(
             leading: const Icon(Icons.account_box),
             title: const Text('Trocar de conta'),
-            onTap: changeAccount.changeAccount,
+            onTap: exitApp.changeAccount,
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
