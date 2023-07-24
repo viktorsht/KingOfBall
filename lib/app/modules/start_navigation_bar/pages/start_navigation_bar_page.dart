@@ -69,6 +69,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
             Observer(
               builder: (_) => HomePage(
                 teamGameModel: userController.team,
+                pageController: pageViewController,
               ),
             ),
             const TablePage(),
@@ -83,7 +84,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
         builder: (context, snapshot) {
           return NavigatorComponent(
             color: colors,
-            navigationStore: pageViewController,
+            pageController: pageViewController,
           );
         }
       )

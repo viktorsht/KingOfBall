@@ -11,6 +11,7 @@ import '../../../../../../design_system/widgets/widget_loading.dart';
 import '../../../../../../design_system/widgets/widget_text_app.dart';
 import '../../../../../../shared/api/state_response.dart';
 import '../controller/register_team_virtual_controller.dart';
+import '../model/register_team_virtual_sucess_model.dart';
 import '../stories/team_virtual_register_store.dart';
 
 class TeamVirtualRegisterPage extends StatelessWidget {
@@ -32,6 +33,8 @@ class TeamVirtualRegisterPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 100),
+            Image.asset(ImagesApp.logo),
+            //const SizedBox(height: 16,),
             Text(
               "Cadastre seu time virtual!",
               style: TextStyle(
@@ -84,7 +87,7 @@ class TeamVirtualRegisterPage extends StatelessWidget {
                       msgUser = 'Abreviação inválida! Use apenas 3 letras';
                     }
                     if(store.isValidFields){
-                      await registerTVController.registerTeamVirtual(store.nameTeam, store.abbreviationTeam, user);
+                      RegisterTeamVirtualSucessModel retorno = await registerTVController.registerTeamVirtual(store.nameTeam, store.abbreviationTeam, user);
                       if(registerTVController.stateController == StateResponse.sucess){
                         final snackBar = SnackBar(
                           content: Text('Cadastro do time concluído com sucesso!', style: TextStyle(color: colors.black),),
@@ -93,7 +96,7 @@ class TeamVirtualRegisterPage extends StatelessWidget {
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         await Future.delayed(const Duration(seconds: 3));
-                        Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
+                        Modular.to.navigate(RoutesModulesApp.routerRegisterTeamEditionModule, arguments:retorno.id);
                       }
                       else if (registerTVController.stateController == StateResponse.error){
                         if(registerTVController.hasName && registerTVController.hasAbb){
@@ -126,7 +129,7 @@ class TeamVirtualRegisterPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const WidgetTextApp(widgetText: "Confirmar",),
+                        const WidgetTextApp(widgetText: "Continuar",),
                         const SizedBox(width: 10,),
                         Image.asset(ImagesApp.entrarWhite),
                     ],

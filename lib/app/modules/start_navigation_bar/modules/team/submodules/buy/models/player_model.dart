@@ -1,4 +1,4 @@
-import 'package:rei_da_bola/app/modules/buy/models/position_model.dart';
+import 'position_model.dart';
 
 class PlayerModel {
     int? id;

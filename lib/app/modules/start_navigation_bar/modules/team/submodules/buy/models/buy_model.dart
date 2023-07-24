@@ -1,6 +1,6 @@
-import 'package:rei_da_bola/app/modules/buy/models/player_model.dart';
 
-import '../../shared/models/team_edition.dart';
+import '../../../../../../shared/models/team_edition.dart';
+import 'player_model.dart';
 
 class BuyModel {
   int? id;

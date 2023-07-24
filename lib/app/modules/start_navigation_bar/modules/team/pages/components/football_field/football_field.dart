@@ -29,25 +29,21 @@ class FootballField extends StatelessWidget {
                 fit: BoxFit.fill,
               ),
             ),
-            /*IconButton(
-              onPressed: (){}, 
-              icon: const Icon(Icons.add, color: Colors.white,)
-            ),*/
             Player(
                 image: ImagesApp.goleiro,
                 name: 'Lala1',
                 top: 0.07272727 * fieldH,
                 right: 0.0,
                 left: 0.0,
-                position: "GK",
+                position: "GOL",
               ),
             Player(
-              image: ImagesApp.jogador1,
+              image: ImagesApp.addUser,
               name: 'Alberto',
               top: 0.21818182 * fieldH,
               right: 0.70666667 * width,
               left: 0.0,
-              position: "RB",
+              position: "LAT",
             ),
             Player(
               image: ImagesApp.jogador2,
@@ -55,7 +51,7 @@ class FootballField extends StatelessWidget {
               top: 0.23636364 * fieldH,
               right: 0.29333333 * width,
               left: 0.0,
-              position: "CB",
+              position: "ZAG",
             ),
             Player(
               image: ImagesApp.jogador3,
@@ -63,15 +59,15 @@ class FootballField extends StatelessWidget {
               top: 0.23636364 * fieldH,
               right: 0.0,
               left: 0.29333333 * width,
-              position: "CB",
+              position: "ZAG",
             ),
             Player(
-              image: ImagesApp.jogador3,
+              image: ImagesApp.jogador2,
               name: 'George',
               top: 0.21818182 * fieldH,
               right: 0.0,
               left: 0.70666667 * width,
-              position: "LB",
+              position: "LAT",
             ),
             Player(
               image: ImagesApp.jogador1,
@@ -79,34 +75,23 @@ class FootballField extends StatelessWidget {
               top: 0.47272727 * fieldH,
               right: 0.16333333 * width,
               left: 0.65333333 * width,
-              position: "LMF",
+              position: "VOL",
             ),
-            
-                //Player(image: ImagesApp.jogador3, name: 'Prince', top: 0.47272727 * fieldH, right: 0.0, left: 0.70666667 * width, position: "LMF"),
             Player(
               image: ImagesApp.jogador2,
               name: 'Tayo',
               top: 0.45454545 * fieldH,
               right: 0.01333333 * width,
               left: 0.0,
-              position: "AMF",
+              position: "MEI",
             ),
-            /*
-            Player(
-              image: ImagesApp.jogador3,
-              name: 'Efosa1',
-              top: 0.47272727 * fieldH,
-              right: 0.56 * width,
-              left: 0.0,
-              position: "RMF",
-            ),*/
             Player(
               image: ImagesApp.jogador3,
               name: 'Alfredo',
               top: 0.47272727 * fieldH,
               right: 0.47 * width,
               left: 0.0,
-              position: "RMF",
+              position: "VOL",
             ),
             Player(
               image: ImagesApp.jogador1,
@@ -114,7 +99,7 @@ class FootballField extends StatelessWidget {
               top: 0.69090909 * fieldH,
               right: 0.29333333 * width,
               left: 0.29333333 * width,
-              position: "CF",
+              position: "ATA",
             ),
             Player(
               image: ImagesApp.jogador2,
@@ -122,7 +107,7 @@ class FootballField extends StatelessWidget {
               top: 0.69090909 * fieldH,
               right: 0.44 * width,
               left: 0.0,
-              position: "RWF",
+              position: "ATA",
             ),
             Player(
               image: ImagesApp.jogador3,
@@ -130,7 +115,7 @@ class FootballField extends StatelessWidget {
               top: 0.69090909 * fieldH,
               right: 0.17333333 * width,
               left: 0.65333333 * width,
-              position: "LWF",
+              position: "ATA",
             ),
             Player(
               image: ImagesApp.tecnico,
@@ -138,7 +123,7 @@ class FootballField extends StatelessWidget {
               top: 0.79090909 * fieldH,
               right: 0.75666667 * width,
               left: 0.0,
-              position: "RMF",
+              position: "TEC",
             ),
           ],
         ),

@@ -1,6 +1,6 @@
 
 import 'package:mobx/mobx.dart';
-import 'package:rei_da_bola/app/modules/buy/models/buy_model.dart';
+import '../models/buy_model.dart';
 
 part 'buy_store.g.dart';
 

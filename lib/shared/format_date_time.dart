@@ -1,3 +1,5 @@
+library format_date_time;
+
 String formatDateTime(String dateTimeString) {
   DateTime dateTime = DateTime.parse(dateTimeString);
   String formattedDate = "${dateTime.day.toString().padLeft(2, '0')}/${dateTime.month.toString().padLeft(2, '0')}/${dateTime.year.toString()}";

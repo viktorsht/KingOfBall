@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:mobx/mobx.dart';
-import 'package:rei_da_bola/app/modules/buy/models/buy_model.dart';
-import 'package:rei_da_bola/app/modules/buy/services/buy_services.dart';
-import '../../../../../../shared/api/state_response.dart';
-import '../../../../../../shared/token/token_manager.dart';
-import '../../../../design_system/images/images_app.dart';
+
+import '../../../../../../../../design_system/images/images_app.dart';
+import '../../../../../../../../shared/api/state_response.dart';
+import '../../../../../../../../shared/token/token_manager.dart';
+import '../models/buy_model.dart';
+import '../services/buy_services.dart';
 
 part 'buy_controller.g.dart';
 

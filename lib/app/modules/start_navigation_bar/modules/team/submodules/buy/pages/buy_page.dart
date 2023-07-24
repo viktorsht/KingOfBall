@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:rei_da_bola/app/modules/buy/controllers/buy_controller.dart';
 import 'package:rei_da_bola/app/routes/routes_app.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/widgets/widget_loading.dart';
 import 'package:rei_da_bola/shared/api/state_response.dart';
 
-import '../../../../design_system/images/images_app.dart';
+import '../../../../../../../../design_system/images/images_app.dart';
+import '../controllers/buy_controller.dart';
 import '../models/buy_model.dart';
 import 'components/card_buy_players.dart';
 

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-import 'package:rei_da_bola/app/modules/buy/models/buy_model.dart';
-import 'package:rei_da_bola/app/modules/buy/stories/buy_store.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
+
+import '../../models/buy_model.dart';
+import '../../stories/buy_store.dart';
 
 class CardBuyPlayers extends StatelessWidget {
   

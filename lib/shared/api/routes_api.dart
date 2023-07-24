@@ -9,6 +9,8 @@ class RoutersApi{
   static String soccerMatch = '${Api.urlApi}soccerMatch';
   static String teamGame = '${Api.urlApi}teamGame';
   static String playerEdition = '${Api.urlApi}playerEdition';
+  static String championshipEdition = '${Api.urlApi}championshipEdition';
+  static String teamGameEdition = '${Api.urlApi}teamGameEdition';
   static String checkIdUser = '${Api.urlApi}teamGame?filter=user_id:=:';
 
 }

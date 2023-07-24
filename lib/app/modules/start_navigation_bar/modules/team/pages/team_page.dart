@@ -42,7 +42,6 @@ class TeamPage extends StatelessWidget {
                   fontWeight: FontWeight.bold
                 ),
               ),
-              
             ],
           ),
           SizedBox(

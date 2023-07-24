@@ -5,12 +5,12 @@ import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 class NavigatorComponent extends StatelessWidget {
 
   final ColorsAppDefault color;
-  final PageController navigationStore;
+  final PageController pageController;
   
   const NavigatorComponent({
     super.key, 
     required this.color, 
-    required this.navigationStore
+    required this.pageController
   });
 
   @override
@@ -23,8 +23,8 @@ class NavigatorComponent extends StatelessWidget {
         child: BottomNavigationBar(
           //backgroundColor: color.green,
           type: BottomNavigationBarType.fixed,
-          currentIndex: navigationStore.page?.round() ?? 0,
-          onTap: (index) => navigationStore.jumpToPage(index),
+          currentIndex: pageController.page?.round() ?? 0,
+          onTap: (index) => pageController.jumpToPage(index),
           selectedItemColor: color.white,
           unselectedItemColor: color.white54,
           items: const [

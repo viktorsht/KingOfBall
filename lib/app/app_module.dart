@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:rei_da_bola/app/modules/buy/buy_module.dart';
 import 'package:rei_da_bola/app/modules/login/login_module.dart';
 import 'package:rei_da_bola/app/modules/register_user/register_module.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/home_module.dart';
@@ -20,6 +19,7 @@ import '../design_system/widgets/loading_app.dart';
 import 'modules/register_user/controllers/register_user_controller.dart';
 import 'modules/start_navigation_bar/modules/drawer/drawer_module.dart';
 import 'modules/start_navigation_bar/modules/more/more_module.dart';
+import 'modules/champion_ship/team_edition.dart';
 
 class AppModule extends Module {
   @override
@@ -34,7 +34,6 @@ class AppModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-
     ChildRoute(
       RoutesModulesApp.routerRootModule,
       child: (_, __) => FutureBuilder<bool>(
@@ -64,7 +63,7 @@ class AppModule extends Module {
 /*
     ChildRoute(
       RoutesModulesApp.routerRootModule, 
-      child: (_, __) => const TeamVirtualRegisterPage(), 
+      child: (_, __) => const RegisterChampionShipPage(), 
     ),
 */
     ModuleRoute(RoutesModulesApp.routerLoginModule, module: LoginModule()),
@@ -76,7 +75,7 @@ class AppModule extends Module {
     ModuleRoute(RoutesModulesApp.routerTableModule, module: TableModule()),
     ModuleRoute(RoutesModulesApp.routerTeamModule, module: TeamModule()),
     ModuleRoute(RoutesModulesApp.routerMoreModule, module: MoreModule()),
-    ModuleRoute(RoutesModulesApp.routerBuyModule, module: BuyModule()),
+    ModuleRoute(RoutesModulesApp.routerRegisterTeamEditionModule, module: TeamEditionModule()),
 
   ];
 }
