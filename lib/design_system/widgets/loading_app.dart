@@ -22,7 +22,7 @@ class LoadingApp extends StatelessWidget {
               ),
             ),
             const WidgetLoading(
-              width: 3, 
+              width: 6, 
               thickness: 1
             )
           ]
