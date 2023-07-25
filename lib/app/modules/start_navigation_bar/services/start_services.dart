@@ -5,7 +5,7 @@ import 'package:rei_da_bola/shared/api/api_headers.dart';
 
 import '../../../../../../shared/api/routes_api.dart';
 import '../../../../../../shared/auth/token_model.dart';
-import '../../shared/models/user_model.dart';
+import '../../shared/user/models/user_model.dart';
 
 class StartServices{
 

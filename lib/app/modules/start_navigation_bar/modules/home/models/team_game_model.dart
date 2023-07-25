@@ -1,4 +1,4 @@
-import 'package:rei_da_bola/app/modules/shared/models/user_model.dart';
+import 'package:rei_da_bola/app/modules/shared/user/models/user_model.dart';
 
 class TeamGameModel {
   int? id;

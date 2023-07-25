@@ -43,9 +43,9 @@ class CardProfile extends StatelessWidget {
                 ),
                 Observer(
                   builder:(_) => Text(
-                    teamGameModel.abb ==  null ? 'Carregando...' : "@${teamGameModel.abb}",
+                    teamGameModel.user?.nick ==  null ? 'Carregando...' : "@${teamGameModel.user!.nick}",
                     style: const TextStyle(
-                      fontSize: 14,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                       //color: colors.gray
                     ),

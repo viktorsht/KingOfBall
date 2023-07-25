@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:rei_da_bola/app/modules/shared/models/user_model.dart';
+import 'package:rei_da_bola/app/modules/shared/user/models/user_model.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/icons/icons_app.dart';
 import 'package:rei_da_bola/shared/exit/exit_app.dart';

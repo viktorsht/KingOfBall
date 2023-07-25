@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/models/team_game_model.dart';
 import 'package:rei_da_bola/shared/api/state_response.dart';
-import '../../../../shared/token/token_manager.dart';
+import '../../../../../shared/token/token_manager.dart';
 import '../services/user_services.dart';
 
 part 'user_controller.g.dart';

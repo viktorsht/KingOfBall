@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:rei_da_bola/app/modules/shared/models/championsship_round_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/models/team_game_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/home_page.dart';
 
@@ -17,7 +18,8 @@ class HomeModule extends Module {
     ChildRoute(
       RoutesModulesApp.routerRootModule, child: (context, args) => HomePage(
         teamGameModel: TeamGameModel(),
-        pageController: PageController(),
+        pageController: PageController(), 
+        championshipRoundModel: ChampionshipRoundModel(),
       )
     ),
     //ModuleRoute(RoutesModulesApp.routerRootModule, module: TeamVirtualRegisterModule()),

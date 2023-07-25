@@ -38,7 +38,7 @@ class RegisterChampionShipPage extends StatelessWidget {
               Image.asset(ImagesApp.logo),
               const SizedBox(height: 16,),
               Text(
-                'Selecionar um campeonato',
+                'Selecione um campeonato',
                 style: TextStyle(
                   fontSize: 28,
                   color: colors.white
@@ -58,8 +58,9 @@ class RegisterChampionShipPage extends StatelessWidget {
                     final items = championshipController.championShip;
                     selectOption = items[0].championship!.name!; // Use o primeiro item se selectOption for nulo.
                     championshipEditionId = items[0].championshipId!; // Armazene o ID do primeiro item se não houver nenhum valor selecionado ainda.
-
+              
                     return Container(
+                      width: 300,
                       decoration: BoxDecoration(
                         color: colors.white,
                         borderRadius: BorderRadius.circular(8.0),
@@ -71,7 +72,7 @@ class RegisterChampionShipPage extends StatelessWidget {
                         onChanged: (value) {
                           final selectedChampionship = items.firstWhere(
                             (championship) => championship.championship?.name == value);
-
+              
                           // Atualize a variável selectOption para o nome selecionado e championshipEditionId para o ID selecionado.
                           selectOption = selectedChampionship.championship!.name!;
                           championshipEditionId = selectedChampionship.championshipId!;

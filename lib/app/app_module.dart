@@ -14,7 +14,6 @@ import 'package:rei_da_bola/app/routes/routes_app.dart';
 import 'package:rei_da_bola/shared/auth/auth_controller.dart';
 import 'package:rei_da_bola/shared/exit/exit_app.dart';
 import 'package:rei_da_bola/shared/token/token_manager.dart';
-
 import '../design_system/widgets/loading_app.dart';
 import 'modules/register_user/controllers/register_user_controller.dart';
 import 'modules/start_navigation_bar/modules/drawer/drawer_module.dart';
@@ -29,7 +28,6 @@ class AppModule extends Module {
     Bind.singleton((i) => TokenManager()),
     Bind.singleton((i) => ExitApp()),
     Bind.singleton((i) => RegisterController()),
-    //Bind((i) => CardProfileController()),
   ];
 
   @override
@@ -45,7 +43,6 @@ class AppModule extends Module {
         }
       ),
     ),
-
 /*
     ChildRoute(
       RoutesModulesApp.routerRootModule,
@@ -63,7 +60,7 @@ class AppModule extends Module {
 /*
     ChildRoute(
       RoutesModulesApp.routerRootModule, 
-      child: (_, __) => const RegisterChampionShipPage(), 
+      child: (_, __) => const RegisterChampionShipPage(teamGameId: 1,), 
     ),
 */
     ModuleRoute(RoutesModulesApp.routerLoginModule, module: LoginModule()),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:rei_da_bola/app/modules/shared/models/championsship_round_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/models/team_game_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/components/card_profile/card_profile.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
@@ -12,11 +13,14 @@ import 'components/card_info/punctuations.dart';
 class HomePage extends StatelessWidget {
 
   final TeamGameModel teamGameModel;
+  final ChampionshipRoundModel championshipRoundModel;
   final PageController pageController;
   
   const HomePage({
     super.key, 
-    required this.teamGameModel, required this.pageController
+    required this.teamGameModel, 
+    required this.pageController, 
+    required this.championshipRoundModel
   });  
   
   @override
@@ -70,13 +74,15 @@ class HomePage extends StatelessWidget {
             colors: colors,
           ),
           const SizedBox(height: 30,),
-          NextRoundButton(
-            colors: colors, 
-            heightNextRoundButton: 80,
-            widthNextRoundButton: 350,
-            onPressed: (){},
-            numberRound: '3',
-            timeRound: '2d 13h 27m',
+          Observer(
+            builder:(_)=> NextRoundButton(
+              colors: colors, 
+              heightNextRoundButton: 80,
+              widthNextRoundButton: 350,
+              onPressed: (){},
+              numberRound: championshipRoundModel.name == null ? 'Carregando...' : championshipRoundModel.name!,
+              timeRound: '2d 13h 27m',
+            ),
           )
         ],
       )

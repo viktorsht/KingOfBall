@@ -40,7 +40,7 @@ class NextRoundButton extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "RODADA $numberRound",
+                numberRound,
                 style: TextStyle(
                   color: colors.white,
                   fontSize: 30,

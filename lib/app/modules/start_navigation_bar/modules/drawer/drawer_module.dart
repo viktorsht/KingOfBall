@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:rei_da_bola/app/modules/shared/models/user_model.dart';
+import 'package:rei_da_bola/app/modules/shared/user/models/user_model.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
 import '../../../../routes/routes_app.dart';

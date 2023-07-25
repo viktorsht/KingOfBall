@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:rei_da_bola/app/modules/shared/controllers/user_controller.dart';
+import 'package:rei_da_bola/app/modules/shared/user/controller/user_controller.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/home_page.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/table/pages/table_page.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/pages/team_page.dart';
@@ -9,6 +9,7 @@ import 'package:rei_da_bola/app/modules/start_navigation_bar/stories/navigation_
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/images/images_app.dart';
 
+import '../../shared/controllers/championship_round_controller.dart';
 import '../modules/drawer/pages/drawer_page.dart';
 import '../modules/more/pages/more_page.dart';
 
@@ -27,11 +28,14 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
   final pageViewController = PageController();
 
   final userController = UserController();
+  final championshipRoundController = ChampionshipRoundController();
   
   @override
   void initState() {
     super.initState();
     userController.initUserInfomations();
+    championshipRoundController.initRoundToday();
+    print(championshipRoundController.round.name);
   }
 
   @override
@@ -69,6 +73,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
             Observer(
               builder: (_) => HomePage(
                 teamGameModel: userController.team,
+                championshipRoundModel: championshipRoundController.round,
                 pageController: pageViewController,
               ),
             ),

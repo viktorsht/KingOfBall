@@ -53,6 +53,17 @@ mixin _$ChampionShipEditionController
         .run(() => super.getListChampionShip());
   }
 
+  late final _$postTeamGameEditionAsyncAction = AsyncAction(
+      'ChampionShipEditionControllerImpl.postTeamGameEdition',
+      context: context);
+
+  @override
+  Future<TeamGameEditionSucessModel> postTeamGameEdition(
+      int teamGameId, int championshipEditionId) {
+    return _$postTeamGameEditionAsyncAction.run(
+        () => super.postTeamGameEdition(teamGameId, championshipEditionId));
+  }
+
   late final _$initListChampionShitAsyncAction = AsyncAction(
       'ChampionShipEditionControllerImpl.initListChampionShit',
       context: context);
