@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:rei_da_bola/app/modules/shared/models/championsship_round_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/models/team_game_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/components/card_profile/card_profile.dart';
+import 'package:rei_da_bola/app/modules/shared/models/soccer_match_model.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'components/buttons/climb_now.dart';
 import 'components/card_info/featured_player.dart';
@@ -13,14 +13,14 @@ import 'components/card_info/punctuations.dart';
 class HomePage extends StatelessWidget {
 
   final TeamGameModel teamGameModel;
-  final ChampionshipRoundModel championshipRoundModel;
+  final SoccerMatchModel soccerMatchModel;
   final PageController pageController;
   
   const HomePage({
     super.key, 
     required this.teamGameModel, 
     required this.pageController, 
-    required this.championshipRoundModel
+    required this.soccerMatchModel
   });  
   
   @override
@@ -75,12 +75,12 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 30,),
           Observer(
-            builder:(_)=> NextRoundButton(
+            builder:(_) => NextRoundButton(
               colors: colors, 
               heightNextRoundButton: 80,
               widthNextRoundButton: 350,
               onPressed: (){},
-              numberRound: championshipRoundModel.name == null ? 'Carregando...' : championshipRoundModel.name!,
+              numberRound: soccerMatchModel.championshipRound?.name == null ? 'Carregando...' : soccerMatchModel.championshipRound!.name!,
               timeRound: '2d 13h 27m',
             ),
           )

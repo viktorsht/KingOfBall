@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/more/models/soccer_match_model.dart';
+import 'package:rei_da_bola/app/modules/shared/models/soccer_match_model.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
 import '../../../../../../../design_system/images/images_app.dart';
@@ -17,6 +17,7 @@ class ChampionshipRoundPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final data = DateFormateAppDefault();
     return Column(
       children: [
         Padding(
@@ -37,7 +38,7 @@ class ChampionshipRoundPage extends StatelessWidget {
                   nameFristTeam: listRound[index].team1Edition!.team!.name!,
                   pathSecondTeam: ImagesApp.escudoTeam,
                   nameSecondTeam: listRound[index].team2Edition!.team!.name!,
-                  gameTime: formatDateTime2(listRound[index].dateTime!),
+                  gameTime: data.formatDateTime(listRound[index].dateTime!),
                 );
               }
               else{

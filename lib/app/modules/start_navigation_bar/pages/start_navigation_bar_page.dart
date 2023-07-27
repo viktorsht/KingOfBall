@@ -9,7 +9,7 @@ import 'package:rei_da_bola/app/modules/start_navigation_bar/stories/navigation_
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/images/images_app.dart';
 
-import '../../shared/controllers/championship_round_controller.dart';
+import '../../shared/round_roday/controller/round_today_controller.dart';
 import '../modules/drawer/pages/drawer_page.dart';
 import '../modules/more/pages/more_page.dart';
 
@@ -28,14 +28,14 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
   final pageViewController = PageController();
 
   final userController = UserController();
-  final championshipRoundController = ChampionshipRoundController();
+  final roundTodayController = RoundTodayController();
   
   @override
   void initState() {
     super.initState();
     userController.initUserInfomations();
-    championshipRoundController.initRoundToday();
-    print(championshipRoundController.round.name);
+    roundTodayController.initRoundToday();
+    //print(championshipRoundController.round.name);
   }
 
   @override
@@ -73,7 +73,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
             Observer(
               builder: (_) => HomePage(
                 teamGameModel: userController.team,
-                championshipRoundModel: championshipRoundController.round,
+                soccerMatchModel: roundTodayController.round,
                 pageController: pageViewController,
               ),
             ),

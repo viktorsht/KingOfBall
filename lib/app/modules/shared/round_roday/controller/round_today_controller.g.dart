@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'championship_round_controller.dart';
+part of 'round_today_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,10 +8,9 @@ part of 'championship_round_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$ChampionshipRoundController on ChampionshipRoundControllerImpl, Store {
-  late final _$stateControllerAtom = Atom(
-      name: 'ChampionshipRoundControllerImpl.stateController',
-      context: context);
+mixin _$RoundTodayController on RoundTodayControllerImpl, Store {
+  late final _$stateControllerAtom =
+      Atom(name: 'RoundTodayControllerImpl.stateController', context: context);
 
   @override
   String get stateController {
@@ -27,7 +26,7 @@ mixin _$ChampionshipRoundController on ChampionshipRoundControllerImpl, Store {
   }
 
   late final _$tokenAtom =
-      Atom(name: 'ChampionshipRoundControllerImpl.token', context: context);
+      Atom(name: 'RoundTodayControllerImpl.token', context: context);
 
   @override
   String get token {
@@ -43,51 +42,47 @@ mixin _$ChampionshipRoundController on ChampionshipRoundControllerImpl, Store {
   }
 
   late final _$roundAtom =
-      Atom(name: 'ChampionshipRoundControllerImpl.round', context: context);
+      Atom(name: 'RoundTodayControllerImpl.round', context: context);
 
   @override
-  ChampionshipRoundModel get round {
+  SoccerMatchModel get round {
     _$roundAtom.reportRead();
     return super.round;
   }
 
   @override
-  set round(ChampionshipRoundModel value) {
+  set round(SoccerMatchModel value) {
     _$roundAtom.reportWrite(value, super.round, () {
       super.round = value;
     });
   }
 
-  late final _$championshipRoundServicesAtom = Atom(
-      name: 'ChampionshipRoundControllerImpl.championshipRoundServices',
-      context: context);
+  late final _$roundTodayServicesAtom = Atom(
+      name: 'RoundTodayControllerImpl.roundTodayServices', context: context);
 
   @override
-  ChampionshipRoundServices get championshipRoundServices {
-    _$championshipRoundServicesAtom.reportRead();
-    return super.championshipRoundServices;
+  RoundTodayServices get roundTodayServices {
+    _$roundTodayServicesAtom.reportRead();
+    return super.roundTodayServices;
   }
 
   @override
-  set championshipRoundServices(ChampionshipRoundServices value) {
-    _$championshipRoundServicesAtom
-        .reportWrite(value, super.championshipRoundServices, () {
-      super.championshipRoundServices = value;
+  set roundTodayServices(RoundTodayServices value) {
+    _$roundTodayServicesAtom.reportWrite(value, super.roundTodayServices, () {
+      super.roundTodayServices = value;
     });
   }
 
-  late final _$roundTodayAsyncAction = AsyncAction(
-      'ChampionshipRoundControllerImpl.roundToday',
-      context: context);
+  late final _$roundTodayAsyncAction =
+      AsyncAction('RoundTodayControllerImpl.roundToday', context: context);
 
   @override
-  Future<ChampionshipRoundModel> roundToday(String token) {
-    return _$roundTodayAsyncAction.run(() => super.roundToday(token));
+  Future<SoccerMatchModel> roundToday(String token, String today) {
+    return _$roundTodayAsyncAction.run(() => super.roundToday(token, today));
   }
 
-  late final _$initRoundTodayAsyncAction = AsyncAction(
-      'ChampionshipRoundControllerImpl.initRoundToday',
-      context: context);
+  late final _$initRoundTodayAsyncAction =
+      AsyncAction('RoundTodayControllerImpl.initRoundToday', context: context);
 
   @override
   Future<void> initRoundToday() {
@@ -100,7 +95,7 @@ mixin _$ChampionshipRoundController on ChampionshipRoundControllerImpl, Store {
 stateController: ${stateController},
 token: ${token},
 round: ${round},
-championshipRoundServices: ${championshipRoundServices}
+roundTodayServices: ${roundTodayServices}
     ''';
   }
 }
