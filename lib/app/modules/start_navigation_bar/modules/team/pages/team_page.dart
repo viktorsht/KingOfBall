@@ -48,6 +48,7 @@ class TeamPage extends StatelessWidget {
             height: heigth * 0.7,
             width: width,
             child: FootballField(
+              listPlayer: const [],
               width: width,
               height: heigth,
               fieldH: fieldH,

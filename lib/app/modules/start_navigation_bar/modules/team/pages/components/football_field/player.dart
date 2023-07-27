@@ -3,6 +3,14 @@ import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
 
 class Player extends StatelessWidget {
+  
+  final String image;
+  final String? name;
+  final String position;
+  final double top;
+  final double right;
+  final double left;
+
   const Player({super.key, 
     required this.image,
     required this.name,
@@ -12,12 +20,6 @@ class Player extends StatelessWidget {
     required this.position,
   }) : assert(top > 0.0);
 
-  final String image;
-  final String name;
-  final String position;
-  final double top;
-  final double right;
-  final double left;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,9 @@ class Player extends StatelessWidget {
               height: position == 'GOL' ? height - 60.0 : height - 60,
             ),
           ),
-          Container(
+          name == null 
+          ? Container()
+          : Container(
             decoration: BoxDecoration(
               color: colors.black,
               borderRadius: BorderRadius.circular(8.0),
@@ -50,7 +54,7 @@ class Player extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 5.0, right: 5.0),
               child: Text(
-                name,
+                name!,
                 style: const TextStyle(color: Colors.white),
                 textAlign: TextAlign.center,
               ),

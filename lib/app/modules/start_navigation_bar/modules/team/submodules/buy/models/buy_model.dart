@@ -1,6 +1,6 @@
 
 import '../../../../../../shared/models/team_edition.dart';
-import 'player_model.dart';
+import '../../../models/player_model.dart';
 
 class BuyModel {
   int? id;
