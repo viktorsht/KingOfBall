@@ -6,6 +6,7 @@ import '../../../../../../../../design_system/images/images_app.dart';
 import '../../../../../../../../shared/api/state_response.dart';
 import '../../../../../../../../shared/token/token_manager.dart';
 import '../models/buy_model.dart';
+import '../models/player_edition_model.dart';
 import '../services/buy_services.dart';
 
 part 'buy_controller.g.dart';
@@ -23,7 +24,7 @@ abstract class BuyControllerImpl with Store{
   BuyServices buyServices = BuyServices();
 
   @observable
-  List<BuyModel> listBuy = [];
+  List<PlayerEditionModel> listBuy = [];
 
   @observable
   List<String> image = [ImagesApp.jogador1, ImagesApp.jogador2, ImagesApp.jogador3];
@@ -43,38 +44,17 @@ abstract class BuyControllerImpl with Store{
   }
 
   @action
-  List<BuyModel> groupItemsByAbb(List<BuyModel> items) {
-    Map<String, List<BuyModel>> groupedByPosition = {};
-    List<String> positionOrder = ['GOL', 'ZAG', 'LAT', 'MEI', 'VOL', 'ATA'];
-    List<BuyModel> groupedItems = [];
-
-    for (var item in items) {
-      String positionAbb = item.player!.position!.abb!;
-      if (groupedByPosition.containsKey(positionAbb)) {
-        groupedByPosition[positionAbb]!.add(item);
-      } else {
-        groupedByPosition[positionAbb] = [item];
-      }
-    }
-    for (var positionAbb in positionOrder) {
-      if (groupedByPosition.containsKey(positionAbb)) {
-        groupedItems.addAll(groupedByPosition[positionAbb]!);
-      }
-    }
-    return groupedItems;
-  }
-
-  @action
   void setList(value) => listBuy = value;
   
   @action
-  Future<List<BuyModel>> players() async {
-    List<BuyModel> list = [];
+  Future<List<PlayerEditionModel>> playersForPosition(String position) async {
+    List<PlayerEditionModel> list = [];
     stateController = StateResponse.loading;
     String? token = await tokenManager.getToken();
     if(token != null){
       try{
-        list = await buyServices.getPlayersApi(token);
+        list = await buyServices.getPlayersPositionApi(token, position);
+        //print(list[0].player!.firstname);
         stateController = StateResponse.sucess;
       } catch(e){
         stateController = StateResponse.error;
@@ -87,10 +67,12 @@ abstract class BuyControllerImpl with Store{
   }
 
   @action
-  Future<void> initBuy() async {
-  List<BuyModel> list = [];
-    list = await players();
-    setList(groupItemsByAbb(list));
+  Future<void> initBuy(String position) async {
+    List<PlayerEditionModel> list = [];
+    list = await playersForPosition(position);
+    //list = await allPlayers();
+    setList(list);
+    print('Lista = ${listBuy}');
+
   }
-  
 }

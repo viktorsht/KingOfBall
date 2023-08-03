@@ -13,6 +13,7 @@ class RoutersApi{
   static String teamGameEdition = '${Api.urlApi}teamGameEdition';
   static String championshipRound = '${Api.urlApi}championshipRound';
   static String checkIdUser = '${Api.urlApi}teamGame?filter=user_id:=:';
-  static String roundToday= '${Api.urlApi}soccerMatch/next?date=';
+  static String roundToday = '${Api.urlApi}soccerMatch/next?date=';
+  static String positionAbb = '${Api.urlApi}matchLineup?filter=playerEdition|player|position.abb:=:';
 
 }

@@ -8,7 +8,7 @@ class BuyModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-    ChildRoute(RoutesModulesApp.routerRootModule, child: (context, args) => const BuyPage()),
+    ChildRoute(RoutesModulesApp.routerRootModule, child: (_, args) => BuyPage(position: args.data)),
   ];
 
 }

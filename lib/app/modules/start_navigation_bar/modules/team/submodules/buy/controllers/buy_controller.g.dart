@@ -61,13 +61,13 @@ mixin _$BuyController on BuyControllerImpl, Store {
       Atom(name: 'BuyControllerImpl.listBuy', context: context);
 
   @override
-  List<BuyModel> get listBuy {
+  List<PlayerEditionModel> get listBuy {
     _$listBuyAtom.reportRead();
     return super.listBuy;
   }
 
   @override
-  set listBuy(List<BuyModel> value) {
+  set listBuy(List<PlayerEditionModel> value) {
     _$listBuyAtom.reportWrite(value, super.listBuy, () {
       super.listBuy = value;
     });
@@ -105,20 +105,21 @@ mixin _$BuyController on BuyControllerImpl, Store {
     });
   }
 
-  late final _$playersAsyncAction =
-      AsyncAction('BuyControllerImpl.players', context: context);
+  late final _$playersForPositionAsyncAction =
+      AsyncAction('BuyControllerImpl.playersForPosition', context: context);
 
   @override
-  Future<List<BuyModel>> players() {
-    return _$playersAsyncAction.run(() => super.players());
+  Future<List<PlayerEditionModel>> playersForPosition(String position) {
+    return _$playersForPositionAsyncAction
+        .run(() => super.playersForPosition(position));
   }
 
   late final _$initBuyAsyncAction =
       AsyncAction('BuyControllerImpl.initBuy', context: context);
 
   @override
-  Future<void> initBuy() {
-    return _$initBuyAsyncAction.run(() => super.initBuy());
+  Future<void> initBuy(String position) {
+    return _$initBuyAsyncAction.run(() => super.initBuy(position));
   }
 
   late final _$BuyControllerImplActionController =
@@ -130,17 +131,6 @@ mixin _$BuyController on BuyControllerImpl, Store {
         name: 'BuyControllerImpl.generateNumber');
     try {
       return super.generateNumber();
-    } finally {
-      _$BuyControllerImplActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  List<BuyModel> groupItemsByAbb(List<BuyModel> items) {
-    final _$actionInfo = _$BuyControllerImplActionController.startAction(
-        name: 'BuyControllerImpl.groupItemsByAbb');
-    try {
-      return super.groupItemsByAbb(items);
     } finally {
       _$BuyControllerImplActionController.endAction(_$actionInfo);
     }

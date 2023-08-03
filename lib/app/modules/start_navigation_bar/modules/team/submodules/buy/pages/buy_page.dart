@@ -12,7 +12,8 @@ import '../models/buy_model.dart';
 import 'components/card_buy_players.dart';
 
 class BuyPage extends StatefulWidget {
-  const BuyPage({super.key});
+  final String position;
+  const BuyPage({super.key, required this.position});
 
   @override
   State<BuyPage> createState() => _BuyPageState();
@@ -25,16 +26,16 @@ class _BuyPageState extends State<BuyPage> {
   @override
   void initState() {
     super.initState();
-    controllerBuy.initBuy();
+    controllerBuy.initBuy(widget.position);
   }
 
   @override
   Widget build(BuildContext context) {
 
-    List<String> uniquePositionAbbList = controllerBuy.listBuy
+    /*List<String> uniquePositionAbbList = controllerBuy.listBuy
     .map((buy) => buy.player!.position!.abb!)
     .toSet()
-    .toList();
+    .toList();*/
     
     final colors = ColorsAppDefault();
     return Scaffold(
@@ -87,15 +88,16 @@ class _BuyPageState extends State<BuyPage> {
               }
             ),*/
             
+                /*
             PageView.builder(
-              itemCount: uniquePositionAbbList.length,
+              itemCount: controllerBuy.listBuy.length,
               itemBuilder: (context, pageIndex) {
-                String positionAbb = uniquePositionAbbList[pageIndex];
+                //String positionAbb = uniquePositionAbbList[pageIndex];
                 List<BuyModel> filteredBuys = controllerBuy.listBuy
                     .where((buy) => buy.player!.position!.abb == positionAbb)
-                    .toList();
-                return ListView.builder(
-                  itemCount: filteredBuys.length,
+                    .toList();*/
+                ListView.builder(
+                  itemCount: controllerBuy.listBuy.length,
                   itemBuilder: (context, index) {
                     int numImage = controllerBuy.generateNumber();
                     return Padding(
@@ -103,18 +105,17 @@ class _BuyPageState extends State<BuyPage> {
                       child: CardBuyPlayers(
                         color: colors,
                         image: controllerBuy.image[numImage],
-                        player: filteredBuys[index],
-                        namePlayer:
-                            '${filteredBuys[index].player!.firstname!} ${filteredBuys[index].player!.lastname!}',
-                        nameTeam: filteredBuys[index].teamEdition!.team!.name!,
-                        positionAbb: filteredBuys[index].player!.position!.abb!,
+                        playerEditionModel: controllerBuy.listBuy[index],
+                        //namePlayer: "teste",
+                        //namePlayer:'${controllerBuy.listBuy[index].player!.firstname} ${controllerBuy.listBuy[index].player!.lastname!}',
+                        //nameTeam: controllerBuy.listBuy[index].teamEdition!.team!.name!,
+                        //positionAbb: controllerBuy.listBuy[index].player!.position!.abb!,
                       ),
                     );
                   },
-                );
-              },
-            ),
-
+                ),
+             // },
+            //),
         ),
     );
   }

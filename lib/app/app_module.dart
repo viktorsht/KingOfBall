@@ -4,6 +4,7 @@ import 'package:rei_da_bola/app/modules/login/login_module.dart';
 import 'package:rei_da_bola/app/modules/register_user/register_module.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/home_module.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/table/table_modular.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/submodules/buy/buy_module.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/team_module.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/pages/start_navigation_bar_page.dart';
 import 'package:rei_da_bola/app/modules/team_virtual/team_virtual_module.dart';
@@ -73,6 +74,7 @@ class AppModule extends Module {
     ModuleRoute(RoutesModulesApp.routerTeamModule, module: TeamModule()),
     ModuleRoute(RoutesModulesApp.routerMoreModule, module: MoreModule()),
     ModuleRoute(RoutesModulesApp.routerRegisterTeamEditionModule, module: TeamEditionModule()),
+    ModuleRoute(RoutesModulesApp.routerBuyModule, module: BuyModule()),
 
   ];
 }

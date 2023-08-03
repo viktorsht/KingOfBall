@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
+
+import '../../../../../../../routes/routes_app.dart';
 
 
 class Player extends StatelessWidget {
@@ -35,8 +38,8 @@ class Player extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {
-              print(position);
-            //Modular.to.navigate(RoutesModulesApp.routerBuyModule);
+              //print(position);
+              Modular.to.pushNamed(RoutesModulesApp.routerBuyModule, arguments: position);
             },
             icon: Image.asset(
               image,
