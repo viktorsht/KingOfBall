@@ -8,7 +8,6 @@ import 'package:rei_da_bola/shared/api/state_response.dart';
 
 import '../../../../../../../../design_system/images/images_app.dart';
 import '../controllers/buy_controller.dart';
-import '../models/buy_model.dart';
 import 'components/card_buy_players.dart';
 
 class BuyPage extends StatefulWidget {
@@ -31,12 +30,6 @@ class _BuyPageState extends State<BuyPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    /*List<String> uniquePositionAbbList = controllerBuy.listBuy
-    .map((buy) => buy.player!.position!.abb!)
-    .toSet()
-    .toList();*/
-    
     final colors = ColorsAppDefault();
     return Scaffold(
       appBar: AppBar(
@@ -54,6 +47,7 @@ class _BuyPageState extends State<BuyPage> {
           icon: const Icon(Icons.arrow_back),
           onPressed: (){
             Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
+            //Navigator.pop(context);
           },
         ),
       ),
@@ -69,53 +63,20 @@ class _BuyPageState extends State<BuyPage> {
                 thickness: 1,
               ),
             ) 
-            : /*
-            ListView.builder(
+            : ListView.builder(
               itemCount: controllerBuy.listBuy.length,
-              itemBuilder: (context, index){
+              itemBuilder: (context, index) {
                 int numImage = controllerBuy.generateNumber();
                 return Padding(
                   padding: const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0),
                   child: CardBuyPlayers(
                     color: colors,
                     image: controllerBuy.image[numImage],
-                    player: controllerBuy.listBuy[index],
-                    namePlayer: '${controllerBuy.listBuy[index].player!.firstname!} ${controllerBuy.listBuy[index].player!.lastname!}',
-                    nameTeam: controllerBuy.listBuy[index].teamEdition!.team!.name!,
-                    positionAbb: controllerBuy.listBuy[index].player!.position!.abb!,
+                    playerEditionModel: controllerBuy.listBuy[index],
                   ),
                 );
-              }
-            ),*/
-            
-                /*
-            PageView.builder(
-              itemCount: controllerBuy.listBuy.length,
-              itemBuilder: (context, pageIndex) {
-                //String positionAbb = uniquePositionAbbList[pageIndex];
-                List<BuyModel> filteredBuys = controllerBuy.listBuy
-                    .where((buy) => buy.player!.position!.abb == positionAbb)
-                    .toList();*/
-                ListView.builder(
-                  itemCount: controllerBuy.listBuy.length,
-                  itemBuilder: (context, index) {
-                    int numImage = controllerBuy.generateNumber();
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0),
-                      child: CardBuyPlayers(
-                        color: colors,
-                        image: controllerBuy.image[numImage],
-                        playerEditionModel: controllerBuy.listBuy[index],
-                        //namePlayer: "teste",
-                        //namePlayer:'${controllerBuy.listBuy[index].player!.firstname} ${controllerBuy.listBuy[index].player!.lastname!}',
-                        //nameTeam: controllerBuy.listBuy[index].teamEdition!.team!.name!,
-                        //positionAbb: controllerBuy.listBuy[index].player!.position!.abb!,
-                      ),
-                    );
-                  },
-                ),
-             // },
-            //),
+              },
+            ),
         ),
     );
   }

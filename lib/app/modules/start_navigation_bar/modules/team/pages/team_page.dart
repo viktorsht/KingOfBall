@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/pages/components/football_field/football_field.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/pages/components/values_information/card_values_information.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
 import '../../../../../../design_system/buttons/app_butons.dart';
 import '../../../../../../design_system/icons/icons_app.dart';
+import '../submodules/buy/stories/buy_store.dart';
 
 class TeamPage extends StatelessWidget {
   const TeamPage({super.key});
@@ -13,6 +15,8 @@ class TeamPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
     final buttons = ButtonAppDefault();
+    final storeBuy = BuyStore();
+
     final width = MediaQuery.of(context).size.width * .8;
     final heigth = MediaQuery.of(context).size.height * .65;
     final fieldH = 0.6773399 * heigth;
@@ -44,15 +48,20 @@ class TeamPage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            height: heigth * 0.7,
-            width: width,
-            child: FootballField(
-              listPlayer: const [], // passo aqui a lista contendo os jogadores
-              width: width,
-              height: heigth,
-              fieldH: fieldH,
-            ),
+          Observer(
+            builder: (context) {
+              print('Lista jogadores(TEAM Page): ${storeBuy.teamList.length}');
+              return SizedBox(
+                height: heigth * 0.7,
+                width: width,
+                child: FootballField(
+                  listPlayer: storeBuy.teamList, // passo aqui a lista contendo os jogadores
+                  width: width,
+                  height: heigth,
+                  fieldH: fieldH,
+                ),
+              );
+            }
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

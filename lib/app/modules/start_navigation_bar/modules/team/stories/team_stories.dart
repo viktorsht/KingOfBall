@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
-import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/models/player_model.dart';
 import '../../../../../../design_system/images/images_app.dart';
+import '../submodules/buy/models/player_edition_model.dart';
 
 part 'team_stories.g.dart';
 
@@ -9,32 +9,32 @@ class TeamStoriesController = TeamStoriesControllerImpl with _$TeamStoriesContro
 abstract class TeamStoriesControllerImpl with Store{
 
   @action
-  String playerGol(List<PlayerModel> list){
-    return list.isNotEmpty ? ImagesApp.goleiro : ImagesApp.addPlayer;
+  String playerGol(List<PlayerEditionModel> list){
+    return list.isEmpty ? ImagesApp.addPlayer : ImagesApp.goleiro;
   }
 
   @action
-  String playerTec(List<PlayerModel> list){
-    return list.isNotEmpty ? ImagesApp.tecnico : ImagesApp.addPlayer;
+  String playerTec(List<PlayerEditionModel> list){
+    return list.isEmpty ? ImagesApp.addPlayer : ImagesApp.tecnico;
   }
 
   @action
-  String player1(List<PlayerModel> list){
-    return list.isNotEmpty ? ImagesApp.jogador1 : ImagesApp.addPlayer;
+  String player1(List<PlayerEditionModel> list){
+    return list.isEmpty ? ImagesApp.addPlayer : ImagesApp.jogador1;
   }
 
   @action
-  String player2(List<PlayerModel> list){
-    return list.isNotEmpty ? ImagesApp.jogador2 : ImagesApp.addPlayer;
+  String player2(List<PlayerEditionModel> list){
+    return list.isEmpty ? ImagesApp.addPlayer : ImagesApp.jogador2;
   }
 
   @action
-  String player3(List<PlayerModel> list){
-    return list.isNotEmpty ? ImagesApp.jogador3 : ImagesApp.addPlayer;
+  String player3(List<PlayerEditionModel> list){
+    return list.isEmpty ? ImagesApp.addPlayer : ImagesApp.jogador3;
   }
 
   @action
-  String? playerName(List<PlayerModel> list, int index){
-    return list.isNotEmpty ? list[index].firstname : null;
+  String? playerName(List<PlayerEditionModel> list, int index){
+    return list.isEmpty ? null : list[index].playerEdition?.player!.firstname;
   }
 }

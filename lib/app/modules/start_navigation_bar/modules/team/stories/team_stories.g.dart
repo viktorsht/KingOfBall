@@ -13,7 +13,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
       ActionController(name: 'TeamStoriesControllerImpl', context: context);
 
   @override
-  String playerGol(List<PlayerModel> list) {
+  String playerGol(List<PlayerEditionModel> list) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.playerGol');
     try {
@@ -24,7 +24,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
   }
 
   @override
-  String playerTec(List<PlayerModel> list) {
+  String playerTec(List<PlayerEditionModel> list) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.playerTec');
     try {
@@ -35,7 +35,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
   }
 
   @override
-  String player1(List<PlayerModel> list) {
+  String player1(List<PlayerEditionModel> list) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.player1');
     try {
@@ -46,7 +46,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
   }
 
   @override
-  String player2(List<PlayerModel> list) {
+  String player2(List<PlayerEditionModel> list) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.player2');
     try {
@@ -57,7 +57,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
   }
 
   @override
-  String player3(List<PlayerModel> list) {
+  String player3(List<PlayerEditionModel> list) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.player3');
     try {
@@ -68,7 +68,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
   }
 
   @override
-  String? playerName(List<PlayerModel> list, int index) {
+  String? playerName(List<PlayerEditionModel> list, int index) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.playerName');
     try {

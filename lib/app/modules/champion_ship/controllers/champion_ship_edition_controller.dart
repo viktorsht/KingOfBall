@@ -51,7 +51,6 @@ abstract class ChampionShipEditionControllerImpl with Store{
     );
     TokenManager tokenManager = TokenManager();
     String? token = await tokenManager.getToken();
-    print(stateController);
     if(token != null){
       try {
         retorno = await championService.postTeamGameEdition(token, body);

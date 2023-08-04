@@ -26,7 +26,7 @@ class CardBuyPlayers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final store = Provider.of<BuyStore>(context);
+    final store = Provider.of<BuyStore>(context);
     return Container(
       decoration: BoxDecoration(
         color: color.whiteLigth,
@@ -95,7 +95,13 @@ class CardBuyPlayers extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10)
                 )
               ),
-              onPressed: (){},//store.isButtonValid ? (){ store.addPlayerToVirtualTeam(playerEditionModel);} : null, 
+              onPressed: store.isButtonValid  
+              ? (){
+                store.addPlayerToVirtualTeam(playerEditionModel);
+                //int i = store.teamList.length;
+                print('Tamanho da lista : ${store.teamList.length}'); 
+              } 
+              : null, 
               child: const Text(
                 "COMPRAR",
                 style: TextStyle(

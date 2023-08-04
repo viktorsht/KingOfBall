@@ -5,7 +5,6 @@ import 'package:mobx/mobx.dart';
 import '../../../../../../../../design_system/images/images_app.dart';
 import '../../../../../../../../shared/api/state_response.dart';
 import '../../../../../../../../shared/token/token_manager.dart';
-import '../models/buy_model.dart';
 import '../models/player_edition_model.dart';
 import '../services/buy_services.dart';
 
@@ -72,7 +71,5 @@ abstract class BuyControllerImpl with Store{
     list = await playersForPosition(position);
     //list = await allPlayers();
     setList(list);
-    print('Lista = ${listBuy}');
-
   }
 }

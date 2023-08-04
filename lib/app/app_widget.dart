@@ -30,7 +30,7 @@ class AppWidget extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Rei da Bola',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.blue),
+        //theme: ThemeData(primarySwatch: Colors.blue),
         routerDelegate: Modular.routerDelegate,
         routeInformationParser: Modular.routeInformationParser,
       ),
