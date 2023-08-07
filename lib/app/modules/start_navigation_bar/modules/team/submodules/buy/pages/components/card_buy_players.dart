@@ -97,9 +97,10 @@ class CardBuyPlayers extends StatelessWidget {
               ),
               onPressed: store.isButtonValid  
               ? (){
-                store.addPlayerToVirtualTeam(playerEditionModel);
+                //store.addPlayerToVirtualTeam(playerEditionModel);
+                store.setTeamList(playerEditionModel);
                 //int i = store.teamList.length;
-                print('Tamanho da lista : ${store.teamList.length}'); 
+                print('Tamanho da lista : ${playerEditionModel.playerEdition!.player!.firstname}'); 
               } 
               : null, 
               child: const Text(

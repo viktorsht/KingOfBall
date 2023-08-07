@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/pages/components/football_field/football_field.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/pages/components/values_information/card_values_information.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
@@ -15,12 +16,12 @@ class TeamPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
     final buttons = ButtonAppDefault();
-    final storeBuy = BuyStore();
 
     final width = MediaQuery.of(context).size.width * .8;
     final heigth = MediaQuery.of(context).size.height * .65;
     final fieldH = 0.6773399 * heigth;
     //final fieldH = 0.6773399 * heigth - 10;
+    final storeBuy = Provider.of<BuyStore>(context);
 
     return Scaffold(
       body: Column(

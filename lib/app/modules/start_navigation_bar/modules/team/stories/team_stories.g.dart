@@ -13,11 +13,22 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
       ActionController(name: 'TeamStoriesControllerImpl', context: context);
 
   @override
-  String playerGol(List<PlayerEditionModel> list) {
+  bool searchPlayer(List<PlayerEditionModel> list, String position) {
+    final _$actionInfo = _$TeamStoriesControllerImplActionController
+        .startAction(name: 'TeamStoriesControllerImpl.searchPlayer');
+    try {
+      return super.searchPlayer(list, position);
+    } finally {
+      _$TeamStoriesControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String playerGol(List<PlayerEditionModel> list, String position) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.playerGol');
     try {
-      return super.playerGol(list);
+      return super.playerGol(list, position);
     } finally {
       _$TeamStoriesControllerImplActionController.endAction(_$actionInfo);
     }
@@ -35,44 +46,44 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
   }
 
   @override
-  String player1(List<PlayerEditionModel> list) {
+  String player1(List<PlayerEditionModel> list, String position) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.player1');
     try {
-      return super.player1(list);
+      return super.player1(list, position);
     } finally {
       _$TeamStoriesControllerImplActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  String player2(List<PlayerEditionModel> list) {
+  String player2(List<PlayerEditionModel> list, String position) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.player2');
     try {
-      return super.player2(list);
+      return super.player2(list, position);
     } finally {
       _$TeamStoriesControllerImplActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  String player3(List<PlayerEditionModel> list) {
+  String player3(List<PlayerEditionModel> list, String position) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.player3');
     try {
-      return super.player3(list);
+      return super.player3(list, position);
     } finally {
       _$TeamStoriesControllerImplActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  String? playerName(List<PlayerEditionModel> list, int index) {
+  String? playerName(List<PlayerEditionModel> list, String position) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.playerName');
     try {
-      return super.playerName(list, index);
+      return super.playerName(list, position);
     } finally {
       _$TeamStoriesControllerImplActionController.endAction(_$actionInfo);
     }

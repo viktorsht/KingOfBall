@@ -8,9 +8,29 @@ class TeamStoriesController = TeamStoriesControllerImpl with _$TeamStoriesContro
 
 abstract class TeamStoriesControllerImpl with Store{
 
+  @observable
+  List<int> idPlayerList = [];
+
+  @action 
+  bool searchPlayer(List<PlayerEditionModel> list, String position){
+    for (var element in list){
+      if(position == element.playerEdition?.player?.position?.abb){
+        if(!idPlayerList.contains(element.playerEdition!.playerId) ){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   @action
-  String playerGol(List<PlayerEditionModel> list){
-    return list.isEmpty ? ImagesApp.addPlayer : ImagesApp.goleiro;
+  String playerGol(List<PlayerEditionModel> list, String position){
+    if(list.isNotEmpty){
+      if(searchPlayer(list, position) == true){
+        return ImagesApp.goleiro;
+      }
+    }
+    return ImagesApp.addPlayer;
   }
 
   @action
@@ -19,22 +39,49 @@ abstract class TeamStoriesControllerImpl with Store{
   }
 
   @action
-  String player1(List<PlayerEditionModel> list){
-    return list.isEmpty ? ImagesApp.addPlayer : ImagesApp.jogador1;
+  String player1(List<PlayerEditionModel> list, String position){
+    if(list.isNotEmpty){
+      if(searchPlayer(list, position) == true){
+        return ImagesApp.jogador1;
+      }
+    }
+    return ImagesApp.addPlayer;
   }
 
   @action
-  String player2(List<PlayerEditionModel> list){
-    return list.isEmpty ? ImagesApp.addPlayer : ImagesApp.jogador2;
+  String player2(List<PlayerEditionModel> list, String position){
+    if(list.isNotEmpty){
+      if(searchPlayer(list, position) == true){
+        return ImagesApp.jogador2;
+      }
+    }
+    return ImagesApp.addPlayer;
   }
 
   @action
-  String player3(List<PlayerEditionModel> list){
-    return list.isEmpty ? ImagesApp.addPlayer : ImagesApp.jogador3;
+  String player3(List<PlayerEditionModel> list, String position){
+    if(list.isNotEmpty){
+      if(searchPlayer(list, position) == true){
+        return ImagesApp.jogador3;
+      }
+    }
+    return ImagesApp.addPlayer;
   }
 
   @action
-  String? playerName(List<PlayerEditionModel> list, int index){
-    return list.isEmpty ? null : list[index].playerEdition?.player!.firstname;
+  String? playerName(List<PlayerEditionModel> list, String position){
+    if(list.isNotEmpty){
+      print(idPlayerList);
+      for (var element in list){
+        if(position == element.playerEdition?.player?.position?.abb){
+          if(!idPlayerList.contains(element.playerEdition!.playerId) ){
+            idPlayerList.add(element.playerEdition!.playerId!);
+            //print(idPlayerList);
+            return element.playerEdition?.player?.firstname;
+          }
+        }
+      }
+    }
+    return null;
   }
 }

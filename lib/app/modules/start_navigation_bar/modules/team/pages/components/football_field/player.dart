@@ -38,7 +38,7 @@ class Player extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {
-              //print(position);
+              print(position);
               Modular.to.pushNamed(RoutesModulesApp.routerBuyModule, arguments: position);
             },
             icon: Image.asset(
