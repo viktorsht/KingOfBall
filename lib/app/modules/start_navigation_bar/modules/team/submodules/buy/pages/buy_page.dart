@@ -52,31 +52,47 @@ class _BuyPageState extends State<BuyPage> {
         ),
       ),
       body: 
-        Observer(
-          builder: (_) => 
-          controllerBuy.stateController != StateResponse.sucess 
-            ? 
-            Center(
-              child: WidgetLoading(
-                color: colors.green,
-                width: 6,
-                thickness: 1,
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Buscando por ${widget.position}",
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22
+                ),
               ),
-            ) 
-            : ListView.builder(
-              itemCount: controllerBuy.listBuy.length,
-              itemBuilder: (context, index) {
-                int numImage = controllerBuy.generateNumber();
-                return Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0),
-                  child: CardBuyPlayers(
-                    color: colors,
-                    image: controllerBuy.image[numImage],
-                    playerEditionModel: controllerBuy.listBuy[index],
-                  ),
-                );
-              },
             ),
+            Expanded(
+              child: Observer(
+                builder: (_) => 
+                controllerBuy.stateController != StateResponse.sucess 
+                  ? 
+                  Center(
+                    child: WidgetLoading(
+                      color: colors.green,
+                      width: 6,
+                      thickness: 1,
+                    ),
+                  ) 
+                  : ListView.builder(
+                    itemCount: controllerBuy.listBuy.length,
+                    itemBuilder: (context, index) {
+                      int numImage = controllerBuy.generateNumber();
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0),
+                        child: CardBuyPlayers(
+                          color: colors,
+                          image: controllerBuy.image[numImage],
+                          playerEditionModel: controllerBuy.listBuy[index],
+                        ),
+                      );
+                    },
+                  ),
+              ),
+            ),
+          ],
         ),
     );
   }

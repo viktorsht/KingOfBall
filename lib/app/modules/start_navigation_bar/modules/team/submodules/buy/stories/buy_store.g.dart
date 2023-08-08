@@ -21,6 +21,30 @@ mixin _$BuyStore on BuyStoreImpl, Store {
   bool get isZagAdd => (_$isZagAddComputed ??=
           Computed<bool>(() => super.isZagAdd, name: 'BuyStoreImpl.isZagAdd'))
       .value;
+  Computed<bool>? _$isLatAddComputed;
+
+  @override
+  bool get isLatAdd => (_$isLatAddComputed ??=
+          Computed<bool>(() => super.isLatAdd, name: 'BuyStoreImpl.isLatAdd'))
+      .value;
+  Computed<bool>? _$isMeiAddComputed;
+
+  @override
+  bool get isMeiAdd => (_$isMeiAddComputed ??=
+          Computed<bool>(() => super.isMeiAdd, name: 'BuyStoreImpl.isMeiAdd'))
+      .value;
+  Computed<bool>? _$isVolAddComputed;
+
+  @override
+  bool get isVolAdd => (_$isVolAddComputed ??=
+          Computed<bool>(() => super.isVolAdd, name: 'BuyStoreImpl.isVolAdd'))
+      .value;
+  Computed<bool>? _$isAtaAddComputed;
+
+  @override
+  bool get isAtaAdd => (_$isAtaAddComputed ??=
+          Computed<bool>(() => super.isAtaAdd, name: 'BuyStoreImpl.isAtaAdd'))
+      .value;
   Computed<bool>? _$isButtonValidComputed;
 
   @override
@@ -42,6 +66,22 @@ mixin _$BuyStore on BuyStoreImpl, Store {
   set teamList(List<PlayerEditionModel> value) {
     _$teamListAtom.reportWrite(value, super.teamList, () {
       super.teamList = value;
+    });
+  }
+
+  late final _$stateStoreBuyAtom =
+      Atom(name: 'BuyStoreImpl.stateStoreBuy', context: context);
+
+  @override
+  String get stateStoreBuy {
+    _$stateStoreBuyAtom.reportRead();
+    return super.stateStoreBuy;
+  }
+
+  @override
+  set stateStoreBuy(String value) {
+    _$stateStoreBuyAtom.reportWrite(value, super.stateStoreBuy, () {
+      super.stateStoreBuy = value;
     });
   }
 
@@ -166,6 +206,17 @@ mixin _$BuyStore on BuyStoreImpl, Store {
   }
 
   @override
+  void clearState() {
+    final _$actionInfo = _$BuyStoreImplActionController.startAction(
+        name: 'BuyStoreImpl.clearState');
+    try {
+      return super.clearState();
+    } finally {
+      _$BuyStoreImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void addPlayerToVirtualTeam(PlayerEditionModel player) {
     final _$actionInfo = _$BuyStoreImplActionController.startAction(
         name: 'BuyStoreImpl.addPlayerToVirtualTeam');
@@ -180,6 +231,7 @@ mixin _$BuyStore on BuyStoreImpl, Store {
   String toString() {
     return '''
 teamList: ${teamList},
+stateStoreBuy: ${stateStoreBuy},
 goleiro: ${goleiro},
 zagueiro: ${zagueiro},
 lateral: ${lateral},
@@ -188,6 +240,10 @@ volante: ${volante},
 atacante: ${atacante},
 isGolAdd: ${isGolAdd},
 isZagAdd: ${isZagAdd},
+isLatAdd: ${isLatAdd},
+isMeiAdd: ${isMeiAdd},
+isVolAdd: ${isVolAdd},
+isAtaAdd: ${isAtaAdd},
 isButtonValid: ${isButtonValid}
     ''';
   }

@@ -25,35 +25,19 @@ mixin _$TeamController on TeamControllerImpl, Store {
     });
   }
 
-  late final _$userAtom =
-      Atom(name: 'TeamControllerImpl.user', context: context);
+  late final _$matchGameLineUpListAtom =
+      Atom(name: 'TeamControllerImpl.matchGameLineUpList', context: context);
 
   @override
-  UserModel get user {
-    _$userAtom.reportRead();
-    return super.user;
+  List<MatchGameLineUpModel> get matchGameLineUpList {
+    _$matchGameLineUpListAtom.reportRead();
+    return super.matchGameLineUpList;
   }
 
   @override
-  set user(UserModel value) {
-    _$userAtom.reportWrite(value, super.user, () {
-      super.user = value;
-    });
-  }
-
-  late final _$teamGameModelAtom =
-      Atom(name: 'TeamControllerImpl.teamGameModel', context: context);
-
-  @override
-  TeamGameModel get teamGameModel {
-    _$teamGameModelAtom.reportRead();
-    return super.teamGameModel;
-  }
-
-  @override
-  set teamGameModel(TeamGameModel value) {
-    _$teamGameModelAtom.reportWrite(value, super.teamGameModel, () {
-      super.teamGameModel = value;
+  set matchGameLineUpList(List<MatchGameLineUpModel> value) {
+    _$matchGameLineUpListAtom.reportWrite(value, super.matchGameLineUpList, () {
+      super.matchGameLineUpList = value;
     });
   }
 
@@ -77,7 +61,7 @@ mixin _$TeamController on TeamControllerImpl, Store {
       AsyncAction('TeamControllerImpl.checkTeamScale', context: context);
 
   @override
-  Future<UserModel> checkTeamScale() {
+  Future<List<MatchGameLineUpModel>> checkTeamScale() {
     return _$checkTeamScaleAsyncAction.run(() => super.checkTeamScale());
   }
 
@@ -93,8 +77,7 @@ mixin _$TeamController on TeamControllerImpl, Store {
   String toString() {
     return '''
 stateController: ${stateController},
-user: ${user},
-teamGameModel: ${teamGameModel},
+matchGameLineUpList: ${matchGameLineUpList},
 teamService: ${teamService}
     ''';
   }

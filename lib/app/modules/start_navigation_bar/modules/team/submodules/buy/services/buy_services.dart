@@ -22,7 +22,7 @@ class BuyServices{
   }
 
   Future<List<PlayerEditionModel>> getPlayersPositionApi(String token, String position) async {
-    final url = Uri.parse('${RoutersApi.positionAbb}$position');
+    final url = Uri.parse('${RoutersApi.positionName}$position');
     final headers = {
       'Authorization': 'Bearer $token', 
       'Content-Type': 'application/json',

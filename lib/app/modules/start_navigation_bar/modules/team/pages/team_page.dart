@@ -7,10 +7,24 @@ import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
 import '../../../../../../design_system/buttons/app_butons.dart';
 import '../../../../../../design_system/icons/icons_app.dart';
+import '../controllers/team_controller.dart';
 import '../submodules/buy/stories/buy_store.dart';
 
-class TeamPage extends StatelessWidget {
+class TeamPage extends StatefulWidget {
   const TeamPage({super.key});
+
+  @override
+  State<TeamPage> createState() => _TeamPageState();
+}
+
+class _TeamPageState extends State<TeamPage> {
+
+  final teamController = TeamController();
+  @override
+  void initState() {
+    super.initState();
+    teamController.initTeamScale();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +65,7 @@ class TeamPage extends StatelessWidget {
           ),
           Observer(
             builder: (context) {
-              print('Lista jogadores(TEAM Page): ${storeBuy.teamList.length}');
+              //print('Lista jogadores(TEAM Page): ${storeBuy.teamList.length}');
               return SizedBox(
                 height: heigth * 0.7,
                 width: width,

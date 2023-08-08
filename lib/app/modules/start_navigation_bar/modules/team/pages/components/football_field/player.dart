@@ -23,7 +23,6 @@ class Player extends StatelessWidget {
     required this.position,
   }) : assert(top > 0.0);
 
-
   @override
   Widget build(BuildContext context) {
     final double heightFinal = MediaQuery.of(context).size.height;
@@ -38,12 +37,12 @@ class Player extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {
-              print(position);
+              //print(position);
               Modular.to.pushNamed(RoutesModulesApp.routerBuyModule, arguments: position);
             },
             icon: Image.asset(
               image,
-              height: position == 'GOL' ? height - 60.0 : height - 60,
+              height: position == 'Goleiro' ? height - 60.0 : height - 60,
             ),
           ),
           name == null 

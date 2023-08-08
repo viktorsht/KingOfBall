@@ -15,5 +15,7 @@ class RoutersApi{
   static String checkIdUser = '${Api.urlApi}teamGame?filter=user_id:=:';
   static String roundToday = '${Api.urlApi}soccerMatch/next?date=';
   static String positionAbb = '${Api.urlApi}matchLineup?filter=playerEdition|player|position.abb:=:';
+  static String positionName = '${Api.urlApi}matchLineup?filter=playerEdition|player|position.name:=:';
+  static String matchGameLineup = '${Api.urlApi}matchGameLineup';
 
 }

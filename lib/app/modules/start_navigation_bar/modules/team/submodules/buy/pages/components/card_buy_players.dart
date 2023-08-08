@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
+import 'package:rei_da_bola/shared/api/state_response.dart';
 import '../../models/player_edition_model.dart';
 import '../../stories/buy_store.dart';
 
@@ -95,14 +96,48 @@ class CardBuyPlayers extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10)
                 )
               ),
-              onPressed: store.isButtonValid  
-              ? (){
-                //store.addPlayerToVirtualTeam(playerEditionModel);
-                store.setTeamList(playerEditionModel);
-                //int i = store.teamList.length;
-                print('Tamanho da lista : ${playerEditionModel.playerEdition!.player!.firstname}'); 
-              } 
-              : null, 
+              onPressed: (){
+                store.addPlayerToVirtualTeam(playerEditionModel);
+                //store.setTeamList(playerEditionModel);
+                //print(store.stateStoreBuy);
+
+                if (store.stateStoreBuy == StateResponse.sucess){
+                  final snackbar = SnackBar(
+                    content: const Text('Selecionado com sucesso!'),
+                    duration: const Duration(seconds: 3),
+                    backgroundColor: color.green,
+                    action: SnackBarAction(
+                      backgroundColor: color.whiteLigth,
+                      textColor: color.black,
+                      label: 'Desfazer',
+                      onPressed: () {
+                        // Ação a ser executada quando o botão "Desfazer" é pressionado
+                        // (pode ser vazia ou uma ação específica)
+                      },
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
+
+                }
+                else{
+                  final snackbar = SnackBar(
+                    content: const Text('Vaga de jogador preenchida!'),
+                    duration: const Duration(seconds: 3),
+                    backgroundColor: color.red,
+                    action: SnackBarAction(
+                      backgroundColor: color.whiteLigth,
+                      textColor: color.black,
+                      label: 'Trocar',
+                      onPressed: () {
+                        // Ação a ser executada quando o botão "Desfazer" é pressionado
+                        // (pode ser vazia ou uma ação específica)
+                      },
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                }
+                store.clearState();
+              }, 
               child: const Text(
                 "COMPRAR",
                 style: TextStyle(
