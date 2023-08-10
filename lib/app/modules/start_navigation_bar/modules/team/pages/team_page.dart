@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/pages/components/football_field/football_field.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/pages/components/values_information/card_values_information.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
-
+import 'package:rei_da_bola/design_system/widgets/widget_loading.dart';
 import '../../../../../../design_system/buttons/app_butons.dart';
 import '../../../../../../design_system/icons/icons_app.dart';
 import '../controllers/team_controller.dart';
@@ -19,23 +19,17 @@ class TeamPage extends StatefulWidget {
 
 class _TeamPageState extends State<TeamPage> {
 
-  final teamController = TeamController();
-  @override
-  void initState() {
-    super.initState();
-    teamController.initTeamScale();
-  }
-
   @override
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
     final buttons = ButtonAppDefault();
 
     final width = MediaQuery.of(context).size.width * .8;
-    final heigth = MediaQuery.of(context).size.height * .65;
-    final fieldH = 0.6773399 * heigth;
-    //final fieldH = 0.6773399 * heigth - 10;
+    final height = MediaQuery.of(context).size.height * .65;
+    final fieldH = 0.6773399 * height;
     final storeBuy = Provider.of<BuyStore>(context);
+    final teamController = Provider.of<TeamController>(context);
+    //final fieldH = 0.6773399 * height - 10;
 
     return Scaffold(
       body: Column(
@@ -52,7 +46,7 @@ class _TeamPageState extends State<TeamPage> {
                 padding: const EdgeInsets.only(right: 5),
                 child: Image.asset(IconsApp.clock),
               ),
-              //const SizedBox(width: 10,),
+              const SizedBox(width: 10,),
               Text(
                 "2d 13h 27m restantes",
                 style: TextStyle(
@@ -64,33 +58,56 @@ class _TeamPageState extends State<TeamPage> {
             ],
           ),
           Observer(
-            builder: (context) {
-              //print('Lista jogadores(TEAM Page): ${storeBuy.teamList.length}');
-              return SizedBox(
-                height: heigth * 0.7,
-                width: width,
-                child: FootballField(
-                  listPlayer: storeBuy.teamList, // passo aqui a lista contendo os jogadores
-                  width: width,
-                  height: heigth,
-                  fieldH: fieldH,
-                ),
-              );
-            }
+            builder: (context) => FutureBuilder(
+                future: teamController.initTeamScale(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return SizedBox(
+                      height: height * 0.7,
+                      width: width,
+                      child: const Center(
+                        child: WidgetLoading(
+                          width: 5,
+                          thickness: 0.9,
+                          color: Colors.green,
+                        ),
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text('Error: ${snapshot.error}'),
+                    );
+                  } else if (snapshot.hasData) {
+                    return SizedBox(
+                        height: height * 0.7,
+                        width: width,
+                        child: FootballField(
+                          listPlayer: teamController.playerList,
+                          width: width,
+                          height: height,
+                          fieldH: fieldH,
+                        ),
+                     // ),
+                    );
+                  } else {
+                    return SizedBox(
+                        height: height * 0.7,
+                        width: width,
+                        child: FootballField(
+                          listPlayer:  storeBuy.teamList,
+                          width: width,
+                          height: height,
+                          fieldH: fieldH,
+                        ),
+                     // ),
+                    );
+                  }
+                },
+              ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(
-                style: buttons.themeButtonAppOk,
-                onPressed: (){}, 
-                child: const Text(
-                  'CONFIRMAR',
-                  style: TextStyle(
-                    fontSize: 20
-                  ),
-                  ),
-                ),
               ElevatedButton(
                 style: buttons.themeButtonAppCancelar,
                 onPressed: (){}, 
@@ -100,6 +117,16 @@ class _TeamPageState extends State<TeamPage> {
                     fontSize: 20
                   ),
                 )
+              ),
+              ElevatedButton(
+                style: buttons.themeButtonAppOk,
+                onPressed: (){}, 
+                child: const Text(
+                  'CONFIRMAR',
+                  style: TextStyle(
+                    fontSize: 20
+                  ),
+                ),
               ),
             ],
           ),

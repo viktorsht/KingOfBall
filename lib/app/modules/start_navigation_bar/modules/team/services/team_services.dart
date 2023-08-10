@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/models/player_model.dart';
 import '../../../../../../shared/api/routes_api.dart';
-import '../models/match_game_line_up_model.dart';
 
 class TeamServices{
 
-  Future<List<MatchGameLineUpModel>> getTeamServices(String token) async {
-    final url = Uri.parse('${RoutersApi.soccerMatch}?token=$token');
+  Future<List<PlayerModel>> getTeamServices(String token) async {
+    final url = Uri.parse(RoutersApi.matchGameLineup);
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -16,8 +16,9 @@ class TeamServices{
       url,
       headers: headers,
     );
-    final list = jsonDecode(response.body) as List;
-    return list.map((json) => MatchGameLineUpModel.fromJson(json)).toList();
+    final jsonList = jsonDecode(response.body) as List;
+
+    return jsonList.map((json) => PlayerModel.fromJson(json['player_lineup']['player_edition']['player'])).toList();
   } 
   
 }

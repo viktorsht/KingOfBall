@@ -29,7 +29,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
       ActionController(name: 'TeamStoriesControllerImpl', context: context);
 
   @override
-  bool searchPlayer(List<PlayerEditionModel> list, String position) {
+  bool searchPlayer(List<PlayerModel> list, String position) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.searchPlayer');
     try {
@@ -40,7 +40,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
   }
 
   @override
-  String playerGol(List<PlayerEditionModel> list, String position) {
+  String playerGol(List<PlayerModel> list, String position) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.playerGol');
     try {
@@ -51,7 +51,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
   }
 
   @override
-  String playerTec(List<PlayerEditionModel> list) {
+  String playerTec(List<PlayerModel> list) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.playerTec');
     try {
@@ -62,7 +62,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
   }
 
   @override
-  String player1(List<PlayerEditionModel> list, String position) {
+  String player1(List<PlayerModel> list, String position) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.player1');
     try {
@@ -73,7 +73,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
   }
 
   @override
-  String player2(List<PlayerEditionModel> list, String position) {
+  String player2(List<PlayerModel> list, String position) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.player2');
     try {
@@ -84,7 +84,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
   }
 
   @override
-  String player3(List<PlayerEditionModel> list, String position) {
+  String player3(List<PlayerModel> list, String position) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.player3');
     try {
@@ -95,7 +95,7 @@ mixin _$TeamStoriesController on TeamStoriesControllerImpl, Store {
   }
 
   @override
-  String? playerName(List<PlayerEditionModel> list, String position) {
+  String? playerName(List<PlayerModel> list, String position) {
     final _$actionInfo = _$TeamStoriesControllerImplActionController
         .startAction(name: 'TeamStoriesControllerImpl.playerName');
     try {

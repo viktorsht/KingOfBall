@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/pages/components/football_field/player.dart';
 import '../../../../../../../../design_system/images/images_app.dart';
+import '../../../models/player_model.dart';
 import '../../../stories/team_stories.dart';
-import '../../../submodules/buy/models/player_edition_model.dart';
 
 class FootballField extends StatelessWidget {
   final double width;
   final double height;
   final double fieldH;
-  final List<PlayerEditionModel> listPlayer;
+  final List<PlayerModel> listPlayer;
 
   const FootballField({
     super.key, 
@@ -128,7 +128,7 @@ class FootballField extends StatelessWidget {
               top: 0.79090909 * fieldH,
               right: 0.75666667 * width,
               left: 0.0,
-              position: "TEC",
+              position: "Técnico",
             ),
           ],
         ),

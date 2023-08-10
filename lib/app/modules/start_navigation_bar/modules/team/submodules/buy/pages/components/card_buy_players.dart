@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/shared/api/state_response.dart';
+import '../../../../models/player_model.dart';
 import '../../models/player_edition_model.dart';
 import '../../stories/buy_store.dart';
 
@@ -97,14 +98,15 @@ class CardBuyPlayers extends StatelessWidget {
                 )
               ),
               onPressed: (){
-                store.addPlayerToVirtualTeam(playerEditionModel);
+                PlayerModel player = playerEditionModel.playerEdition!.player!;
+                store.addPlayerToVirtualTeam(player);
                 //store.setTeamList(playerEditionModel);
                 //print(store.stateStoreBuy);
 
                 if (store.stateStoreBuy == StateResponse.sucess){
                   final snackbar = SnackBar(
                     content: const Text('Selecionado com sucesso!'),
-                    duration: const Duration(seconds: 3),
+                    duration: const Duration(seconds: 1),
                     backgroundColor: color.green,
                     action: SnackBarAction(
                       backgroundColor: color.whiteLigth,
@@ -122,7 +124,7 @@ class CardBuyPlayers extends StatelessWidget {
                 else{
                   final snackbar = SnackBar(
                     content: const Text('Vaga de jogador preenchida!'),
-                    duration: const Duration(seconds: 3),
+                    duration: const Duration(seconds: 1),
                     backgroundColor: color.red,
                     action: SnackBarAction(
                       backgroundColor: color.whiteLigth,

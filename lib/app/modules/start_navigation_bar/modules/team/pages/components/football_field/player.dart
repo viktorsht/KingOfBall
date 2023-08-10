@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
-
 import '../../../../../../../routes/routes_app.dart';
-
 
 class Player extends StatelessWidget {
   
@@ -37,8 +35,46 @@ class Player extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {
-              //print(position);
-              Modular.to.pushNamed(RoutesModulesApp.routerBuyModule, arguments: position);
+              name != null 
+              ? showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text('Deseja alterar o jogador $name?'),
+                    icon: Image.asset(image, height: 80,),
+                    //content: Image.asset(image),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          'Cancelar',
+                          style: TextStyle(
+                            color: colors.red
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Modular.to.pushNamed(
+                            RoutesModulesApp.routerBuyModule,
+                            arguments: position,
+                          );
+                        },
+                        child: Text(
+                          'Alterar',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: colors.green
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              )
+              : Modular.to.pushNamed(RoutesModulesApp.routerBuyModule,arguments: position,);
             },
             icon: Image.asset(
               image,

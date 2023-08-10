@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/models/player_model.dart';
 import '../../../../../../design_system/images/images_app.dart';
-import '../submodules/buy/models/player_edition_model.dart';
 
 part 'team_stories.g.dart';
 
@@ -12,10 +12,10 @@ abstract class TeamStoriesControllerImpl with Store{
   List<int> idPlayerList = [];
 
   @action 
-  bool searchPlayer(List<PlayerEditionModel> list, String position){
+  bool searchPlayer(List<PlayerModel> list, String position){
     for (var element in list){
-      if(position == element.playerEdition?.player?.position?.abb){
-        if(!idPlayerList.contains(element.playerEdition!.playerId) ){
+      if(position == element.position?.abb){
+        if(!idPlayerList.contains(element.id) ){
           return true;
         }
       }
@@ -24,7 +24,7 @@ abstract class TeamStoriesControllerImpl with Store{
   }
 
   @action
-  String playerGol(List<PlayerEditionModel> list, String position){
+  String playerGol(List<PlayerModel> list, String position){
     if(list.isNotEmpty){
       if(searchPlayer(list, position) == true){
         return ImagesApp.goleiro;
@@ -34,12 +34,12 @@ abstract class TeamStoriesControllerImpl with Store{
   }
 
   @action
-  String playerTec(List<PlayerEditionModel> list){
+  String playerTec(List<PlayerModel> list){
     return list.isEmpty ? ImagesApp.addPlayer : ImagesApp.tecnico;
   }
 
   @action
-  String player1(List<PlayerEditionModel> list, String position){
+  String player1(List<PlayerModel> list, String position){
     if(list.isNotEmpty){
       if(searchPlayer(list, position) == true){
         return ImagesApp.jogador1;
@@ -49,7 +49,7 @@ abstract class TeamStoriesControllerImpl with Store{
   }
 
   @action
-  String player2(List<PlayerEditionModel> list, String position){
+  String player2(List<PlayerModel> list, String position){
     if(list.isNotEmpty){
       if(searchPlayer(list, position) == true){
         return ImagesApp.jogador2;
@@ -59,7 +59,7 @@ abstract class TeamStoriesControllerImpl with Store{
   }
 
   @action
-  String player3(List<PlayerEditionModel> list, String position){
+  String player3(List<PlayerModel> list, String position){
     if(list.isNotEmpty){
       if(searchPlayer(list, position) == true){
         return ImagesApp.jogador3;
@@ -69,15 +69,15 @@ abstract class TeamStoriesControllerImpl with Store{
   }
 
   @action
-  String? playerName(List<PlayerEditionModel> list, String position){
+  String? playerName(List<PlayerModel> list, String position){
     if(list.isNotEmpty){
       print(idPlayerList);
       for (var element in list){
-        if(position == element.playerEdition?.player?.position?.abb){
-          if(!idPlayerList.contains(element.playerEdition!.playerId) ){
-            idPlayerList.add(element.playerEdition!.playerId!);
+        if(position == element.position?.abb){
+          if(!idPlayerList.contains(element.id) ){
+            idPlayerList.add(element.id!);
             //print(idPlayerList);
-            return element.playerEdition?.player?.firstname;
+            return element.firstname;
           }
         }
       }

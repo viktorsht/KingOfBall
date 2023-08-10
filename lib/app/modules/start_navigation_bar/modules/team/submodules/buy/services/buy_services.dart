@@ -31,6 +31,7 @@ class BuyServices{
     final response = await http.get(url,headers: headers,);
     final list = jsonDecode(response.body) as List;
     return list.map((json) => PlayerEditionModel.fromJson(json)).toList();
+    
   }  
 
 }

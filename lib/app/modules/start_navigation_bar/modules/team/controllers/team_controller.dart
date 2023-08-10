@@ -1,8 +1,8 @@
 import 'package:mobx/mobx.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/models/player_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/services/team_services.dart';
 import 'package:rei_da_bola/shared/token/token_manager.dart';
 import '../../../../../../shared/api/state_response.dart';
-import '../models/match_game_line_up_model.dart';
 
 part 'team_controller.g.dart';
 
@@ -14,20 +14,25 @@ abstract class TeamControllerImpl with Store{
   String stateController = StateResponse.start;
 
   @observable
-  List<MatchGameLineUpModel> matchGameLineUpList = [];
+  bool isChange = false;
+
+  @observable
+  List<PlayerModel> playerList = [];
   
   @observable
   TeamServices teamService = TeamServices();
 
   @action
-  Future<List<MatchGameLineUpModel>> checkTeamScale() async {
+  Future<List<PlayerModel>> checkTeamScale() async {
     stateController = StateResponse.loading;
-    List<MatchGameLineUpModel> retorno = [];
+    List<PlayerModel> retorno = [];
     TokenManager tokenManager = TokenManager();
     String? token = await tokenManager.getToken();
+    //print("object");
     if(token != null){
       try {
         retorno = await teamService.getTeamServices(token);
+        //print(retorno);
         stateController = StateResponse.sucess;
       } catch (e) {
         stateController = StateResponse.error;
@@ -40,7 +45,9 @@ abstract class TeamControllerImpl with Store{
   }
 
   @action
-  Future<void> initTeamScale() async {
-    matchGameLineUpList = await checkTeamScale();
+  Future<List<PlayerModel>> initTeamScale() async {
+    playerList = await checkTeamScale();
+    //print('Lista de jogadores da api = ${playerList.length}');
+    return playerList;
   }
 }

@@ -25,19 +25,35 @@ mixin _$TeamController on TeamControllerImpl, Store {
     });
   }
 
-  late final _$matchGameLineUpListAtom =
-      Atom(name: 'TeamControllerImpl.matchGameLineUpList', context: context);
+  late final _$isChangeAtom =
+      Atom(name: 'TeamControllerImpl.isChange', context: context);
 
   @override
-  List<MatchGameLineUpModel> get matchGameLineUpList {
-    _$matchGameLineUpListAtom.reportRead();
-    return super.matchGameLineUpList;
+  bool get isChange {
+    _$isChangeAtom.reportRead();
+    return super.isChange;
   }
 
   @override
-  set matchGameLineUpList(List<MatchGameLineUpModel> value) {
-    _$matchGameLineUpListAtom.reportWrite(value, super.matchGameLineUpList, () {
-      super.matchGameLineUpList = value;
+  set isChange(bool value) {
+    _$isChangeAtom.reportWrite(value, super.isChange, () {
+      super.isChange = value;
+    });
+  }
+
+  late final _$playerListAtom =
+      Atom(name: 'TeamControllerImpl.playerList', context: context);
+
+  @override
+  List<PlayerModel> get playerList {
+    _$playerListAtom.reportRead();
+    return super.playerList;
+  }
+
+  @override
+  set playerList(List<PlayerModel> value) {
+    _$playerListAtom.reportWrite(value, super.playerList, () {
+      super.playerList = value;
     });
   }
 
@@ -61,7 +77,7 @@ mixin _$TeamController on TeamControllerImpl, Store {
       AsyncAction('TeamControllerImpl.checkTeamScale', context: context);
 
   @override
-  Future<List<MatchGameLineUpModel>> checkTeamScale() {
+  Future<List<PlayerModel>> checkTeamScale() {
     return _$checkTeamScaleAsyncAction.run(() => super.checkTeamScale());
   }
 
@@ -69,7 +85,7 @@ mixin _$TeamController on TeamControllerImpl, Store {
       AsyncAction('TeamControllerImpl.initTeamScale', context: context);
 
   @override
-  Future<void> initTeamScale() {
+  Future<List<PlayerModel>> initTeamScale() {
     return _$initTeamScaleAsyncAction.run(() => super.initTeamScale());
   }
 
@@ -77,7 +93,8 @@ mixin _$TeamController on TeamControllerImpl, Store {
   String toString() {
     return '''
 stateController: ${stateController},
-matchGameLineUpList: ${matchGameLineUpList},
+isChange: ${isChange},
+playerList: ${playerList},
 teamService: ${teamService}
     ''';
   }

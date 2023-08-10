@@ -1,7 +1,7 @@
 
 import 'package:mobx/mobx.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/team/models/player_model.dart';
 import 'package:rei_da_bola/shared/api/state_response.dart';
-import '../models/player_edition_model.dart';
 
 part 'buy_store.g.dart';
 
@@ -10,22 +10,24 @@ class BuyStore = BuyStoreImpl with _$BuyStore;
 abstract class BuyStoreImpl with Store{
 
   @observable
-  List<PlayerEditionModel> teamList = [];
+  List<PlayerModel> teamList = [];
+
+  @observable
+  void updateList(value) => teamList = value;
 
   @observable
   String stateStoreBuy = StateResponse.start;
   
   @action
-  void setTeamList(PlayerEditionModel player) {
+  void setTeamList(PlayerModel player) {
     stateStoreBuy = StateResponse.loading;
     teamList.add(player);
-    //await Future.delayed(const Duration(seconds: 2));
     stateStoreBuy = StateResponse.sucess;
     //print('Jogador Adicionado = ${player.playerEdition!.player!.firstname}');
   }
 
   @action
-  List<PlayerEditionModel> getListPlayer() => teamList;
+  List<PlayerModel> getListPlayer() => teamList;
 
   @observable
   int goleiro = 0;
@@ -70,8 +72,8 @@ abstract class BuyStoreImpl with Store{
   void clearState() => stateStoreBuy = StateResponse.start;
 
   @action
-  void addPlayerToVirtualTeam(PlayerEditionModel player){
-    String position = player.playerEdition!.player!.position!.abb!;
+  void addPlayerToVirtualTeam(PlayerModel player){
+    String position = player.position!.abb!;
     //print('Jogador = ${player.playerEdition!.player!.firstname}');
     if(position == 'GOL' && !isGolAdd){
       setTeamList(player);

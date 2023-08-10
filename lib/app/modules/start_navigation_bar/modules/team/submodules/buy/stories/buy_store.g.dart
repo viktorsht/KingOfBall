@@ -57,13 +57,13 @@ mixin _$BuyStore on BuyStoreImpl, Store {
       Atom(name: 'BuyStoreImpl.teamList', context: context);
 
   @override
-  List<PlayerEditionModel> get teamList {
+  List<PlayerModel> get teamList {
     _$teamListAtom.reportRead();
     return super.teamList;
   }
 
   @override
-  set teamList(List<PlayerEditionModel> value) {
+  set teamList(List<PlayerModel> value) {
     _$teamListAtom.reportWrite(value, super.teamList, () {
       super.teamList = value;
     });
@@ -184,7 +184,7 @@ mixin _$BuyStore on BuyStoreImpl, Store {
       ActionController(name: 'BuyStoreImpl', context: context);
 
   @override
-  void setTeamList(PlayerEditionModel player) {
+  void setTeamList(PlayerModel player) {
     final _$actionInfo = _$BuyStoreImplActionController.startAction(
         name: 'BuyStoreImpl.setTeamList');
     try {
@@ -195,7 +195,7 @@ mixin _$BuyStore on BuyStoreImpl, Store {
   }
 
   @override
-  List<PlayerEditionModel> getListPlayer() {
+  List<PlayerModel> getListPlayer() {
     final _$actionInfo = _$BuyStoreImplActionController.startAction(
         name: 'BuyStoreImpl.getListPlayer');
     try {
@@ -217,7 +217,7 @@ mixin _$BuyStore on BuyStoreImpl, Store {
   }
 
   @override
-  void addPlayerToVirtualTeam(PlayerEditionModel player) {
+  void addPlayerToVirtualTeam(PlayerModel player) {
     final _$actionInfo = _$BuyStoreImplActionController.startAction(
         name: 'BuyStoreImpl.addPlayerToVirtualTeam');
     try {
