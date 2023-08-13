@@ -8,7 +8,7 @@ class TeamEdition {
   int? coachId;
   String? createdAt;
   String? updatedAt;
-  Team? team;
+  TeamModel? team;
 
   TeamEdition(
       {this.id,
@@ -26,7 +26,7 @@ class TeamEdition {
     coachId = json['coach_id'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    team = json['team'] != null ? Team.fromJson(json['team']) : null;
+    team = json['team'] != null ? TeamModel.fromJson(json['team']) : null;
   }
 
   Map<String, dynamic> toJson() {

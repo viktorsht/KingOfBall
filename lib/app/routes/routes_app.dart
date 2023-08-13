@@ -10,7 +10,7 @@ class RoutesModulesApp {
   static const routerTableModule = '/table';
   static const routerTeamModule = '/team';
   static const routerMoreModule = '/more';
-  static const routerBuyModule = '/buy';
+  static const routerLineUpModule = '/lineup';
   static const routerRegisterTeamEditionModule = '/registerTeamEdition';
 
 }

@@ -16,6 +16,5 @@ class RoutersApi{
   static String roundToday = '${Api.urlApi}soccerMatch/next?date=';
   static String positionAbb = '${Api.urlApi}matchLineup?filter=playerEdition|player|position.abb:=:';
   static String positionName = '${Api.urlApi}matchLineup?filter=playerEdition|player|position.name:=:';
-  static String matchGameLineup = '${Api.urlApi}matchGameLineup';
-
+  String matchGameLineup(String championshipRoundId, String teamGameEditionId) => '${Api.urlApi}matchGameLineup?filter=championshipRound.id:=:1;team_game_edition_id:=:1'; 
 }

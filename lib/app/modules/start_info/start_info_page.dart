@@ -7,18 +7,14 @@ import 'package:rei_da_bola/design_system/images/images_app.dart';
 import '../../../design_system/widgets/widget_text_app.dart';
 import '../../routes/routes_app.dart';
 
-class StartInfoPage extends StatefulWidget {
-  const StartInfoPage({super.key});
+class StartInfoPage extends StatelessWidget {
+  const StartInfoPage({Key? key}) : super(key: key);
 
-  @override
-  State<StartInfoPage> createState() => _StartInfoPageState();
-}
-
-class _StartInfoPageState extends State<StartInfoPage> {
   @override
   Widget build(BuildContext context) {
     final colorsApp = ColorsAppDefault();
     final buttonApp = ButtonAppDefault();
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: colorsApp.green,
@@ -35,40 +31,40 @@ class _StartInfoPageState extends State<StartInfoPage> {
                 widgetText: 'conquiste a coroa.',
                 color: colorsApp.white,
               ),
-              
-              const SizedBox(height: 100,),
+              const SizedBox(height: 100),
               ElevatedButton(
                 style: buttonApp.themeButtonAppPrimary,
                 onPressed: () {
                   Modular.to.navigate(RoutesModulesApp.routerLoginModule);
-                }, 
+                },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("Entrar", 
+                    Text(
+                      "Entrar",
                       style: TextStyle(fontSize: 32, color: colorsApp.green),
                     ),
                     const SizedBox(width: 10),
-                    Image.asset(ImagesApp.entrar,),
+                    Image.asset(
+                      ImagesApp.entrar,
+                    ),
                   ],
-                ),  
+                ),
               ),
+              const SizedBox(height: 16),
               TextButton(
-                onPressed: (){
+                onPressed: () {
                   Modular.to.navigate(RoutesModulesApp.routerRegisterModule);
-                }, 
+                },
                 child: Text(
-                  'Cadastre-se', 
-                  style: TextStyle(
-                    color: colorsApp.white,
-                    fontSize: 20
-                  ),
-                )
+                  'Cadastre-se',
+                  style: TextStyle(color: colorsApp.white, fontSize: 20),
+                ),
               )
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }
