@@ -37,7 +37,7 @@ class Player extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {
-              player.playerEdition?.player?.firstName != null 
+              player.playerLineup?.playerEdition?.player?.firstName != null 
               ? showDialog(
                 context: context,
                 builder: (context) {
@@ -51,7 +51,7 @@ class Player extends StatelessWidget {
               height: position == 'Goleiro' ? height - 60.0 : height - 60,
             ),
           ),
-          player.playerEdition?.player?.firstName == null 
+          player.playerLineup?.playerEdition?.player?.firstName == null 
           ? Container()
           : Container(
             decoration: BoxDecoration(
@@ -62,7 +62,7 @@ class Player extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 5.0, right: 5.0),
               child: Text(
-                player.playerEdition!.player!.firstName!,
+                player.playerLineup!.playerEdition!.player!.firstName!,
                 style: const TextStyle(color: Colors.white),
                 textAlign: TextAlign.center,
               ),

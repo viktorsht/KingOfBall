@@ -1,11 +1,9 @@
 import 'dart:math';
-
 import 'package:mobx/mobx.dart';
-import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/models/football_field_model.dart';
-
 import '../../../../../../../../design_system/images/images_app.dart';
 import '../../../../../../../../shared/api/state_response.dart';
 import '../../../../../../../../shared/token/token_manager.dart';
+import '../models/lu_player_lineup_model.dart';
 import '../services/lineup_services.dart';
 
 part 'lineup_controller.g.dart';
@@ -23,7 +21,7 @@ abstract class LineUpControllerImpl with Store{
   LineUpServices lineUpServices = LineUpServices();
 
   @observable
-  List<FootballFieldModel> listBuy = [];
+  List<PlayerLineUpModel> listBuy = [];
 
   @observable
   List<String> image = [ImagesApp.jogador1, ImagesApp.jogador2, ImagesApp.jogador3];
@@ -46,14 +44,13 @@ abstract class LineUpControllerImpl with Store{
   void setList(value) => listBuy = value;
   
   @action
-  Future<List<FootballFieldModel>> playersForPosition(String position) async {
-    List<FootballFieldModel> list = [];
+  Future<List<PlayerLineUpModel>> playersForPosition(String position, String round) async {
+    List<PlayerLineUpModel> list = [];
     stateController = StateResponse.loading;
     String? token = await tokenManager.getToken();
     if(token != null){
       try{
-        list = await lineUpServices.getPlayersApiServices(token, position);
-        //print(list[0].player!.firstname);
+        list = await lineUpServices.getPlayersApiServices(token, position, round);
         stateController = StateResponse.sucess;
       } catch(e){
         stateController = StateResponse.error;
@@ -66,9 +63,9 @@ abstract class LineUpControllerImpl with Store{
   }
 
   @action
-  Future<void> initBuy(String position) async {
-    List<FootballFieldModel> list = [];
-    list = await playersForPosition(position);
+  Future<void> initBuy(String position, int round) async {
+    List<PlayerLineUpModel> list = [];
+    list = await playersForPosition(position, round.toString());
     setList(list);
   }
 }

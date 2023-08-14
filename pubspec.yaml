@@ -20,6 +20,22 @@ dependencies:
   provider: ^6.0.5
   http: ^0.13.6
   shared_preferences: ^2.2.0
+  flutter_native_splash: ^2.3.2
+  flutter_launcher_icons: ^0.13.1
+
+flutter_native_splash:
+  color: "#00BD08"
+  image_path: "assets/app/icon.png"
+  android: true
+  ios: true
+
+flutter_icons:
+  image_path: "assets/app/icon.png"
+  ios: true
+  remove_alpha_ios: true
+  android: "launcher_icon"
+  apaptive_icon_background: "#00BD08"
+  apaptive_icon_foreground: "assets/app/icon.png"
 
 dev_dependencies:
   flutter_test:

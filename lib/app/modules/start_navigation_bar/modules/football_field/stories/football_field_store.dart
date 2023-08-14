@@ -13,7 +13,7 @@ abstract class FootballFieldStoreImpl with Store{
   @action 
   bool searchPlayer(List<FootballFieldModel> list, String position){
     for (var element in list){
-      if(position == element.playerEdition?.player?.position?.abb){
+      if(position == element.playerLineup?.playerEdition?.player?.position?.abb){
         if(!idPlayerList.contains(element.id) ){
           return true;
         }
@@ -72,7 +72,7 @@ abstract class FootballFieldStoreImpl with Store{
     if(list.isNotEmpty){
       //print(idPlayerList);
       for (var element in list){
-        if(position == element.playerEdition?.player?.position?.abb){
+        if(position == element.playerLineup?.playerEdition?.player?.position?.abb){
           if(!idPlayerList.contains(element.id) ){
             idPlayerList.add(element.id!);
             print(idPlayerList);

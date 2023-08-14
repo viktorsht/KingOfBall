@@ -61,7 +61,7 @@ class FootballFieldPage extends StatelessWidget {
           ),
           Observer(
             builder: (context) => FutureBuilder(
-                future: footballController.isChange == false 
+                future: footballController.isChange == false // aqui pode passar a função direto sem flag 
                   ? footballController.initTeamScale(round, team)
                   : null,
                 builder: (context, snapshot) {

@@ -75,6 +75,22 @@ mixin _$FootballFieldController on FootballFieldControllerImpl, Store {
     });
   }
 
+  late final _$roundAtom =
+      Atom(name: 'FootballFieldControllerImpl.round', context: context);
+
+  @override
+  int get round {
+    _$roundAtom.reportRead();
+    return super.round;
+  }
+
+  @override
+  set round(int value) {
+    _$roundAtom.reportWrite(value, super.round, () {
+      super.round = value;
+    });
+  }
+
   late final _$checkTeamScaleAsyncAction = AsyncAction(
       'FootballFieldControllerImpl.checkTeamScale',
       context: context);
@@ -110,12 +126,24 @@ mixin _$FootballFieldController on FootballFieldControllerImpl, Store {
   }
 
   @override
+  void setRound(dynamic value) {
+    final _$actionInfo = _$FootballFieldControllerImplActionController
+        .startAction(name: 'FootballFieldControllerImpl.setRound');
+    try {
+      return super.setRound(value);
+    } finally {
+      _$FootballFieldControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 stateController: ${stateController},
 isChange: ${isChange},
 playerList: ${playerList},
-footballFieldServices: ${footballFieldServices}
+footballFieldServices: ${footballFieldServices},
+round: ${round}
     ''';
   }
 }

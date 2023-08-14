@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
-import '../../../start_navigation_bar/modules/football_field/models/player_edition_model.dart';
+import '../../models/lu_player_lineup_model.dart';
 
 class CardBuyPlayers extends StatelessWidget {
   
@@ -10,13 +10,13 @@ class CardBuyPlayers extends StatelessWidget {
   //final String? namePlayer;
   //final String? positionAbb;
   //final String? nameTeam;
-  final PlayerEditionModel playerEdition;
+  final PlayerLineUpModel player;
   
   const CardBuyPlayers({
     super.key, 
     required this.color, 
     required this.image, 
-    required this.playerEdition
+    required this.player,
   });
 
   @override
@@ -42,9 +42,9 @@ class CardBuyPlayers extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                playerEdition.player?.firstName == null || playerEdition.player?.lastName == null
+                player.playerEdition?.player?.firstName == null || player.playerEdition?.player?.lastName == null
                 ? 'Carregando...' 
-                : '${playerEdition.player!.firstName!} ${playerEdition.player?.lastName}',
+                : '${player.playerEdition?.player!.firstName!} ${player.playerEdition?.player?.lastName}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -52,9 +52,9 @@ class CardBuyPlayers extends StatelessWidget {
               ),
               Text(
                 //'$positionAbb - $nameTeam',
-                playerEdition.teamEdition?.team?.name == null || playerEdition.player?.position?.abb == null
+                player.playerEdition?.teamEdition?.team?.name == null || player.playerEdition?.player?.position?.abb == null
                 ? 'Carregando...' 
-                : '${playerEdition.player?.position?.abb} - ${playerEdition.teamEdition?.team?.name}',
+                : '${player.playerEdition?.player?.position?.abb} - ${player.playerEdition?.teamEdition?.team?.name}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 12,
@@ -62,18 +62,18 @@ class CardBuyPlayers extends StatelessWidget {
               ),
             ],
           ),
-          const Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'B\$ 16.80',
-                style: TextStyle(
+                'B\$ ${player.score}',
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),
-              Text(
+              const Text(
                 'Preço',
                 style: TextStyle(
                   fontWeight: FontWeight.normal,

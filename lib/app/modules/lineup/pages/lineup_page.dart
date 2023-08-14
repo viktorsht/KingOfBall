@@ -1,4 +1,4 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rei_da_bola/app/routes/routes_app.dart';
@@ -12,7 +12,13 @@ import 'components/card_buy_players.dart';
 
 class LineUpPage extends StatefulWidget {
   final String position;
-  const LineUpPage({super.key, required this.position});
+  final int round;
+
+  const LineUpPage({
+    super.key, 
+    required this.position, 
+    required this.round
+  });
 
   @override
   State<LineUpPage> createState() => _LineUpPageState();
@@ -25,7 +31,7 @@ class _LineUpPageState extends State<LineUpPage> {
   @override
   void initState() {
     super.initState();
-    lineUpController.initBuy(widget.position);
+      lineUpController.initBuy(widget.position, widget.round);
   }
 
   @override
@@ -85,7 +91,7 @@ class _LineUpPageState extends State<LineUpPage> {
                         child: CardBuyPlayers(
                           color: colors,
                           image: lineUpController.image[numImage],
-                          playerEdition: lineUpController.listBuy[index].playerEdition!,
+                          player: lineUpController.listBuy[index],
                         ),
                       );
                     },

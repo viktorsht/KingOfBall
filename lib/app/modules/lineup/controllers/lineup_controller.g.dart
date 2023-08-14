@@ -61,13 +61,13 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
       Atom(name: 'LineUpControllerImpl.listBuy', context: context);
 
   @override
-  List<FootballFieldModel> get listBuy {
+  List<PlayerLineUpModel> get listBuy {
     _$listBuyAtom.reportRead();
     return super.listBuy;
   }
 
   @override
-  set listBuy(List<FootballFieldModel> value) {
+  set listBuy(List<PlayerLineUpModel> value) {
     _$listBuyAtom.reportWrite(value, super.listBuy, () {
       super.listBuy = value;
     });
@@ -109,17 +109,18 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
       AsyncAction('LineUpControllerImpl.playersForPosition', context: context);
 
   @override
-  Future<List<FootballFieldModel>> playersForPosition(String position) {
+  Future<List<PlayerLineUpModel>> playersForPosition(
+      String position, String round) {
     return _$playersForPositionAsyncAction
-        .run(() => super.playersForPosition(position));
+        .run(() => super.playersForPosition(position, round));
   }
 
   late final _$initBuyAsyncAction =
       AsyncAction('LineUpControllerImpl.initBuy', context: context);
 
   @override
-  Future<void> initBuy(String position) {
-    return _$initBuyAsyncAction.run(() => super.initBuy(position));
+  Future<void> initBuy(String position, int round) {
+    return _$initBuyAsyncAction.run(() => super.initBuy(position, round));
   }
 
   late final _$LineUpControllerImplActionController =

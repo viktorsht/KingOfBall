@@ -8,7 +8,12 @@ class LineUpModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-    ChildRoute(RoutesModulesApp.routerRootModule, child: (_, args) => LineUpPage(position: args.data)),
+    ChildRoute(RoutesModulesApp.routerRootModule, child: (_, args) => 
+    LineUpPage(
+      position: args.data['position'],
+      round: args.data['round'],
+      )
+    ),
   ];
 
 }

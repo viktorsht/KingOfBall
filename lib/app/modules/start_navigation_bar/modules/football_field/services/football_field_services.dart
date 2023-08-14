@@ -18,7 +18,8 @@ class FootballFieldServices{
     );
     final jsonList = jsonDecode(response.body) as List;
 
-    return jsonList.map((json) => FootballFieldModel.fromJson(json['player_lineup'])).toList();
+    return jsonList.map((json) => FootballFieldModel.fromJson(json)).toList();
+
   } 
   
 }
