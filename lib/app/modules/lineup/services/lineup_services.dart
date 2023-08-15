@@ -5,8 +5,9 @@ import '../../../../shared/api/routes_api.dart';
 
 class LineUpServices{
   final router = RoutersApi();
-  Future<List<PlayerLineUpModel>> getPlayersApiServices(String token, String position, String round) async {
-    final url = Uri.parse(router.positionName(position, round));
+  Future<List<PlayerLineUpModel>> getPlayersApiServices(String token, String position, String round, String edition) async {
+    final url = Uri.parse(router.positionName(position, round, edition));
+    print(url);
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

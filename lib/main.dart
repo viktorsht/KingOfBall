@@ -9,7 +9,7 @@ void main() {
     (_) => runApp(
       ModularApp(
         module: AppModule(), 
-        child: const AppWidget()
+        child: const AppWidget(),
       ),
     )
   );

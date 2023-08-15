@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/models/coach_model.dart';
 import 'package:rei_da_bola/shared/token/token_manager.dart';
 import '../../../../../../shared/api/state_response.dart';
 import '../models/football_field_model.dart';
@@ -21,8 +22,11 @@ abstract class FootballFieldControllerImpl with Store{
   @observable
   List<FootballFieldModel> playerList = [];
 
+  @observable
+  List<CoachModel> coachList = [];
+
   @action
-  void updateList(value) => playerList = value;
+  void setCoachList(value) => coachList = value;
   
   @observable
   FootballFieldServices footballFieldServices = FootballFieldServices();
@@ -48,6 +52,27 @@ abstract class FootballFieldControllerImpl with Store{
     return retorno;
   }
 
+  @action
+  Future<List<CoachModel>> checkCoach(String edition) async {
+    stateController = StateResponse.loading;
+    List<CoachModel> retorno = [];
+    TokenManager tokenManager = TokenManager();
+    String? token = await tokenManager.getToken();
+    //print("object");
+    if(token != null){
+      try {
+        retorno = await footballFieldServices.getCoachServices(token, edition);
+        stateController = StateResponse.sucess;
+      } catch (e) {
+        stateController = StateResponse.error;
+      }
+    }
+    else{
+      stateController = StateResponse.error;
+    }
+    return retorno;
+  }
+
   @observable
   int round = 0;
 
@@ -55,11 +80,12 @@ abstract class FootballFieldControllerImpl with Store{
   void setRound(value) => round = value;
 
   @action
-  Future<List<FootballFieldModel>> initTeamScale(int round, int team) async {
+  Future<List<FootballFieldModel>> initTeamScale(int round, int team, int edition) async {
     setRound(round);
-    print('object');
     playerList = await checkTeamScale(round.toString(), team.toString());
-    print('Lista de jogadores da api = ${playerList.length}');
+    coachList = await checkCoach(edition.toString());
+    //setCoachList(list)
+    //print('Lista de jogadores da api = ${playerList.length}');
     return playerList;
   }
 }

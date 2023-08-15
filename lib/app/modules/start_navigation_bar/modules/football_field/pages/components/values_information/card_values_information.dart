@@ -4,13 +4,11 @@ import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_fi
 class CardValuesInformation extends StatelessWidget {
 
   final String priceTeam;
-  final String parcialValue;
   final String restValue;
 
   const CardValuesInformation({
     super.key, 
     required this.priceTeam, 
-    required this.parcialValue, 
     required this.restValue
   });
 
@@ -24,10 +22,6 @@ class CardValuesInformation extends StatelessWidget {
             CardTime(
               price: priceTeam,
               text: 'Preço do Time',
-            ),
-            CardTime(
-              price: parcialValue,
-              text: 'Parciais',
             ),
             CardTime(
               price: restValue,

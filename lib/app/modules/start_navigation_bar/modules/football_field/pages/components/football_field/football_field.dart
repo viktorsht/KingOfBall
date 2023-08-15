@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/models/coach_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/pages/components/football_field/player.dart';
 import '../../../../../../../../design_system/images/images_app.dart';
 import '../../../models/football_field_model.dart';
@@ -9,13 +10,15 @@ class FootballField extends StatelessWidget {
   final double height;
   final double fieldH;
   final List<FootballFieldModel> listPlayer;
+  final List<CoachModel> listCoach;
 
   const FootballField({
     super.key, 
     required this.width, 
     required this.height, 
     required this.fieldH, 
-    required this.listPlayer
+    required this.listPlayer, 
+    required this.listCoach
   });
 
   @override
@@ -123,7 +126,7 @@ class FootballField extends StatelessWidget {
             ),
             /*
             Player(
-              image: storeTeam.playerTec(listPlayer),
+              image: storeTeam.playerTec(listCoach),
               player: listPlayer.isNotEmpty ? 'TÉCNICO' : null,
               top: 0.79090909 * fieldH,
               right: 0.75666667 * width,

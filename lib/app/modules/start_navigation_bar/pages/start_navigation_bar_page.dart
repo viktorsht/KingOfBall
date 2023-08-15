@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
+import 'package:rei_da_bola/app/modules/lineup/controllers/lineup_controller.dart';
 import 'package:rei_da_bola/app/modules/shared/user/controller/user_controller.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/pages/football_field_page.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/home_page.dart';
@@ -24,19 +26,15 @@ class StartNavigationBarPage extends StatefulWidget {
 class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
 
   late NavigationStore navigationStore;
-  
   final pageViewController = PageController();
-
   final userController = UserController();
   final roundTodayController = RoundTodayController();
-  //final storeBuy = BuyStore();
   
   @override
   void initState() {
     super.initState();
     userController.initUserInfomations();
     roundTodayController.initRoundToday();
-    //print(championshipRoundController.round.name);
   }
 
   @override
@@ -48,6 +46,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
   @override
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
+    final lineUpController = Provider.of<LineUpController>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.green,
@@ -82,8 +81,10 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
             const TablePage(),
             Observer(
               builder: (context) {
+                lineUpController.setEdition(roundTodayController.round.championshipEditionId!); // acho que é gambiarra, mas vai ficar aqui
                 return FootballFieldPage(
                   round: roundTodayController.round.championshipRound!.id!,
+                  edition: roundTodayController.round.championshipEditionId!,
                   team: userController.team.id!,
                 );
               }

@@ -83,7 +83,7 @@ class _LineUpPageState extends State<LineUpPage> {
                     ),
                   ) 
                   : ListView.builder(
-                    itemCount: lineUpController.listBuy.length,
+                    itemCount: lineUpController.listLineUp.length,
                     itemBuilder: (context, index) {
                       int numImage = lineUpController.generateNumber();
                       return Padding(
@@ -91,7 +91,8 @@ class _LineUpPageState extends State<LineUpPage> {
                         child: CardBuyPlayers(
                           color: colors,
                           image: lineUpController.image[numImage],
-                          player: lineUpController.listBuy[index],
+                          //score: lineUpController.listLineUp[index].score!,
+                          player: lineUpController.listLineUp[index],
                         ),
                       );
                     },

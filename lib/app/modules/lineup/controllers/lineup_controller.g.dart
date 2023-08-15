@@ -57,19 +57,19 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
     });
   }
 
-  late final _$listBuyAtom =
-      Atom(name: 'LineUpControllerImpl.listBuy', context: context);
+  late final _$listLineUpAtom =
+      Atom(name: 'LineUpControllerImpl.listLineUp', context: context);
 
   @override
-  List<PlayerLineUpModel> get listBuy {
-    _$listBuyAtom.reportRead();
-    return super.listBuy;
+  List<PlayerLineUpModel> get listLineUp {
+    _$listLineUpAtom.reportRead();
+    return super.listLineUp;
   }
 
   @override
-  set listBuy(List<PlayerLineUpModel> value) {
-    _$listBuyAtom.reportWrite(value, super.listBuy, () {
-      super.listBuy = value;
+  set listLineUp(List<PlayerLineUpModel> value) {
+    _$listLineUpAtom.reportWrite(value, super.listLineUp, () {
+      super.listLineUp = value;
     });
   }
 
@@ -105,14 +105,30 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
     });
   }
 
+  late final _$editionAtom =
+      Atom(name: 'LineUpControllerImpl.edition', context: context);
+
+  @override
+  int get edition {
+    _$editionAtom.reportRead();
+    return super.edition;
+  }
+
+  @override
+  set edition(int value) {
+    _$editionAtom.reportWrite(value, super.edition, () {
+      super.edition = value;
+    });
+  }
+
   late final _$playersForPositionAsyncAction =
       AsyncAction('LineUpControllerImpl.playersForPosition', context: context);
 
   @override
   Future<List<PlayerLineUpModel>> playersForPosition(
-      String position, String round) {
+      String position, String round, String edition) {
     return _$playersForPositionAsyncAction
-        .run(() => super.playersForPosition(position, round));
+        .run(() => super.playersForPosition(position, round, edition));
   }
 
   late final _$initBuyAsyncAction =
@@ -149,14 +165,26 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
   }
 
   @override
+  void setEdition(dynamic value) {
+    final _$actionInfo = _$LineUpControllerImplActionController.startAction(
+        name: 'LineUpControllerImpl.setEdition');
+    try {
+      return super.setEdition(value);
+    } finally {
+      _$LineUpControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 stateController: ${stateController},
 tokenManager: ${tokenManager},
 lineUpServices: ${lineUpServices},
-listBuy: ${listBuy},
+listLineUp: ${listLineUp},
 image: ${image},
-previousNumber: ${previousNumber}
+previousNumber: ${previousNumber},
+edition: ${edition}
     ''';
   }
 }

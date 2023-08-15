@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/models/coach_model.dart';
 import '../../../../../../design_system/images/images_app.dart';
 import '../models/football_field_model.dart';
 part 'football_field_store.g.dart';
@@ -33,7 +34,7 @@ abstract class FootballFieldStoreImpl with Store{
   }
 
   @action
-  String playerTec(List<FootballFieldModel> list){
+  String playerTec(List<CoachModel> list){
     return list.isEmpty ? ImagesApp.addPlayer : ImagesApp.tecnico;
   }
 
@@ -79,6 +80,16 @@ abstract class FootballFieldStoreImpl with Store{
             return element;
           }
         }
+      }
+    }
+    return null;
+  }
+
+  @action
+  CoachModel? playerNameCoach(List<CoachModel> list){
+    if(list.isNotEmpty){
+      for (var element in list){
+        return element;
       }
     }
     return null;

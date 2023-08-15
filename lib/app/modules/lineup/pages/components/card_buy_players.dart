@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:rei_da_bola/app/modules/lineup/models/lu_player_lineup_model.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
-import '../../models/lu_player_lineup_model.dart';
 
 class CardBuyPlayers extends StatelessWidget {
   
   final ColorsAppDefault color;
   final String image;
-  //final String? namePlayer;
-  //final String? positionAbb;
-  //final String? nameTeam;
+  //final String score;
   final PlayerLineUpModel player;
   
   const CardBuyPlayers({
     super.key, 
     required this.color, 
     required this.image, 
-    required this.player,
+    //required this.score,
+    required this.player, 
   });
 
   @override
   Widget build(BuildContext context) {
-    //final store = Provider.of<BuyStore>(context);
-    //final teamController = Provider.of<TeamController>(context);
-
     return Container(
       decoration: BoxDecoration(
         color: color.whiteLigth,

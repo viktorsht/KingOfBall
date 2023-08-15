@@ -21,7 +21,7 @@ abstract class LineUpControllerImpl with Store{
   LineUpServices lineUpServices = LineUpServices();
 
   @observable
-  List<PlayerLineUpModel> listBuy = [];
+  List<PlayerLineUpModel> listLineUp = [];
 
   @observable
   List<String> image = [ImagesApp.jogador1, ImagesApp.jogador2, ImagesApp.jogador3];
@@ -41,16 +41,16 @@ abstract class LineUpControllerImpl with Store{
   }
 
   @action
-  void setList(value) => listBuy = value;
+  void setList(value) => listLineUp = value;
   
   @action
-  Future<List<PlayerLineUpModel>> playersForPosition(String position, String round) async {
+  Future<List<PlayerLineUpModel>> playersForPosition(String position, String round, String edition) async {
     List<PlayerLineUpModel> list = [];
     stateController = StateResponse.loading;
     String? token = await tokenManager.getToken();
     if(token != null){
       try{
-        list = await lineUpServices.getPlayersApiServices(token, position, round);
+        list = await lineUpServices.getPlayersApiServices(token, position, round, edition);
         stateController = StateResponse.sucess;
       } catch(e){
         stateController = StateResponse.error;
@@ -62,10 +62,17 @@ abstract class LineUpControllerImpl with Store{
     return list;
   }
 
+  @observable
+  int edition = 0;
+
+  @action
+  void setEdition(value) => edition = value;
+
   @action
   Future<void> initBuy(String position, int round) async {
     List<PlayerLineUpModel> list = [];
-    list = await playersForPosition(position, round.toString());
+    list = await playersForPosition(position, round.toString(), edition.toString());
+    print("Jogadores $position ${list[0].score}- ${list.length}");
     setList(list);
   }
 }

@@ -20,7 +20,6 @@ class PlayerProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
     final footballController = Provider.of<FootballFieldController>(context);
-    //final String position = player.playerEdition!.player!.position!.name!;
     final String position = player.playerLineup!.playerEdition!.player!.position!.name!;
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
@@ -65,13 +64,14 @@ class PlayerProfileCard extends StatelessWidget {
                   },
                   child: Text(
                     'Cancelar',
-                    style: TextStyle(color: colors.red),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: colors.red
+                    ),
                   ),
                 ),
                 TextButton(
                   onPressed: () {
-                    //Navigator.pop(context);
-                    //print(footballController.round);
                     Modular.to.pushNamed(
                       RoutesModulesApp.routerLineUpModule,
                       arguments: {
@@ -83,7 +83,10 @@ class PlayerProfileCard extends StatelessWidget {
                   child: Text(
                     'Alterar',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: colors.green),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold, 
+                      color: colors.green
+                    ),
                   ),
                 ),
               ],

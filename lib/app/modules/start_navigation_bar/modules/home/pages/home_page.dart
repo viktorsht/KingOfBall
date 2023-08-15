@@ -33,7 +33,6 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 40,),
           Observer(
             builder:(_) => CardProfile(
-              //teamGameModel: cardHome.teamGameModel[0],
               teamGameModel: teamGameModel,
             )
           ),
