@@ -38,7 +38,7 @@ class FootballField extends StatelessWidget {
             ),
             Player(
               image: storeTeam.playerGol(listPlayer, 'GOL'),
-              player: storeTeam.playerName(listPlayer, 'GOL')!,
+              player: storeTeam.playerName(listPlayer, 'GOL'),
               top: 0.07272727 * fieldH,
               right: 0.0,
               left: 0.0,
@@ -46,7 +46,7 @@ class FootballField extends StatelessWidget {
             ),
             Player(
               image: storeTeam.player1(listPlayer, 'LAT'),
-              player: storeTeam.playerName(listPlayer, 'LAT')!,
+              player: storeTeam.playerName(listPlayer, 'LAT'),
               top: 0.21818182 * fieldH,
               right: 0.70666667 * width,
               left: 0.0,
@@ -54,7 +54,7 @@ class FootballField extends StatelessWidget {
             ),
             Player(
               image: storeTeam.player3(listPlayer, 'ZAG'),
-              player: storeTeam.playerName(listPlayer, 'ZAG')!,
+              player: storeTeam.playerName(listPlayer, 'ZAG'),
               top: 0.23636364 * fieldH,
               right: 0.29333333 * width,
               left: 0.0,
@@ -62,7 +62,7 @@ class FootballField extends StatelessWidget {
             ),
             Player(
               image: storeTeam.player2(listPlayer, 'ZAG'),
-              player: storeTeam.playerName(listPlayer, 'ZAG')!,
+              player: storeTeam.playerName(listPlayer, 'ZAG'),
               top: 0.23636364 * fieldH,
               right: 0.0,
               left: 0.29333333 * width,
@@ -70,7 +70,7 @@ class FootballField extends StatelessWidget {
             ),
             Player(
               image: storeTeam.player1(listPlayer, 'LAT'),
-              player: storeTeam.playerName(listPlayer, 'LAT')!,
+              player: storeTeam.playerName(listPlayer, 'LAT'),
               top: 0.21818182 * fieldH,
               right: 0.0,
               left: 0.70666667 * width,
@@ -78,7 +78,7 @@ class FootballField extends StatelessWidget {
             ),
             Player(
               image: storeTeam.player3(listPlayer, 'MEI'),
-              player: storeTeam.playerName(listPlayer, 'MEI')!,
+              player: storeTeam.playerName(listPlayer, 'MEI'),
               top: 0.47272727 * fieldH,
               right: 0.16333333 * width,
               left: 0.65333333 * width,
@@ -86,7 +86,7 @@ class FootballField extends StatelessWidget {
             ),
             Player(
               image: storeTeam.player2(listPlayer, 'VOL'),
-              player: storeTeam.playerName(listPlayer, 'VOL')!,
+              player: storeTeam.playerName(listPlayer, 'VOL'),
               top: 0.45454545 * fieldH,
               right: 0.01333333 * width,
               left: 0.0,
@@ -94,7 +94,7 @@ class FootballField extends StatelessWidget {
             ),
             Player(
               image: storeTeam.player1(listPlayer, 'MEI'),
-              player: storeTeam.playerName(listPlayer, 'MEI')!,
+              player: storeTeam.playerName(listPlayer, 'MEI'),
               top: 0.47272727 * fieldH,
               right: 0.47 * width,
               left: 0.0,
@@ -102,7 +102,7 @@ class FootballField extends StatelessWidget {
             ),
             Player(
               image: storeTeam.player3(listPlayer, 'ATA'),
-              player: storeTeam.playerName(listPlayer, 'ATA')!,
+              player: storeTeam.playerName(listPlayer, 'ATA'),
               top: 0.69090909 * fieldH,
               right: 0.29333333 * width,
               left: 0.29333333 * width,
@@ -110,7 +110,7 @@ class FootballField extends StatelessWidget {
             ),
             Player(
               image: storeTeam.player2(listPlayer, 'ATA'),
-              player: storeTeam.playerName(listPlayer, 'ATA')!,
+              player: storeTeam.playerName(listPlayer, 'ATA'),
               top: 0.69090909 * fieldH,
               right: 0.44 * width,
               left: 0.0,
@@ -118,7 +118,7 @@ class FootballField extends StatelessWidget {
             ),
             Player(
               image: storeTeam.player1(listPlayer, 'ATA'),
-              player: storeTeam.playerName(listPlayer, 'ATA')!,
+              player: storeTeam.playerName(listPlayer, 'ATA'),
               top: 0.69090909 * fieldH,
               right: 0.17333333 * width,
               left: 0.65333333 * width,

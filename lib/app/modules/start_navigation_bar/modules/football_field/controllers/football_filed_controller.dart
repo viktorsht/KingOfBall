@@ -85,7 +85,7 @@ abstract class FootballFieldControllerImpl with Store{
     playerList = await checkTeamScale(round.toString(), team.toString());
     coachList = await checkCoach(edition.toString());
     //setCoachList(list)
-    //print('Lista de jogadores da api = ${playerList.length}');
+    print('Lista de jogadores da api = ${playerList.length}');
     return playerList;
   }
 }

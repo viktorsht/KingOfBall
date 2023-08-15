@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/models/team_game_model.dart';
 
 import '../../../../../../../../design_system/icons/icons_app.dart';
 import '../../../../../../../../design_system/images/images_app.dart';
+import '../../../../../../../routes/routes_app.dart';
 
 class CardProfile extends StatelessWidget {
   
@@ -56,7 +58,9 @@ class CardProfile extends StatelessWidget {
           ],
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Modular.to.navigate(RoutesModulesApp.routerUpdateUserModule);
+          },
           child: Image.asset(IconsApp.editar)
         ),
       ],

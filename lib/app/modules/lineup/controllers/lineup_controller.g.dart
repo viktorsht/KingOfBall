@@ -121,6 +121,22 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
     });
   }
 
+  late final _$roundAtom =
+      Atom(name: 'LineUpControllerImpl.round', context: context);
+
+  @override
+  int get round {
+    _$roundAtom.reportRead();
+    return super.round;
+  }
+
+  @override
+  set round(int value) {
+    _$roundAtom.reportWrite(value, super.round, () {
+      super.round = value;
+    });
+  }
+
   late final _$playersForPositionAsyncAction =
       AsyncAction('LineUpControllerImpl.playersForPosition', context: context);
 
@@ -129,6 +145,14 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
       String position, String round, String edition) {
     return _$playersForPositionAsyncAction
         .run(() => super.playersForPosition(position, round, edition));
+  }
+
+  late final _$lineUpPlayerAddAsyncAction =
+      AsyncAction('LineUpControllerImpl.lineUpPlayerAdd', context: context);
+
+  @override
+  Future<RegisterLineUpModel> lineUpPlayerAdd(RegisterLineUpModel body) {
+    return _$lineUpPlayerAddAsyncAction.run(() => super.lineUpPlayerAdd(body));
   }
 
   late final _$initBuyAsyncAction =
@@ -176,6 +200,17 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
   }
 
   @override
+  void setRound(dynamic value) {
+    final _$actionInfo = _$LineUpControllerImplActionController.startAction(
+        name: 'LineUpControllerImpl.setRound');
+    try {
+      return super.setRound(value);
+    } finally {
+      _$LineUpControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 stateController: ${stateController},
@@ -184,7 +219,8 @@ lineUpServices: ${lineUpServices},
 listLineUp: ${listLineUp},
 image: ${image},
 previousNumber: ${previousNumber},
-edition: ${edition}
+edition: ${edition},
+round: ${round}
     ''';
   }
 }

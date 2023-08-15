@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/lineup/controllers/lineup_controller.dart';
+import 'package:rei_da_bola/app/modules/shared/config/config_controller.dart';
 import 'package:rei_da_bola/app/modules/shared/user/controller/user_controller.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/pages/football_field_page.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/home_page.dart';
@@ -47,6 +48,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
     final lineUpController = Provider.of<LineUpController>(context);
+    final configController = Provider.of<ConfigController>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.green,
@@ -82,6 +84,9 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
             Observer(
               builder: (context) {
                 lineUpController.setEdition(roundTodayController.round.championshipEditionId!); // acho que é gambiarra, mas vai ficar aqui
+                configController.setEdition(roundTodayController.round.championshipEditionId!);
+                configController.setRound(roundTodayController.round.championshipRound!.id!);
+                configController.setTeam(userController.team.id!);
                 return FootballFieldPage(
                   round: roundTodayController.round.championshipRound!.id!,
                   edition: roundTodayController.round.championshipEditionId!,

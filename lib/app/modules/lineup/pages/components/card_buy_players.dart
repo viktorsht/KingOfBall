@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/lineup/models/lu_player_lineup_model.dart';
+import 'package:rei_da_bola/app/modules/lineup/models/register_lineup_model.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
+
+import '../../../shared/config/config_controller.dart';
+import '../../controllers/lineup_controller.dart';
 
 class CardBuyPlayers extends StatelessWidget {
   
@@ -20,6 +25,8 @@ class CardBuyPlayers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final configController = Provider.of<ConfigController>(context);
+    final lineupController = Provider.of<LineUpController>(context);
     return Container(
       decoration: BoxDecoration(
         color: color.whiteLigth,
@@ -88,7 +95,15 @@ class CardBuyPlayers extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10)
                 )
               ),
-              onPressed: (){
+              onPressed: () async {
+                final body = RegisterLineUpModel(
+                  id: player.id,
+                  championshipRoundId: configController.getRound(),
+                  playerLineupId: player.id,
+                  status: player.statusLineupId,
+                  teamGameEditionId: configController.getTeam()
+                );
+                await lineupController.lineUpPlayerAdd(body);
                 //Player
                 //PlayerLineupModel newPlayerSelect = playerEditionModel.playerEdition;
                 /*

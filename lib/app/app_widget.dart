@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/login/stories/login_store.dart';
 import 'package:rei_da_bola/app/modules/register_user/stories/register_store.dart';
+import 'package:rei_da_bola/app/modules/shared/config/config_controller.dart';
 
 import 'modules/lineup/controllers/lineup_controller.dart';
 import 'modules/login/controllers/login_controller.dart';
@@ -28,6 +29,7 @@ class AppWidget extends StatelessWidget {
         Provider<CardProfileController>(create: (_) => CardProfileController()),
         Provider<FootballFieldController>(create: (_) => FootballFieldController()),
         Provider<LineUpController>(create: (_) => LineUpController()),
+        Provider<ConfigController>(create: (_) => ConfigController()),
       ],
       child: MaterialApp.router(
         title: 'Rei da Bola',

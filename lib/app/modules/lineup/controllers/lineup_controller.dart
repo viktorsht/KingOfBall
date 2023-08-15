@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:mobx/mobx.dart';
+import 'package:rei_da_bola/app/modules/lineup/models/register_lineup_model.dart';
 import '../../../../../../../../design_system/images/images_app.dart';
 import '../../../../../../../../shared/api/state_response.dart';
 import '../../../../../../../../shared/token/token_manager.dart';
@@ -62,17 +63,43 @@ abstract class LineUpControllerImpl with Store{
     return list;
   }
 
+  @action
+  Future<RegisterLineUpModel> lineUpPlayerAdd(RegisterLineUpModel body) async {
+    RegisterLineUpModel retorno = RegisterLineUpModel();
+    stateController = StateResponse.loading;
+    String? token = await tokenManager.getToken();
+    if(token != null){
+      try{
+        retorno = await lineUpServices.postRegisterLineUp(token, body);
+        stateController = StateResponse.sucess;
+      } catch(e){
+        stateController = StateResponse.error;
+      }
+    }
+    else{
+      stateController = StateResponse.error;
+    }
+    return retorno;
+  }
+
   @observable
   int edition = 0;
 
   @action
   void setEdition(value) => edition = value;
 
+  @observable
+  int round = 0;
+
+  @action
+  void setRound(value) => round = value;
+
   @action
   Future<void> initBuy(String position, int round) async {
     List<PlayerLineUpModel> list = [];
+    setRound(round);
     list = await playersForPosition(position, round.toString(), edition.toString());
-    print("Jogadores $position ${list[0].score}- ${list.length}");
+    //print("Jogadores $position ${list[0].score}- ${list.length}");
     setList(list);
   }
 }

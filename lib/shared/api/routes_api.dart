@@ -16,11 +16,13 @@ class RoutersApi{
   static String roundToday = '${Api.urlApi}soccerMatch/next?date=';
   static String positionAbb = '${Api.urlApi}matchLineup?filter=playerEdition|player|position.abb:=:';
   static String coach =  '${Api.urlApi}app/lineup/coach?filter=championship_edition_id:=:';
+  static String matchGameLineupPost = '${Api.urlApi}matchGameLineup';
 
   String positionName(String position, String roundId, String editionId) => 
   '${Api.urlApi}app/lineup/player?soccerMach|championsipEdition.id:=:$editionId;soccerMach|championsipRound:=:$roundId;playerEdition|player|position.name:=:$position';
   
   String matchGameLineup(String roundId, String teamId) => 
   '${Api.urlApi}app/lineup/lineup?filter=championshipRound.id:=:$roundId;team_game_edition_id:=:$teamId';
+
 
 }

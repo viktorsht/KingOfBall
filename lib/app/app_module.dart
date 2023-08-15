@@ -19,6 +19,7 @@ import 'modules/register_user/controllers/register_user_controller.dart';
 import 'modules/start_navigation_bar/modules/drawer/drawer_module.dart';
 import 'modules/start_navigation_bar/modules/more/more_module.dart';
 import 'modules/champion_ship/team_edition.dart';
+import 'modules/update_user/update_user_module.dart';
 
 class AppModule extends Module {
   @override
@@ -43,24 +44,11 @@ class AppModule extends Module {
         }
       ),
     ),
-/*
-    ChildRoute(
-      RoutesModulesApp.routerRootModule,
-      child: (_, __) => FutureBuilder<bool>(
-        future: Modular.get<AuthController>().checkTokenValidity(),
-        builder: (_, snapshot){
-          return snapshot.hasData
-          ? snapshot.data! ? const StartNavigationBarPage() : const StartInfoPage()
-          : const StartInfoPage();
-        }
-      ),
-    ),
-*/
 
 /*
     ChildRoute(
       RoutesModulesApp.routerRootModule, 
-      child: (_, __) => const RegisterChampionShipPage(teamGameId: 1,), 
+      child: (_, __) => const UpdateUserPage(), 
     ),
 */
     ModuleRoute(RoutesModulesApp.routerLoginModule, module: LoginModule()),
@@ -73,6 +61,7 @@ class AppModule extends Module {
     ModuleRoute(RoutesModulesApp.routerMoreModule, module: MoreModule()),
     ModuleRoute(RoutesModulesApp.routerRegisterTeamEditionModule, module: TeamEditionModule()),
     ModuleRoute(RoutesModulesApp.routerLineUpModule, module: LineUpModule()),
+    ModuleRoute(RoutesModulesApp.routerUpdateUserModule, module: UpdateUserModule()),
 
   ];
 }
