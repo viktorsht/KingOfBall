@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
+import 'package:rei_da_bola/app/modules/shared/config/config_controller.dart';
+import 'package:rei_da_bola/app/modules/shared/config/models/config_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/controllers/football_filed_controller.dart';
 import '../../../../../../../design_system/colors/colors_app.dart';
 import '../../../../../../routes/routes_app.dart';
-import '../../models/football_field_model.dart';
 
 class PlayerProfileCard extends StatelessWidget {
-  final FootballFieldModel player;
+  final ConfigLineUpPlayer player;
   final String image;
 
   const PlayerProfileCard({
@@ -20,7 +21,8 @@ class PlayerProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
     final footballController = Provider.of<FootballFieldController>(context);
-    final String position = player.playerLineup!.playerEdition!.player!.position!.name!;
+    final configController = Provider.of<ConfigController>(context);
+    final String position = player.position!;
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       elevation: 0.0,
@@ -44,7 +46,7 @@ class PlayerProfileCard extends StatelessWidget {
               leading: CircleAvatar(
                 child: Image.asset(image),
               ),
-              title: Text('Nome: ${player.playerLineup!.playerEdition!.player!.firstName} ${player.playerLineup!.playerEdition!.player!.lastName}'),
+              title: Text('Nome: ${player.firstName} ${player.lastName}'),
             ),
             ListTile(
               leading: const Icon(Icons.attach_money),
@@ -77,6 +79,7 @@ class PlayerProfileCard extends StatelessWidget {
                       arguments: {
                         'position': position,
                         'round': footballController.round,
+                        'edition' : configController.getEdition()
                       },
                     );
                   },

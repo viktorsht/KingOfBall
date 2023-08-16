@@ -19,7 +19,7 @@ class RoutersApi{
   static String matchGameLineupPost = '${Api.urlApi}matchGameLineup';
 
   String positionName(String position, String roundId, String editionId) => 
-  '${Api.urlApi}app/lineup/player?soccerMach|championsipEdition.id:=:$editionId;soccerMach|championsipRound:=:$roundId;playerEdition|player|position.name:=:$position';
+  '${Api.urlApi}app/lineup/player?filter=soccerMatch|championshipEdition.id:=:$editionId;soccerMatch.championship_round_id:=:$roundId;playerEdition|player|position.name:=:$position';
   
   String matchGameLineup(String roundId, String teamId) => 
   '${Api.urlApi}app/lineup/lineup?filter=championshipRound.id:=:$roundId;team_game_edition_id:=:$teamId';

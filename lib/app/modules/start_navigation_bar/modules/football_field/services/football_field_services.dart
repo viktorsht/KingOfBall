@@ -8,7 +8,7 @@ class FootballFieldServices{
   final router = RoutersApi();
   Future<List<FootballFieldModel>> getTeamScaleServices(String token, String round, String team) async {
     final url = Uri.parse(router.matchGameLineup(round, team));
-    print(url);
+//print(url);
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

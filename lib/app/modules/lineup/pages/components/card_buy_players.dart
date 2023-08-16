@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/lineup/models/lu_player_lineup_model.dart';
-import 'package:rei_da_bola/app/modules/lineup/models/register_lineup_model.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/stories/football_field_store.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
+import '../../../../routes/routes_app.dart';
 import '../../../shared/config/config_controller.dart';
 import '../../controllers/lineup_controller.dart';
 
@@ -12,7 +14,6 @@ class CardBuyPlayers extends StatelessWidget {
   
   final ColorsAppDefault color;
   final String image;
-  //final String score;
   final PlayerLineUpModel player;
   
   const CardBuyPlayers({
@@ -27,6 +28,8 @@ class CardBuyPlayers extends StatelessWidget {
   Widget build(BuildContext context) {
     final configController = Provider.of<ConfigController>(context);
     final lineupController = Provider.of<LineUpController>(context);
+    final footballFieldStore = Provider.of<FootballFieldStore>(context);
+    //final pageViewController = PageController();
     return Container(
       decoration: BoxDecoration(
         color: color.whiteLigth,
@@ -71,6 +74,7 @@ class CardBuyPlayers extends StatelessWidget {
             children: [
               Text(
                 'B\$ ${player.score}',
+                //'Id=${player.score}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -95,69 +99,15 @@ class CardBuyPlayers extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10)
                 )
               ),
-              onPressed: () async {
-                final body = RegisterLineUpModel(
-                  id: player.id,
-                  championshipRoundId: configController.getRound(),
-                  playerLineupId: player.id,
-                  status: player.statusLineupId,
-                  teamGameEditionId: configController.getTeam()
-                );
-                await lineupController.lineUpPlayerAdd(body);
-                //Player
-                //PlayerLineupModel newPlayerSelect = playerEditionModel.playerEdition;
-                /*
-                if(teamController.isChange == false){
-                  //store.addPlayerToVirtualTeam(newPlayerSelect);
-                }
-                else{
-                  teamController.setIsChange();
-                  store.updateList(teamController.playerList);
-                  teamController.updateList(store.teamList);
-                  //store.updatePlayer(newPlayerSelect);
-                  //ok == true ? print('ok') : print('erro');
-
-                }
-                //store.setTeamList(playerEditionModel);
-                //print(store.stateStoreBuy);
-                if (store.stateStoreBuy == StateResponse.sucess || teamController.isChange == true){
-                  final snackbar = SnackBar(
-                    content: const Text('Selecionado com sucesso!'),
-                    duration: const Duration(seconds: 1),
-                    backgroundColor: color.green,
-                    action: SnackBarAction(
-                      backgroundColor: color.whiteLigth,
-                      textColor: color.black,
-                      label: 'Desfazer',
-                      onPressed: () {
-                        // Ação a ser executada quando o botão "Desfazer" é pressionado
-                        // (pode ser vazia ou uma ação específica)
-                      },
-                    ),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
-
-                }
-                else{
-                  final snackbar = SnackBar(
-                    content: const Text('Vaga de jogador preenchida!'),
-                    duration: const Duration(seconds: 1),
-                    backgroundColor: color.red,
-                    action: SnackBarAction(
-                      backgroundColor: color.whiteLigth,
-                      textColor: color.black,
-                      label: 'Trocar',
-                      onPressed: () {
-                        // Ação a ser executada quando o botão "Desfazer" é pressionado
-                        // (pode ser vazia ou uma ação específica)
-                      },
-                    ),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                }
-                store.clearState();
-*/
-              }, 
+              onPressed: footballFieldStore.isValidButton(player.id!) 
+              ? null
+              : () async {
+                lineupController.setStatus(player.statusLineupId);
+                configController.listPlayerLineUp(player);
+                //print(footballFieldStore.isValidButton(player.id!));
+                //Navigator.pop(context);
+                Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
+              },
               child: const Text(
                 "COMPRAR",
                 style: TextStyle(

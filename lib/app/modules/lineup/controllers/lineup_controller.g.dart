@@ -105,22 +105,6 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
     });
   }
 
-  late final _$editionAtom =
-      Atom(name: 'LineUpControllerImpl.edition', context: context);
-
-  @override
-  int get edition {
-    _$editionAtom.reportRead();
-    return super.edition;
-  }
-
-  @override
-  set edition(int value) {
-    _$editionAtom.reportWrite(value, super.edition, () {
-      super.edition = value;
-    });
-  }
-
   late final _$roundAtom =
       Atom(name: 'LineUpControllerImpl.round', context: context);
 
@@ -137,6 +121,22 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
     });
   }
 
+  late final _$statusAtom =
+      Atom(name: 'LineUpControllerImpl.status', context: context);
+
+  @override
+  int get status {
+    _$statusAtom.reportRead();
+    return super.status;
+  }
+
+  @override
+  set status(int value) {
+    _$statusAtom.reportWrite(value, super.status, () {
+      super.status = value;
+    });
+  }
+
   late final _$playersForPositionAsyncAction =
       AsyncAction('LineUpControllerImpl.playersForPosition', context: context);
 
@@ -147,20 +147,23 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
         .run(() => super.playersForPosition(position, round, edition));
   }
 
-  late final _$lineUpPlayerAddAsyncAction =
-      AsyncAction('LineUpControllerImpl.lineUpPlayerAdd', context: context);
+  late final _$addListPlayerApiAsyncAction =
+      AsyncAction('LineUpControllerImpl.addListPlayerApi', context: context);
 
   @override
-  Future<RegisterLineUpModel> lineUpPlayerAdd(RegisterLineUpModel body) {
-    return _$lineUpPlayerAddAsyncAction.run(() => super.lineUpPlayerAdd(body));
+  Future<void> addListPlayerApi(
+      List<int> listId, int round, int team, int status) {
+    return _$addListPlayerApiAsyncAction
+        .run(() => super.addListPlayerApi(listId, round, team, status));
   }
 
   late final _$initBuyAsyncAction =
       AsyncAction('LineUpControllerImpl.initBuy', context: context);
 
   @override
-  Future<void> initBuy(String position, int round) {
-    return _$initBuyAsyncAction.run(() => super.initBuy(position, round));
+  Future<void> initBuy(String position, int round, int edition1) {
+    return _$initBuyAsyncAction
+        .run(() => super.initBuy(position, round, edition1));
   }
 
   late final _$LineUpControllerImplActionController =
@@ -189,22 +192,33 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
   }
 
   @override
-  void setEdition(dynamic value) {
+  void setRound(dynamic value) {
     final _$actionInfo = _$LineUpControllerImplActionController.startAction(
-        name: 'LineUpControllerImpl.setEdition');
+        name: 'LineUpControllerImpl.setRound');
     try {
-      return super.setEdition(value);
+      return super.setRound(value);
     } finally {
       _$LineUpControllerImplActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void setRound(dynamic value) {
+  void setStatus(dynamic value) {
     final _$actionInfo = _$LineUpControllerImplActionController.startAction(
-        name: 'LineUpControllerImpl.setRound');
+        name: 'LineUpControllerImpl.setStatus');
     try {
-      return super.setRound(value);
+      return super.setStatus(value);
+    } finally {
+      _$LineUpControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  int getStatus() {
+    final _$actionInfo = _$LineUpControllerImplActionController.startAction(
+        name: 'LineUpControllerImpl.getStatus');
+    try {
+      return super.getStatus();
     } finally {
       _$LineUpControllerImplActionController.endAction(_$actionInfo);
     }
@@ -219,8 +233,8 @@ lineUpServices: ${lineUpServices},
 listLineUp: ${listLineUp},
 image: ${image},
 previousNumber: ${previousNumber},
-edition: ${edition},
-round: ${round}
+round: ${round},
+status: ${status}
     ''';
   }
 }

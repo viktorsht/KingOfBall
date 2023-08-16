@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/models/coach_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/pages/components/football_field/player.dart';
 import '../../../../../../../../design_system/images/images_app.dart';
-import '../../../models/football_field_model.dart';
+import '../../../../../../shared/config/models/config_model.dart';
 import '../../../stories/football_field_store.dart';
 
 class FootballField extends StatelessWidget {
   final double width;
   final double height;
   final double fieldH;
-  final List<FootballFieldModel> listPlayer;
+  final List<ConfigLineUpPlayer> listPlayer;
   final List<CoachModel> listCoach;
 
   const FootballField({

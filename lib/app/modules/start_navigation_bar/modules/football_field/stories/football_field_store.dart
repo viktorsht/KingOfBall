@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/models/coach_model.dart';
 import '../../../../../../design_system/images/images_app.dart';
-import '../models/football_field_model.dart';
+import '../../../../shared/config/models/config_model.dart';
 part 'football_field_store.g.dart';
 
 class FootballFieldStore = FootballFieldStoreImpl with _$FootballFieldStore;
@@ -11,10 +11,16 @@ abstract class FootballFieldStoreImpl with Store{
   @observable
   List<int> idPlayerList = [];
 
+  @action
+  List<int> getIdPlayerList() => idPlayerList;
+
+  @action
+  void setIdPlayerList(value) => idPlayerList.add(value);
+
   @action 
-  bool searchPlayer(List<FootballFieldModel> list, String position){
+  bool searchPlayer(List<ConfigLineUpPlayer> list, String position){
     for (var element in list){
-      if(position == element.playerLineup?.playerEdition?.player?.position?.abb){
+      if(position == element.abbPosition){
         if(!idPlayerList.contains(element.id) ){
           return true;
         }
@@ -24,7 +30,7 @@ abstract class FootballFieldStoreImpl with Store{
   }
 
   @action
-  String playerGol(List<FootballFieldModel> list, String position){
+  String playerGol(List<ConfigLineUpPlayer> list, String position){
     if(list.isNotEmpty){
       if(searchPlayer(list, position) == true){
         return ImagesApp.goleiro;
@@ -39,7 +45,7 @@ abstract class FootballFieldStoreImpl with Store{
   }
 
   @action
-  String player1(List<FootballFieldModel> list, String position){
+  String player1(List<ConfigLineUpPlayer> list, String position){
     if(list.isNotEmpty){
       if(searchPlayer(list, position) == true){
         return ImagesApp.jogador1;
@@ -49,7 +55,7 @@ abstract class FootballFieldStoreImpl with Store{
   }
 
   @action
-  String player2(List<FootballFieldModel> list, String position){
+  String player2(List<ConfigLineUpPlayer> list, String position){
     if(list.isNotEmpty){
       if(searchPlayer(list, position) == true){
         return ImagesApp.jogador2;
@@ -59,7 +65,7 @@ abstract class FootballFieldStoreImpl with Store{
   }
 
   @action
-  String player3(List<FootballFieldModel> list, String position){
+  String player3(List<ConfigLineUpPlayer> list, String position){
     if(list.isNotEmpty){
       if(searchPlayer(list, position) == true){
         return ImagesApp.jogador3;
@@ -69,20 +75,32 @@ abstract class FootballFieldStoreImpl with Store{
   }
 
   @action
-  FootballFieldModel? playerName(List<FootballFieldModel> list, String position){
+  ConfigLineUpPlayer? playerName(List<ConfigLineUpPlayer> list, String position){
     if(list.isNotEmpty){
-      //print(idPlayerList);
       for (var element in list){
-        if(position == element.playerLineup?.playerEdition?.player?.position?.abb){
-          if(!idPlayerList.contains(element.id) ){
-            idPlayerList.add(element.id!);
-            print(idPlayerList);
+        if(position == element.abbPosition){
+          if(!idPlayerList.contains(element.id)){
+            setIdPlayerList(element.id);
+            //print(idPlayerList);
             return element;
           }
         }
       }
     }
     return null;
+  }
+
+  @action
+  List<int> retornaListaPlayer(List<ConfigLineUpPlayer> list){
+    //List<int> listPlayer = [];
+    if(list.isNotEmpty){
+      for (var element in list){
+        if(!idPlayerList.contains(element.id)){
+          setIdPlayerList(element.id);
+        }
+      }
+    }
+    return idPlayerList;
   }
 
   @action
@@ -94,4 +112,15 @@ abstract class FootballFieldStoreImpl with Store{
     }
     return null;
   }
+
+  //=> idPlayerList.contains(value);
+  @action
+  bool isValidButton(int value) {
+    for(var element in idPlayerList){
+      if(element == value){
+        return true;
+      }
+    }
+    return false;
+  } 
 }

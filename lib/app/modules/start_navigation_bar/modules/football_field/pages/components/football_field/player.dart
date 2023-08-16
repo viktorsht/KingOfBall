@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
+import 'package:rei_da_bola/app/modules/shared/config/config_controller.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import '../../../../../../../routes/routes_app.dart';
-import '../../../controllers/football_filed_controller.dart';
-import '../../../models/football_field_model.dart';
+import '../../../../../../shared/config/models/config_model.dart';
 import '../profile_player.dart';
 
 class Player extends StatelessWidget {
   
   final String image;
-  final FootballFieldModel? player;
+  final ConfigLineUpPlayer? player;
   final String position;
   final double top;
   final double right;
@@ -31,8 +31,9 @@ class Player extends StatelessWidget {
     final double heightFinal = MediaQuery.of(context).size.height;
     double height = 0.18181818 * (0.6773399 * heightFinal);
     final colors = ColorsAppDefault();
-    //final footballController = Provider.of<FootballFieldController>(context);
-
+    final configController = Provider.of<ConfigController>(context);
+    int round = configController.getRound();
+    int edition = configController.getEdition();
     return Positioned(
       top: top,
       right: right,
@@ -43,7 +44,7 @@ class Player extends StatelessWidget {
             builder: (context) {
               return IconButton(
                 onPressed: () {
-                  player?.playerLineup?.playerEdition?.player?.firstName != null 
+                  player?.firstName != null 
                   ? showDialog(
                     context: context,
                     builder: (context) {
@@ -51,8 +52,13 @@ class Player extends StatelessWidget {
                     },
                   )
                   : Modular.to.pushNamed(
-                    RoutesModulesApp.routerLineUpModule,
-                    arguments: {'position': position, 'round': 1},);
+                      RoutesModulesApp.routerLineUpModule,
+                      arguments: {
+                        'position': position, 
+                        'round': round,
+                        'edition' : edition,
+                      }
+                    );
                 },
                 icon: Image.asset(
                   image,
@@ -61,7 +67,7 @@ class Player extends StatelessWidget {
               );
             }
           ),
-          player?.playerLineup?.playerEdition?.player?.firstName == null 
+          player?.firstName == null 
           ? Container()
           : Container(
             decoration: BoxDecoration(
@@ -72,7 +78,7 @@ class Player extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 5.0, right: 5.0),
               child: Text(
-                player!.playerLineup!.playerEdition!.player!.firstName!,
+                player!.firstName!,
                 style: const TextStyle(color: Colors.white),
                 textAlign: TextAlign.center,
               ),

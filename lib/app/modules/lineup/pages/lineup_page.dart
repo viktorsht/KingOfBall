@@ -13,11 +13,13 @@ import 'components/card_buy_players.dart';
 class LineUpPage extends StatefulWidget {
   final String position;
   final int round;
+  final int edition;
 
   const LineUpPage({
     super.key, 
     required this.position, 
-    required this.round
+    required this.round,
+    required this.edition
   });
 
   @override
@@ -31,7 +33,7 @@ class _LineUpPageState extends State<LineUpPage> {
   @override
   void initState() {
     super.initState();
-      lineUpController.initBuy(widget.position, widget.round);
+      lineUpController.initBuy(widget.position, widget.round, widget.edition);
   }
 
   @override
@@ -91,7 +93,6 @@ class _LineUpPageState extends State<LineUpPage> {
                         child: CardBuyPlayers(
                           color: colors,
                           image: lineUpController.image[numImage],
-                          //score: lineUpController.listLineUp[index].score!,
                           player: lineUpController.listLineUp[index],
                         ),
                       );

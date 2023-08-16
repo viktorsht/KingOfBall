@@ -12,6 +12,7 @@ class LineUpModule extends Module {
     LineUpPage(
       position: args.data['position'],
       round: args.data['round'],
+      edition: args.data['edition'],
       )
     ),
   ];

@@ -64,29 +64,30 @@ abstract class LineUpControllerImpl with Store{
   }
 
   @action
-  Future<RegisterLineUpModel> lineUpPlayerAdd(RegisterLineUpModel body) async {
-    RegisterLineUpModel retorno = RegisterLineUpModel();
+  Future<void> addListPlayerApi(List<int> listId, int round, int team, int status) async {
     stateController = StateResponse.loading;
     String? token = await tokenManager.getToken();
     if(token != null){
-      try{
-        retorno = await lineUpServices.postRegisterLineUp(token, body);
-        stateController = StateResponse.sucess;
-      } catch(e){
+      try {
+        for(var element in listId){
+          final body = RegisterLineUpModel(
+            playerLineupId: element,
+            championshipRoundId: round,
+            status: status,
+            teamGameEditionId: team
+          );
+          await lineUpServices.postRegisterLineUp(token, body);
+          stateController = StateResponse.sucess;
+        }
+      } catch (e) {
         stateController = StateResponse.error;
       }
     }
     else{
       stateController = StateResponse.error;
     }
-    return retorno;
+
   }
-
-  @observable
-  int edition = 0;
-
-  @action
-  void setEdition(value) => edition = value;
 
   @observable
   int round = 0;
@@ -94,11 +95,20 @@ abstract class LineUpControllerImpl with Store{
   @action
   void setRound(value) => round = value;
 
+  @observable
+  int status = 1;
+
   @action
-  Future<void> initBuy(String position, int round) async {
+  void setStatus(value) => status = value;
+
+  @action
+  int getStatus() => status;
+
+  @action
+  Future<void> initBuy(String position, int round, int edition1) async {
     List<PlayerLineUpModel> list = [];
     setRound(round);
-    list = await playersForPosition(position, round.toString(), edition.toString());
+    list = await playersForPosition(position, round.toString(), edition1.toString());
     //print("Jogadores $position ${list[0].score}- ${list.length}");
     setList(list);
   }

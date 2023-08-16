@@ -8,7 +8,7 @@ class LineUpServices{
   final router = RoutersApi();
   Future<List<PlayerLineUpModel>> getPlayersApiServices(String token, String position, String round, String edition) async {
     final url = Uri.parse(router.positionName(position, round, edition));
-    print(url);
+    //print(url);
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -24,7 +24,6 @@ class LineUpServices{
 
   Future<RegisterLineUpModel> postRegisterLineUp(String token, RegisterLineUpModel body) async {
     final url = Uri.parse(RoutersApi.matchGameLineupPost);
-    //print(url);
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -33,7 +32,7 @@ class LineUpServices{
     final response = await http.post(
       url,
       headers: headers,
-      body: body,
+      body: jsonEncode(body.toJson()),
     );
     final json = jsonDecode(response.body);
     return RegisterLineUpModel.fromJson(json);

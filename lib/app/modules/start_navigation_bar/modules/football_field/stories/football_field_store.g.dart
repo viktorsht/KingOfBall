@@ -29,7 +29,29 @@ mixin _$FootballFieldStore on FootballFieldStoreImpl, Store {
       ActionController(name: 'FootballFieldStoreImpl', context: context);
 
   @override
-  bool searchPlayer(List<FootballFieldModel> list, String position) {
+  List<int> getIdPlayerList() {
+    final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
+        name: 'FootballFieldStoreImpl.getIdPlayerList');
+    try {
+      return super.getIdPlayerList();
+    } finally {
+      _$FootballFieldStoreImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setIdPlayerList(dynamic value) {
+    final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
+        name: 'FootballFieldStoreImpl.setIdPlayerList');
+    try {
+      return super.setIdPlayerList(value);
+    } finally {
+      _$FootballFieldStoreImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool searchPlayer(List<ConfigLineUpPlayer> list, String position) {
     final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
         name: 'FootballFieldStoreImpl.searchPlayer');
     try {
@@ -40,7 +62,7 @@ mixin _$FootballFieldStore on FootballFieldStoreImpl, Store {
   }
 
   @override
-  String playerGol(List<FootballFieldModel> list, String position) {
+  String playerGol(List<ConfigLineUpPlayer> list, String position) {
     final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
         name: 'FootballFieldStoreImpl.playerGol');
     try {
@@ -62,7 +84,7 @@ mixin _$FootballFieldStore on FootballFieldStoreImpl, Store {
   }
 
   @override
-  String player1(List<FootballFieldModel> list, String position) {
+  String player1(List<ConfigLineUpPlayer> list, String position) {
     final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
         name: 'FootballFieldStoreImpl.player1');
     try {
@@ -73,7 +95,7 @@ mixin _$FootballFieldStore on FootballFieldStoreImpl, Store {
   }
 
   @override
-  String player2(List<FootballFieldModel> list, String position) {
+  String player2(List<ConfigLineUpPlayer> list, String position) {
     final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
         name: 'FootballFieldStoreImpl.player2');
     try {
@@ -84,7 +106,7 @@ mixin _$FootballFieldStore on FootballFieldStoreImpl, Store {
   }
 
   @override
-  String player3(List<FootballFieldModel> list, String position) {
+  String player3(List<ConfigLineUpPlayer> list, String position) {
     final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
         name: 'FootballFieldStoreImpl.player3');
     try {
@@ -95,12 +117,23 @@ mixin _$FootballFieldStore on FootballFieldStoreImpl, Store {
   }
 
   @override
-  FootballFieldModel? playerName(
-      List<FootballFieldModel> list, String position) {
+  ConfigLineUpPlayer? playerName(
+      List<ConfigLineUpPlayer> list, String position) {
     final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
         name: 'FootballFieldStoreImpl.playerName');
     try {
       return super.playerName(list, position);
+    } finally {
+      _$FootballFieldStoreImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  List<int> retornaListaPlayer(List<ConfigLineUpPlayer> list) {
+    final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
+        name: 'FootballFieldStoreImpl.retornaListaPlayer');
+    try {
+      return super.retornaListaPlayer(list);
     } finally {
       _$FootballFieldStoreImplActionController.endAction(_$actionInfo);
     }
@@ -112,6 +145,17 @@ mixin _$FootballFieldStore on FootballFieldStoreImpl, Store {
         name: 'FootballFieldStoreImpl.playerNameCoach');
     try {
       return super.playerNameCoach(list);
+    } finally {
+      _$FootballFieldStoreImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool isValidButton(int value) {
+    final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
+        name: 'FootballFieldStoreImpl.isValidButton');
+    try {
+      return super.isValidButton(value);
     } finally {
       _$FootballFieldStoreImplActionController.endAction(_$actionInfo);
     }

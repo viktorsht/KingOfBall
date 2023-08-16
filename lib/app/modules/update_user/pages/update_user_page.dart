@@ -20,7 +20,7 @@ class UpdateUserPage extends StatelessWidget {
     //final registerController = Provider.of<RegisterController>(context);
     final formKey = GlobalKey<FormState>();
 
-    String msgUser = 'Ocorreu um erro inesperado, tente mais tarde';
+    //String msgUser = 'Ocorreu um erro inesperado, tente mais tarde';
     String msgButton = 'Confirmar';
 
     return Form(
