@@ -4,6 +4,8 @@ import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/models
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/components/card_profile/card_profile.dart';
 import 'package:rei_da_bola/app/modules/shared/models/soccer_match_model.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
+import '../../../../../../design_system/widgets/widget_loading.dart';
+import '../../../../shared/score/models/score_model.dart';
 import 'components/buttons/climb_now.dart';
 import 'components/card_info/featured_player.dart';
 import 'components/buttons/next_round.dart';
@@ -15,12 +17,14 @@ class HomePage extends StatelessWidget {
   final TeamGameModel teamGameModel;
   final SoccerMatchModel soccerMatchModel;
   final PageController pageController;
+  final ScoreModel scoreModel;
   
   const HomePage({
     super.key, 
     required this.teamGameModel, 
     required this.pageController, 
-    required this.soccerMatchModel
+    required this.soccerMatchModel, 
+    required this.scoreModel
   });  
   
   @override
@@ -50,7 +54,7 @@ class HomePage extends StatelessWidget {
                 colors: colors,
                 height: 100,
                 width: 120,
-                patrimonyValue: "141,15",
+                patrimonyValue: scoreModel.patrimony?[0].score,
               ),
               FeaturedPlayer(
                 colors: colors,
@@ -74,12 +78,15 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 30,),
           Observer(
-            builder:(_) => NextRoundButton(
+            builder:(_) => 
+            soccerMatchModel.championshipRound?.name == null
+            ? WidgetLoading(width: 5, thickness: 0.5, color: colors.black,)
+            : NextRoundButton(
               colors: colors, 
               heightNextRoundButton: 80,
               widthNextRoundButton: 350,
               onPressed: (){},
-              numberRound: soccerMatchModel.championshipRound?.name == null ? 'Carregando...' : soccerMatchModel.championshipRound!.name!,
+              numberRound: soccerMatchModel.championshipRound!.name!,
               timeRound: '2d 13h 27m',
             ),
           )

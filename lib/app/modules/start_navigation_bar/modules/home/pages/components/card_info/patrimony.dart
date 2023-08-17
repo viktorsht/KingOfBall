@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
+import '../../../../../../../../design_system/widgets/widget_loading.dart';
+
 class Patrimony extends StatelessWidget {
   final ColorsAppDefault colors;
   final double height;
   final double width;
-  final String patrimonyValue ;
+  final String? patrimonyValue ;
 
 
   const Patrimony({
@@ -15,6 +17,7 @@ class Patrimony extends StatelessWidget {
      required this.width, 
      required this.patrimonyValue,
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +48,9 @@ class Patrimony extends StatelessWidget {
                   color: colors.white
                 ),
               ),
-              Text(
-                patrimonyValue,
+              patrimonyValue == null ? WidgetLoading(width: 5, thickness: 0.5, color: colors.black,)
+              : Text(
+                patrimonyValue!,
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,

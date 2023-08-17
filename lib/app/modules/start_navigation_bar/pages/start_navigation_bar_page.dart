@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/shared/config/config_controller.dart';
+import 'package:rei_da_bola/app/modules/shared/score/controllers/score_controller.dart';
 import 'package:rei_da_bola/app/modules/shared/user/controller/user_controller.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/pages/football_field_page.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/home_page.dart';
@@ -10,14 +11,13 @@ import 'package:rei_da_bola/app/modules/start_navigation_bar/pages/components/na
 import 'package:rei_da_bola/app/modules/start_navigation_bar/stories/navigation_store.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/images/images_app.dart';
-
 import '../../shared/round_roday/controller/round_today_controller.dart';
 import '../modules/drawer/pages/drawer_page.dart';
 import '../modules/more/pages/more_page.dart';
 
 
 class StartNavigationBarPage extends StatefulWidget {
-  const StartNavigationBarPage({super.key});
+  const StartNavigationBarPage({super.key, });
 
   @override
   State<StartNavigationBarPage> createState() => _StartNavigationBarPageState();
@@ -29,12 +29,14 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
   final pageViewController = PageController();
   final userController = UserController();
   final roundTodayController = RoundTodayController();
+  final scoreController = ScoreController();
   
   @override
   void initState() {
     super.initState();
     userController.initUserInfomations();
     roundTodayController.initRoundToday();
+    scoreController.setMyScoreTeam();
   }
 
   @override
@@ -70,12 +72,12 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
         child: PageView(
           controller: pageViewController,
           children: [
-           
             Observer(
               builder: (_) => HomePage(
                 teamGameModel: userController.team,
                 soccerMatchModel: roundTodayController.round,
                 pageController: pageViewController,
+                scoreModel: scoreController.myScoreTeam,
               ),
             ),
             const TablePage(),
@@ -88,6 +90,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
                   round: roundTodayController.round.championshipRound!.id!,
                   edition: roundTodayController.round.championshipEditionId!,
                   team: userController.team.id!,
+                  scoreModel: scoreController.myScoreTeam,
                 );
               }
             ),

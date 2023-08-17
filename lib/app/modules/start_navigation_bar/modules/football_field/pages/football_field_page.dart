@@ -8,6 +8,7 @@ import 'package:rei_da_bola/shared/api/state_response.dart';
 import '../../../../../../design_system/buttons/app_butons.dart';
 import '../../../../../../design_system/colors/colors_app.dart';
 import '../../../../../../design_system/widgets/widget_loading.dart';
+import '../../../../shared/score/models/score_model.dart';
 import '../stories/football_field_store.dart';
 import 'components/football_field/football_field.dart';
 import 'components/values_information/card_values_information.dart';
@@ -17,11 +18,14 @@ class FootballFieldPage extends StatelessWidget {
   final int round;
   final int team;
   final int edition;
+  final ScoreModel scoreModel;
+
   const FootballFieldPage({
     super.key, 
     required this.round, 
     required this.team, 
     required this.edition, 
+    required this.scoreModel, 
   });
 
   @override
@@ -36,6 +40,7 @@ class FootballFieldPage extends StatelessWidget {
     final footballStore = Provider.of<FootballFieldStore>(context);
     final configController = Provider.of<ConfigController>(context);
     final lineupController = Provider.of<LineUpController>(context);
+    //final scoreController = Provider.of<ScoreController>(context);
     //final fieldH = 0.6773399 * height - 10;
 
     List<int> list = [];
@@ -43,8 +48,8 @@ class FootballFieldPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const CardValuesInformation(
-            priceTeam: '131,00',
+          CardValuesInformation(
+            priceTeam: scoreModel.patrimony?[0].score!,
             restValue: '131,00',
           ),
           Observer(
@@ -142,12 +147,12 @@ class FootballFieldPage extends StatelessWidget {
                               if(lineupController.stateController == StateResponse.sucess){
                                 //print(list);
                                 //configController.clearListMap();
-                                ScaffoldMessenger.of(context).showSnackBar(
+                                /*ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: const Text('Sua escalação realizada!'),
                                     backgroundColor: colors.green,
                                   ),
-                                );
+                                );*/
                               }
                             }
                             else{
