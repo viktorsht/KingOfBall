@@ -39,7 +39,8 @@ class CardProfile extends StatelessWidget {
               children: [
                 Observer(
                   builder:(_) => 
-                  teamGameModel.name ==  null ? WidgetLoading(width: 5, thickness: 0.5, color: colors.black,)
+                  teamGameModel.name ==  null 
+                  ? WidgetLoading(width: 5, thickness: 0.5, color: colors.black,)
                   : Text(
                     "${teamGameModel.name}",
                     style: const TextStyle(
@@ -50,7 +51,8 @@ class CardProfile extends StatelessWidget {
                 ),
                 Observer(
                   builder:(_) => 
-                  teamGameModel.user?.nick ==  null ? WidgetLoading(width: 5, thickness: 0.5, color: colors.black,)
+                  teamGameModel.user?.nick ==  null 
+                  ? WidgetLoading(width: 5, thickness: 0.5, color: colors.black,)
                   : Text(
                     "@${teamGameModel.user!.nick}",
                     style: const TextStyle(

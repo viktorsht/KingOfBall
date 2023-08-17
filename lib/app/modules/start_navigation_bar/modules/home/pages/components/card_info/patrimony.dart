@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
+import 'package:rei_da_bola/design_system/images/images_app.dart';
 
 import '../../../../../../../../design_system/widgets/widget_loading.dart';
 
-class Patrimony extends StatelessWidget {
+class Pontuations extends StatelessWidget {
   final ColorsAppDefault colors;
   final double height;
   final double width;
-  final String? patrimonyValue ;
+  final String? scoreValue ;
 
 
-  const Patrimony({
+  const Pontuations({
     super.key, 
     required this.colors,
      required this.height, 
      required this.width, 
-     required this.patrimonyValue,
+     required this.scoreValue,
   });
 
 
@@ -28,37 +29,46 @@ class Patrimony extends StatelessWidget {
       ),
       height: height,
       width: width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(
-            "PATRIMÔNIO",
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              color: colors.white
-            ),
-          ),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'B\$', 
+                "PONTUAÇÃO",
                 style: TextStyle(
-                  color: colors.white
-                ),
-              ),
-              patrimonyValue == null ? WidgetLoading(width: 5, thickness: 0.5, color: colors.black,)
-              : Text(
-                patrimonyValue!,
-                style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: colors.white
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  scoreValue == null ? WidgetLoading(width: 5, thickness: 0.5, color: colors.black,)
+                  : Text(
+                    scoreValue!,
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: colors.white
+                    ),
+                  ),
+                  const SizedBox(width: 8,),
+                  Text(
+                    'pts', 
+                    style: TextStyle(
+                      color: colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                ],
+              )
             ],
-          )
+          ),
+          Image.asset(ImagesApp.rank)
         ],
       ),
     );

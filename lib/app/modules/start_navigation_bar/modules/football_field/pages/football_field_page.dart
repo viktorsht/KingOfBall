@@ -9,22 +9,20 @@ import '../../../../../../design_system/buttons/app_butons.dart';
 import '../../../../../../design_system/colors/colors_app.dart';
 import '../../../../../../design_system/widgets/widget_loading.dart';
 import '../../../../shared/score/models/score_model.dart';
+import '../../../../shared/score/stories/score_store.dart';
 import '../stories/football_field_store.dart';
 import 'components/football_field/football_field.dart';
 import 'components/values_information/card_values_information.dart';
 
 class FootballFieldPage extends StatelessWidget {
   
-  final int round;
+  /*final int round;
   final int team;
-  final int edition;
+  final int edition;*/
   final ScoreModel scoreModel;
 
   const FootballFieldPage({
     super.key, 
-    required this.round, 
-    required this.team, 
-    required this.edition, 
     required this.scoreModel, 
   });
 
@@ -40,44 +38,45 @@ class FootballFieldPage extends StatelessWidget {
     final footballStore = Provider.of<FootballFieldStore>(context);
     final configController = Provider.of<ConfigController>(context);
     final lineupController = Provider.of<LineUpController>(context);
+    final scoreStore = Provider.of<ScoreStore>(context);
     //final scoreController = Provider.of<ScoreController>(context);
     //final fieldH = 0.6773399 * height - 10;
+    scoreStore.clearScore();
 
     List<int> list = [];
+    int round = configController.getRound();
+    int team = configController.getTeam();
+    int edition = configController.getEdition();
 
     return Scaffold(
       body: Column(
         children: [
-          CardValuesInformation(
-            priceTeam: scoreModel.patrimony?[0].score!,
-            restValue: '131,00',
+          Observer(
+            builder: (context) {
+              return CardValuesInformation(
+                priceTeam: scoreStore.getScoreAsString(),
+                restValue: scoreStore.getRestAsString(),
+              );
+            }
           ),
           Observer(
             builder: (context) => FutureBuilder(
                 future: footballController.initTeamScale(round, team, edition),
                 builder: (context, snapshot) {
-                  //configController.listFootballField(footballController.playerList);
+                  configController.listFootballField(footballController.playerList);
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return SizedBox(
                       height: height * 0.7,
                       width: width,
                       child: const Center(
-                        child: WidgetLoading(
-                          width: 5,
-                          thickness: 0.9,
-                          color: Colors.green,
-                        ),
+                        child: WidgetLoading(width: 5,thickness: 0.9,color: Colors.green,),
                       ),
                     );
                   } else if (snapshot.hasError) {
-                    return Center(
-                      child: Text('Error: ${snapshot.error}'),
-                    );
+                    return Center(child: Text('Error: ${snapshot.error}'),);
                   } else if (snapshot.hasData) {
-                      configController.listFootballField(footballController.playerList);
                       list = footballStore.retornaListaPlayer(configController.listMap);
-                      //print("${configController.listMap.length}");
-                      //print('object');
+                      print(configController.listMap);
                       return SizedBox(
                         height: height * 0.7,
                         width: width,

@@ -48,10 +48,10 @@ class NextRoundButton extends StatelessWidget {
                 ),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Image.asset(IconsApp.clock),
-                  //const SizedBox(width: 10,),
+                  const SizedBox(width: 8,),
                   Text(
                     "$timeRound restantes",
                     style: TextStyle(

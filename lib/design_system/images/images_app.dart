@@ -17,4 +17,5 @@ class ImagesApp {
   static const footballField = '${pathImages}football_field.png';
   static const goleiro = '${pathImages}goleiro.png';
   static const addPlayer = '${pathImages}addition.png';
+  static const rank = '${pathImages}rank.png';
 }

@@ -85,12 +85,12 @@ class FootballField extends StatelessWidget {
               position: "Meio-campista",
             ),
             Player(
-              image: storeTeam.player2(listPlayer, 'VOL'),
-              player: storeTeam.playerName(listPlayer, 'VOL'),
+              image: storeTeam.player2(listPlayer, 'MEI'),
+              player: storeTeam.playerName(listPlayer, 'MEI'),
               top: 0.45454545 * fieldH,
               right: 0.01333333 * width,
               left: 0.0,
-              position: "Volante",
+              position: "Meio-campista",
             ),
             Player(
               image: storeTeam.player1(listPlayer, 'MEI'),

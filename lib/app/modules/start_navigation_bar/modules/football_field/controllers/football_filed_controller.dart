@@ -83,7 +83,7 @@ abstract class FootballFieldControllerImpl with Store{
   Future<List<FootballFieldModel>> initTeamScale(int round, int team, int edition) async {
     setRound(round);
     playerList = await checkTeamScale(round.toString(), team.toString());
-    coachList = await checkCoach(edition.toString());
+    //coachList = await checkCoach(edition.toString());
     //setCoachList(list)
     //print('Lista de jogadores da api = ${playerList.length}');
     return playerList;

@@ -19,14 +19,14 @@ class CardTime extends StatelessWidget {
         Text(
           'B\$ $price', 
           style: const TextStyle(
-            fontSize: 20,
+            fontSize: 30,
             fontWeight: FontWeight.bold
           ),
         ),
         Text(
           text, 
           style: const TextStyle(
-            fontSize: 12,
+            fontSize: 18,
             fontWeight: FontWeight.bold
           ),
         ),

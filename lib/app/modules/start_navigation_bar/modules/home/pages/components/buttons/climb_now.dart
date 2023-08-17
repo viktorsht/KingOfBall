@@ -37,10 +37,11 @@ class ClimbNowButton extends StatelessWidget {
               "ESCALAR AGORA",
               style: TextStyle(
                 color: colors.white,
-                fontSize: 20,
+                fontSize: 24,
                 fontWeight: FontWeight.bold
               ),
             ),
+            const SizedBox(width: 20,),
             Image.asset(IconsApp.teamWhite),
           ],
         )
