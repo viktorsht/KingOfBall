@@ -12,9 +12,7 @@ class TeamModule extends Module {
   @override
   List<ModularRoute> get routes => [
     ChildRoute(RoutesModulesApp.routerRootModule, child: (_, args) => FootballFieldPage(
-        //round: args.params['round'],
-        //edition: args.params['edition'],
-        //team: args.params['team'],
+        dateTime: args.params['dateTime'],
         scoreModel: ScoreModel(),
       )
     ),  

@@ -90,6 +90,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
                   //round: roundTodayController.round.championshipRound!.id!,
                   //edition: roundTodayController.round.championshipEditionId!,
                   //team: userController.team.id!,
+                  dateTime: roundTodayController.round.dateTime!,
                   scoreModel: scoreController.myScoreTeam,
                 );
               }

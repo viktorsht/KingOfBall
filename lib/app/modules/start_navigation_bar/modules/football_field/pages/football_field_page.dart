@@ -8,22 +8,23 @@ import 'package:rei_da_bola/shared/api/state_response.dart';
 import '../../../../../../design_system/buttons/app_butons.dart';
 import '../../../../../../design_system/colors/colors_app.dart';
 import '../../../../../../design_system/widgets/widget_loading.dart';
+import '../../../../../../shared/format_date_time.dart';
 import '../../../../shared/score/models/score_model.dart';
 import '../../../../shared/score/stories/score_store.dart';
 import '../stories/football_field_store.dart';
+import 'components/date_time_card.dart';
 import 'components/football_field/football_field.dart';
 import 'components/values_information/card_values_information.dart';
 
 class FootballFieldPage extends StatelessWidget {
   
-  /*final int round;
-  final int team;
-  final int edition;*/
   final ScoreModel scoreModel;
+  final String dateTime;
 
   const FootballFieldPage({
     super.key, 
     required this.scoreModel, 
+    required this.dateTime
   });
 
   @override
@@ -60,6 +61,14 @@ class FootballFieldPage extends StatelessWidget {
             }
           ),
           Observer(
+            builder: (context) {
+              return DateTimeCard(
+                colors: colors,
+                dateTime: calculateRemainingTimeString(dateTime),
+              );
+            }
+          ),
+          Observer(
             builder: (context) => FutureBuilder(
                 future: footballController.initTeamScale(round, team, edition),
                 builder: (context, snapshot) {
@@ -76,7 +85,7 @@ class FootballFieldPage extends StatelessWidget {
                     return Center(child: Text('Error: ${snapshot.error}'),);
                   } else if (snapshot.hasData) {
                       list = footballStore.retornaListaPlayer(configController.listMap);
-                      print(configController.listMap);
+                      //print(configController.listMap);
                       return SizedBox(
                         height: height * 0.7,
                         width: width,
