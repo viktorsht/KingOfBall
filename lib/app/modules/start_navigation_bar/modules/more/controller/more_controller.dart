@@ -32,10 +32,10 @@ abstract class MoreControllerImpl with Store{
 
   @action
   void countRound(List<SoccerMatchModel> list){
-    int rodada = 1;
+    List<int> rodada = [];
     for (var i = 0; i < list.length; i++) {
-      if(rodada != list[i].championshipRoundId){
-        rodada = list[i].championshipRoundId!;
+      if(!rodada.contains(list[i].championshipRoundId)){
+        rodada.add(list[i].championshipRoundId!);
         setNumRodadas();
       }
     }
@@ -58,9 +58,12 @@ abstract class MoreControllerImpl with Store{
 
   @action
   Future<void> initMore() async {
+    numRodadas = 0;
     listSoccerMatch = await listaRodadas();
     setList(listSoccerMatch); // necessário estar aqui
     countRound(listSoccerMatch);
+    //setNumRodadas(listSoccerMatch.length);
+    //print(numRodadas);
   }
   
 }

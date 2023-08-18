@@ -11,7 +11,7 @@ import '../../../../shared/score/models/score_model.dart';
 import '../../../../shared/score/stories/score_store.dart';
 import 'components/buttons/climb_now.dart';
 import 'components/buttons/next_round.dart';
-import 'components/card_info/patrimony.dart';
+import 'components/card_info/score_card.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
     if(scoreModel.patrimony != null && scoreModel.patrimony!.isNotEmpty){
       scoreStore.setScore(scoreModel.patrimony?[0].score);
     }
-    final width = MediaQuery.of(context).size.width * 0.9;
+    double width = MediaQuery.of(context).size.width * 0.9;
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

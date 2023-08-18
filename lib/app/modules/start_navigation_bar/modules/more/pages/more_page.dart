@@ -53,10 +53,10 @@ class _MorePageState extends State<MorePage> {
                   else{
                     return PageView.builder(
                       controller: _pageController,
-                      itemCount: controllerMore.numRodadas + 1,
+                      itemCount: controllerMore.numRodadas,
                       itemBuilder: (context, index){
                         return ChampionshipRoundPage(
-                          round: index + 1,
+                          round: index + 1,// == 0 ? 1 : index,
                           listRound: controllerMore.listSoccerMatch,
                         );
                       },
