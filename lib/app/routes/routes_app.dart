@@ -13,5 +13,6 @@ class RoutesModulesApp {
   static const routerMoreModule = '/more';
   static const routerLineUpModule = '/lineup';
   static const routerRegisterTeamEditionModule = '/registerTeamEdition';
+  static const routerFootbolFielModule = '/footebolfield';
 
 }

@@ -86,13 +86,8 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
                 configController.setEdition(roundTodayController.round.championshipEditionId!);
                 configController.setRound(roundTodayController.round.championshipRound!.id!);
                 configController.setTeam(userController.team.id!);
-                return FootballFieldPage(
-                  //round: roundTodayController.round.championshipRound!.id!,
-                  //edition: roundTodayController.round.championshipEditionId!,
-                  //team: userController.team.id!,
-                  dateTime: roundTodayController.round.dateTime!,
-                  scoreModel: scoreController.myScoreTeam,
-                );
+                configController.setDateTime(roundTodayController.round.dateTime);
+                return const FootballFieldPage();
               }
             ),
             Container(color: Colors.yellow,),

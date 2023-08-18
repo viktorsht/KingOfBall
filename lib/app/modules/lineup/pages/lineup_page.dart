@@ -54,8 +54,8 @@ class _LineUpPageState extends State<LineUpPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: (){
+            //Navigator.pushNamed(context, RoutesModulesApp.routerStartNavigationBarModule);
             Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
-            //Navigator.pop(context);
           },
         ),
       ),

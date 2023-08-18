@@ -13,7 +13,7 @@ class CardTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
@@ -26,7 +26,7 @@ class CardTime extends StatelessWidget {
         Text(
           text, 
           style: const TextStyle(
-            fontSize: 18,
+            fontSize: 25,
             fontWeight: FontWeight.bold
           ),
         ),

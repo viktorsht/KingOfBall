@@ -9,6 +9,21 @@ part of 'config_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ConfigController on ConfigControllerImpl, Store {
+  Computed<int>? _$getIdChangeComputed;
+
+  @override
+  int get getIdChange =>
+      (_$getIdChangeComputed ??= Computed<int>(() => super.getIdChange,
+              name: 'ConfigControllerImpl.getIdChange'))
+          .value;
+  Computed<bool>? _$getIsChangeComputed;
+
+  @override
+  bool get getIsChange =>
+      (_$getIsChangeComputed ??= Computed<bool>(() => super.getIsChange,
+              name: 'ConfigControllerImpl.getIsChange'))
+          .value;
+
   late final _$editionAtom =
       Atom(name: 'ConfigControllerImpl.edition', context: context);
 
@@ -57,6 +72,22 @@ mixin _$ConfigController on ConfigControllerImpl, Store {
     });
   }
 
+  late final _$dateTimeAtom =
+      Atom(name: 'ConfigControllerImpl.dateTime', context: context);
+
+  @override
+  String get dateTime {
+    _$dateTimeAtom.reportRead();
+    return super.dateTime;
+  }
+
+  @override
+  set dateTime(String value) {
+    _$dateTimeAtom.reportWrite(value, super.dateTime, () {
+      super.dateTime = value;
+    });
+  }
+
   late final _$listMapAtom =
       Atom(name: 'ConfigControllerImpl.listMap', context: context);
 
@@ -73,19 +104,35 @@ mixin _$ConfigController on ConfigControllerImpl, Store {
     });
   }
 
-  late final _$positionListPlayerAtom =
-      Atom(name: 'ConfigControllerImpl.positionListPlayer', context: context);
+  late final _$isChangeAtom =
+      Atom(name: 'ConfigControllerImpl.isChange', context: context);
 
   @override
-  List<int> get positionListPlayer {
-    _$positionListPlayerAtom.reportRead();
-    return super.positionListPlayer;
+  bool get isChange {
+    _$isChangeAtom.reportRead();
+    return super.isChange;
   }
 
   @override
-  set positionListPlayer(List<int> value) {
-    _$positionListPlayerAtom.reportWrite(value, super.positionListPlayer, () {
-      super.positionListPlayer = value;
+  set isChange(bool value) {
+    _$isChangeAtom.reportWrite(value, super.isChange, () {
+      super.isChange = value;
+    });
+  }
+
+  late final _$idChangeAtom =
+      Atom(name: 'ConfigControllerImpl.idChange', context: context);
+
+  @override
+  int get idChange {
+    _$idChangeAtom.reportRead();
+    return super.idChange;
+  }
+
+  @override
+  set idChange(int value) {
+    _$idChangeAtom.reportWrite(value, super.idChange, () {
+      super.idChange = value;
     });
   }
 
@@ -159,11 +206,33 @@ mixin _$ConfigController on ConfigControllerImpl, Store {
   }
 
   @override
+  String getDateTime() {
+    final _$actionInfo = _$ConfigControllerImplActionController.startAction(
+        name: 'ConfigControllerImpl.getDateTime');
+    try {
+      return super.getDateTime();
+    } finally {
+      _$ConfigControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setListMap(dynamic value) {
     final _$actionInfo = _$ConfigControllerImplActionController.startAction(
         name: 'ConfigControllerImpl.setListMap');
     try {
       return super.setListMap(value);
+    } finally {
+      _$ConfigControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeElementList(dynamic value) {
+    final _$actionInfo = _$ConfigControllerImplActionController.startAction(
+        name: 'ConfigControllerImpl.removeElementList');
+    try {
+      return super.removeElementList(value);
     } finally {
       _$ConfigControllerImplActionController.endAction(_$actionInfo);
     }
@@ -192,11 +261,66 @@ mixin _$ConfigController on ConfigControllerImpl, Store {
   }
 
   @override
+  bool validarEscalacao(String posicao) {
+    final _$actionInfo = _$ConfigControllerImplActionController.startAction(
+        name: 'ConfigControllerImpl.validarEscalacao');
+    try {
+      return super.validarEscalacao(posicao);
+    } finally {
+      _$ConfigControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void listFootballField(List<FootballFieldModel> list) {
     final _$actionInfo = _$ConfigControllerImplActionController.startAction(
         name: 'ConfigControllerImpl.listFootballField');
     try {
       return super.listFootballField(list);
+    } finally {
+      _$ConfigControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setIdChange(dynamic value) {
+    final _$actionInfo = _$ConfigControllerImplActionController.startAction(
+        name: 'ConfigControllerImpl.setIdChange');
+    try {
+      return super.setIdChange(value);
+    } finally {
+      _$ConfigControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clearIdChange() {
+    final _$actionInfo = _$ConfigControllerImplActionController.startAction(
+        name: 'ConfigControllerImpl.clearIdChange');
+    try {
+      return super.clearIdChange();
+    } finally {
+      _$ConfigControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setChangeTrue() {
+    final _$actionInfo = _$ConfigControllerImplActionController.startAction(
+        name: 'ConfigControllerImpl.setChangeTrue');
+    try {
+      return super.setChangeTrue();
+    } finally {
+      _$ConfigControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setChangeFalse() {
+    final _$actionInfo = _$ConfigControllerImplActionController.startAction(
+        name: 'ConfigControllerImpl.setChangeFalse');
+    try {
+      return super.setChangeFalse();
     } finally {
       _$ConfigControllerImplActionController.endAction(_$actionInfo);
     }
@@ -219,8 +343,12 @@ mixin _$ConfigController on ConfigControllerImpl, Store {
 edition: ${edition},
 round: ${round},
 team: ${team},
+dateTime: ${dateTime},
 listMap: ${listMap},
-positionListPlayer: ${positionListPlayer}
+isChange: ${isChange},
+idChange: ${idChange},
+getIdChange: ${getIdChange},
+getIsChange: ${getIsChange}
     ''';
   }
 }

@@ -29,11 +29,11 @@ abstract class ScoreStoreImpl with Store {
   @action
   void incrementScore(String value) {
     final newScore = double.tryParse(value) ?? 0.0; // Trata strings inválidas
-    final potentialScore = _score + newScore;
+    //final potentialScore = _score + newScore;
     //print("potemcialScore = $potentialScore   resto = $calculateRest  api = $_scoreApi");
-    if (potentialScore <= _scoreApi) {
-      _score = potentialScore;
-    }
+    //if (potentialScore <= _scoreApi) {
+    _score += newScore;
+    //}
   }
 
   @action

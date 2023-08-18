@@ -50,7 +50,7 @@ class PlayerProfileCard extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.attach_money),
-              title: Text('Valor: ${player.score}'),
+              title: Text('Última pontuação: ${player.score}'),
             ),
             ListTile(
               leading: const Icon(Icons.pin_drop),
@@ -74,6 +74,9 @@ class PlayerProfileCard extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
+                    configController.setChangeTrue();
+                    configController.setIdChange(player.id);
+                    print(configController.getIdChange);
                     Modular.to.pushNamed(
                       RoutesModulesApp.routerLineUpModule,
                       arguments: {

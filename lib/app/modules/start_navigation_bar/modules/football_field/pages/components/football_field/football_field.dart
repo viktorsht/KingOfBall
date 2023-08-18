@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/models/coach_model.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/pages/components/football_field/player.dart';
 import '../../../../../../../../design_system/images/images_app.dart';
 import '../../../../../../shared/config/models/config_model.dart';
@@ -10,7 +10,6 @@ class FootballField extends StatelessWidget {
   final double height;
   final double fieldH;
   final List<ConfigLineUpPlayer> listPlayer;
-  final List<CoachModel> listCoach;
 
   const FootballField({
     super.key, 
@@ -18,12 +17,12 @@ class FootballField extends StatelessWidget {
     required this.height, 
     required this.fieldH, 
     required this.listPlayer, 
-    required this.listCoach
   });
 
   @override
   Widget build(BuildContext context) {
     final storeTeam = FootballFieldStore();
+    
     return ListView(
       children: [
         Stack(
@@ -100,13 +99,17 @@ class FootballField extends StatelessWidget {
               left: 0.0,
               position: "Meio-campista",
             ),
-            Player(
-              image: storeTeam.player3(listPlayer, 'ATA'),
-              player: storeTeam.playerName(listPlayer, 'ATA'),
-              top: 0.69090909 * fieldH,
-              right: 0.29333333 * width,
-              left: 0.29333333 * width,
-              position: "Atacante",
+            Observer(
+              builder: (context) {
+                return Player(
+                  image: storeTeam.player3(listPlayer, 'ATA'),
+                  player: storeTeam.playerName(listPlayer, 'ATA'),
+                  top: 0.69090909 * fieldH,
+                  right: 0.29333333 * width,
+                  left: 0.29333333 * width,
+                  position: "Atacante",
+                );
+              }
             ),
             Player(
               image: storeTeam.player2(listPlayer, 'ATA'),
@@ -124,15 +127,6 @@ class FootballField extends StatelessWidget {
               left: 0.65333333 * width,
               position: "Atacante",
             ),
-            /*
-            Player(
-              image: storeTeam.playerTec(listCoach),
-              player: listPlayer.isNotEmpty ? 'TÉCNICO' : null,
-              top: 0.79090909 * fieldH,
-              right: 0.75666667 * width,
-              left: 0.0,
-              position: "Técnico",
-            ),*/
           ],
         ),
       ],

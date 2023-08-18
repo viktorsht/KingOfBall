@@ -4,7 +4,9 @@ import 'pages/lineup_page.dart';
 
 class LineUpModule extends Module {
   @override
-  List<Bind> get binds => [];
+  List<Bind> get binds => [
+    //Bind((i) => null)
+  ];
 
   @override
   List<ModularRoute> get routes => [

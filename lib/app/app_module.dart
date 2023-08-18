@@ -17,6 +17,7 @@ import 'package:rei_da_bola/shared/token/token_manager.dart';
 import '../design_system/widgets/loading_app.dart';
 import 'modules/register_user/controllers/register_user_controller.dart';
 import 'modules/start_navigation_bar/modules/drawer/drawer_module.dart';
+import 'modules/start_navigation_bar/modules/football_field/football_field_module.dart';
 import 'modules/start_navigation_bar/modules/more/more_module.dart';
 import 'modules/champion_ship/team_edition.dart';
 import 'modules/update_user/update_user_module.dart';
@@ -62,6 +63,7 @@ class AppModule extends Module {
     ModuleRoute(RoutesModulesApp.routerRegisterTeamEditionModule, module: TeamEditionModule()),
     ModuleRoute(RoutesModulesApp.routerLineUpModule, module: LineUpModule()),
     ModuleRoute(RoutesModulesApp.routerUpdateUserModule, module: UpdateUserModule()),
+    ModuleRoute(RoutesModulesApp.routerFootbolFielModule, module: FootballFieldModule()),
 
   ];
 }

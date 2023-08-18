@@ -24,16 +24,24 @@ class CardValuesInformation extends StatelessWidget {
           children: [
             priceTeam == null 
             ? WidgetLoading(width: 5, thickness: 0.5, color: colors.green,)
+            : Text(
+              'Pontuação do time $priceTeam',
+              style: const TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold
+              ),
+            )
+            /*
             : CardTime(
                 price: priceTeam!,
-                text: 'Preço do Time',
+                text: 'Pontuação do time',
             ),
             priceTeam == null 
             ? WidgetLoading(width: 5, thickness: 0.5, color: colors.green,)
             : CardTime(
                 price: restValue!,
                 text: 'Ainda restam',
-            ),
+            ),*/
           ],
         ),
       );

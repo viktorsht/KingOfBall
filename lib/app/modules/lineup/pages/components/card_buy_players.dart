@@ -8,6 +8,7 @@ import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
 import '../../../../routes/routes_app.dart';
 import '../../../shared/config/config_controller.dart';
+import '../../../shared/score/stories/score_store.dart';
 import '../../controllers/lineup_controller.dart';
 
 class CardBuyPlayers extends StatelessWidget {
@@ -28,6 +29,7 @@ class CardBuyPlayers extends StatelessWidget {
   Widget build(BuildContext context) {
     final configController = Provider.of<ConfigController>(context);
     final lineupController = Provider.of<LineUpController>(context);
+    final scoreStore = Provider.of<ScoreStore>(context);
     final footballFieldStore = Provider.of<FootballFieldStore>(context);
     //final pageViewController = PageController();
     return Container(
@@ -101,12 +103,15 @@ class CardBuyPlayers extends StatelessWidget {
               ),
               onPressed: footballFieldStore.isValidButton(player.id!) 
               ? null
-              : () async {
+              : () {
                 lineupController.setStatus(player.statusLineupId);
                 configController.listPlayerLineUp(player);
+                scoreStore.incrementScore(player.score!);
                 //print(footballFieldStore.isValidButton(player.id!));
                 //Navigator.pop(context);
                 Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
+                //Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
+                //Modular.to.pushNamed(RoutesModulesApp.routerFootbolFielModule);
               },
               child: const Text(
                 "COMPRAR",
