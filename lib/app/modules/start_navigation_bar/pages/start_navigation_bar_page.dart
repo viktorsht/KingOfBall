@@ -63,7 +63,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
         ),
       ),
       drawer: Observer(
-        builder: (_) => DrawerPage(
+        builder: (context) => DrawerPage(
           colors: colors,
           user: userController.team.user!, // pode dar problema por ser não nulo - trocar por startController.user
         ),
@@ -73,7 +73,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
           controller: pageViewController,
           children: [
             Observer(
-              builder: (_) => HomePage(
+              builder: (context) => HomePage(
                 teamGameModel: userController.team,
                 soccerMatchModel: roundTodayController.round,
                 pageController: pageViewController,

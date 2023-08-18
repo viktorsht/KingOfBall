@@ -6,6 +6,7 @@ import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/
 import 'package:rei_da_bola/app/modules/shared/models/soccer_match_model.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import '../../../../../../design_system/widgets/widget_loading.dart';
+import '../../../../../../shared/format_date_time.dart';
 import '../../../../shared/score/models/score_model.dart';
 import '../../../../shared/score/stories/score_store.dart';
 import 'components/buttons/climb_now.dart';
@@ -31,7 +32,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
     final scoreStore = Provider.of<ScoreStore>(context);
-    if(scoreModel.patrimony == []){
+    if(scoreModel.patrimony != null && scoreModel.patrimony!.isNotEmpty){
       scoreStore.setScore(scoreModel.patrimony?[0].score);
     }
     final width = MediaQuery.of(context).size.width * 0.9;
@@ -53,7 +54,9 @@ class HomePage extends StatelessWidget {
                 colors: colors,
                 height: 100,
                 width: width,
-                scoreValue: scoreModel.patrimony?[0].score,
+                scoreValue: scoreModel.patrimony != null && scoreModel.patrimony!.isNotEmpty
+                ? scoreModel.patrimony![0].score
+                : "0.00"
               ),              
             ],
           ),
@@ -78,7 +81,7 @@ class HomePage extends StatelessWidget {
               widthNextRoundButton: width,
               onPressed: (){},
               numberRound: soccerMatchModel.championshipRound!.name!,
-              timeRound: '2d 13h 27m',
+              timeRound: calculateRemainingTimeString(soccerMatchModel.dateTime!),
             ),
           )
         ],

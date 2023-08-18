@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class DateFormateAppDefault{
 
   String formatDateTime(String dateTimeString) {
@@ -14,5 +16,28 @@ class DateFormateAppDefault{
     return '$ano-$mes-$dia';
   }
 
+}
+
+String calculateRemainingTimeString(String dateTimeString) {
+  final format = DateFormat("yyyy-MM-dd HH:mm:ss");
+  final dateTime = format.parse(dateTimeString);
+  final now = DateTime.now();
+  final difference = dateTime.difference(now);
+
+  if (difference.isNegative) {
+    return "Tempo expirado";
+  }
+
+  final days = difference.inDays;
+  final hours = difference.inHours.remainder(24);
+  final minutes = difference.inMinutes.remainder(60);
+
+  if (days > 0) {
+    return "${days}d ${hours}h ${minutes}m";
+  } else if (hours > 0) {
+    return "${hours}h ${minutes}m";
+  } else {
+    return "${minutes}m";
+  }
 }
 
