@@ -1,4 +1,4 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/lineup/controllers/lineup_controller.dart';
@@ -10,14 +10,32 @@ import '../../../../../../design_system/colors/colors_app.dart';
 import '../../../../../../design_system/widgets/widget_loading.dart';
 import '../../../../../../shared/format_date_time.dart';
 import '../../../../shared/score/stories/score_store.dart';
+import '../models/football_field_model.dart';
 import '../stories/football_field_store.dart';
 import 'components/date_time_card.dart';
 import 'components/football_field/football_field.dart';
 import 'components/values_information/card_values_information.dart';
 
-class FootballFieldPage extends StatelessWidget {
+class FootballFieldPage extends StatefulWidget {
+  final int round;
+  final int team;
+  final int edition;
 
-  const FootballFieldPage({super.key});
+  const FootballFieldPage({super.key, required this.round, required this.team, required this.edition});
+
+  @override
+  State<FootballFieldPage> createState() => _FootballFieldPageState();
+}
+
+class _FootballFieldPageState extends State<FootballFieldPage> {
+  final footballController = FootballFieldController();
+  Future<List<FootballFieldModel>>? listAux;
+  @override
+  void initState() {
+    super.initState();
+    listAux = footballController.initTeamScale(widget.round,widget.team,widget.edition);// as List<FootballFieldModel>;
+    //print("object");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +43,26 @@ class FootballFieldPage extends StatelessWidget {
     final buttons = ButtonAppDefault();
 
     final width = MediaQuery.of(context).size.width * .8;
-    final height = MediaQuery.of(context).size.height * .65;
+    final height = MediaQuery.of(context).size.height * .75;
     final fieldH = 0.6773399 * height;
-    final footballController = Provider.of<FootballFieldController>(context);
+    //final footballController = Provider.of<FootballFieldController>(context);
     final footballStore = Provider.of<FootballFieldStore>(context);
     final configController = Provider.of<ConfigController>(context);
     final lineupController = Provider.of<LineUpController>(context);
     final scoreStore = Provider.of<ScoreStore>(context);
     scoreStore.clearScore();
-
+    //print('footballController.playerList: ${footballController.playerList}');
+    if(footballController.playerList != []){
+      configController.listFootballField(footballController.playerList);
+    }
+    configController.clearIdChange();
+    configController.setChangeFalse();
     List<int> list = [];
-    int round = configController.getRound();
-    int team = configController.getTeam();
-    int edition = configController.getEdition();
+    list = footballStore.retornaListaPlayer(configController.listMap);
+
+    //int round = configController.getRound();
+    //int team = configController.getTeam();
+    //int edition = configController.getEdition();
     return Scaffold(
       body: Column(
         children: [
@@ -55,53 +80,26 @@ class FootballFieldPage extends StatelessWidget {
           ),
           Observer(
             builder: (context) {
-              return FutureBuilder(
-                future: footballController.initTeamScale(round, team, edition),
-                builder: (context, snapshot) {
-                  configController.listFootballField(footballController.playerList);
-                  configController.clearIdChange();
-                  configController.setChangeFalse();
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return SizedBox(
-                      height: height * 0.7,
-                      width: width,
-                      child: const Center(
-                        child: WidgetLoading(width: 5,thickness: 0.9,color: Colors.green,),
-                      ),
-                    );
-                  } else if (snapshot.hasError) {
-                    return Center(child: Text('Error: ${snapshot.error}'),);
-                  } else if (snapshot.hasData) {
-                    //list = footballStore.retornaListaPlayer(configController.listMap);
-                    return SizedBox(
-                      height: height * 0.7,
-                      width: width,
-                      child: FootballField(
-                        listPlayer: configController.listMap,
-                        width: width,
-                        height: height,
-                        fieldH: fieldH,
-                      ),
-                    );
-                  } else {
-                    return SizedBox(
-                      height: height * 0.7,
-                      width: width,
-                      child: FootballField(
-                        listPlayer: configController.listMap,
-                        width: width,
-                        height: height,
-                        fieldH: fieldH,
-                        ),
-                    );
-                  }
-                },
+              scoreStore.clearScore();
+              return SizedBox(
+                width: width,
+                height: height * 0.7,
+                child: 
+                  footballController.stateController == StateResponse.loading
+                  ? const Center(
+                    child: WidgetLoading(width: 5,thickness: 0.9,color: Colors.green,),
+                  )
+                  : FootballField(
+                    listPlayer: configController.listMap.toList(), // não mecha! dúvida? -> https://mobx.netlify.app/api/observable/
+                    width: width,
+                    height: height,
+                    fieldH: fieldH,
+                  ),
               );
             }
           ),
           Observer(
-            builder: (context) =>
-            lineupController.stateController == StateResponse.loading
+            builder: (context) => lineupController.stateController == StateResponse.loading
             ? Center(child: WidgetLoading(color: colors.green, width: 6, thickness: 1))
             : Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -125,7 +123,15 @@ class FootballFieldPage extends StatelessWidget {
                 list = footballStore.retornaListaPlayer(configController.listMap);
                 //footballStore.setIdPlayerList(list);
                 if(list.length >= 11){
-                  await lineupController.addListPlayerApi(list, round, team, status);                        
+                  await lineupController.addListPlayerApi(list,widget.round, widget.team, status);
+                  if(lineupController.stateController == StateResponse.sucess){
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: const Text('Sua escalação foi enviada'),
+                        backgroundColor: colors.green,
+                      ),
+                    );
+                  }  
                 }
                 else{
                   ScaffoldMessenger.of(context).showSnackBar(

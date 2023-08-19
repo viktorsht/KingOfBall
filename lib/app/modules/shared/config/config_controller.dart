@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:mobx/mobx.dart';
 import '../../lineup/models/lu_player_lineup_model.dart';
 import '../../start_navigation_bar/modules/football_field/models/football_field_model.dart';
@@ -48,7 +46,10 @@ abstract class ConfigControllerImpl with Store{
   String getDateTime() => dateTime;
 
   @observable
-  List<ConfigLineUpPlayer> listMap = [];
+  ObservableList<ConfigLineUpPlayer> listMap = ObservableList<ConfigLineUpPlayer>();
+
+  @action
+  List<ConfigLineUpPlayer> returnList() => listMap;
 
   @action
   void setListMap(value) => listMap.add(value);
@@ -191,6 +192,7 @@ abstract class ConfigControllerImpl with Store{
             position: element.playerLineup?.playerEdition?.player?.position?.name!,
             abbPosition: element.playerLineup?.playerEdition?.player?.position?.abb!,
           );
+          //print('object1234');
           setListMap(body);
         }/*
         else{
@@ -247,13 +249,14 @@ abstract class ConfigControllerImpl with Store{
       abbPosition: element.playerEdition?.player?.position?.abb!,
     );
     if(verificaId(body.id!) == false && getIsChange == false){
+      //print(body.id);
       setListMap(body);
     }
     if(verificaId(idChange) == true && getIsChange == true){
       //setListMap(body)
       //int indice = listMap.indexOf(body);
       int indice = indiceList(idChange);
-      print(indice);
+      //print(indice);
       listMap[indice] = body;
 
     }

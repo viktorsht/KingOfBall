@@ -76,7 +76,7 @@ class PlayerProfileCard extends StatelessWidget {
                   onPressed: () {
                     configController.setChangeTrue();
                     configController.setIdChange(player.id);
-                    print(configController.getIdChange);
+                    //print(configController.getIdChange);
                     Modular.to.pushNamed(
                       RoutesModulesApp.routerLineUpModule,
                       arguments: {

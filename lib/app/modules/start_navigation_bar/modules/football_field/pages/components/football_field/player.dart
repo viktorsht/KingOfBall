@@ -74,20 +74,24 @@ class Player extends StatelessWidget {
           ),
           player?.firstName == null 
           ? Container()
-          : Container(
-            decoration: BoxDecoration(
-              color: colors.black,
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            height: 20.0,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-              child: Text(
-                player!.firstName!,
-                style: const TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-            ),
+          : Observer(
+            builder: (context) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: colors.black,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                height: 20.0,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                  child: Text(
+                    player!.firstName!,
+                    style: const TextStyle(color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              );
+            }
           ),
         ],
       ),

@@ -81,8 +81,8 @@ abstract class FootballFieldStoreImpl with Store{
         if(position == element.abbPosition){
           if(!idPlayerList.contains(element.id)){
             setIdPlayerList(element.id);
-            //print(idPlayerList);
             return element;
+            //print(idPlayerList);
           }
         }
       }
@@ -103,17 +103,6 @@ abstract class FootballFieldStoreImpl with Store{
     return idPlayerList;
   }
 
-  @action
-  CoachModel? playerNameCoach(List<CoachModel> list){
-    if(list.isNotEmpty){
-      for (var element in list){
-        return element;
-      }
-    }
-    return null;
-  }
-
-  //=> idPlayerList.contains(value);
   @action
   bool isValidButton(int value) {
     for(var element in idPlayerList){

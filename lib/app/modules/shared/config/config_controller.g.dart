@@ -92,13 +92,13 @@ mixin _$ConfigController on ConfigControllerImpl, Store {
       Atom(name: 'ConfigControllerImpl.listMap', context: context);
 
   @override
-  List<ConfigLineUpPlayer> get listMap {
+  ObservableList<ConfigLineUpPlayer> get listMap {
     _$listMapAtom.reportRead();
     return super.listMap;
   }
 
   @override
-  set listMap(List<ConfigLineUpPlayer> value) {
+  set listMap(ObservableList<ConfigLineUpPlayer> value) {
     _$listMapAtom.reportWrite(value, super.listMap, () {
       super.listMap = value;
     });
@@ -222,6 +222,17 @@ mixin _$ConfigController on ConfigControllerImpl, Store {
         name: 'ConfigControllerImpl.getDateTime');
     try {
       return super.getDateTime();
+    } finally {
+      _$ConfigControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  List<ConfigLineUpPlayer> returnList() {
+    final _$actionInfo = _$ConfigControllerImplActionController.startAction(
+        name: 'ConfigControllerImpl.returnList');
+    try {
+      return super.returnList();
     } finally {
       _$ConfigControllerImplActionController.endAction(_$actionInfo);
     }

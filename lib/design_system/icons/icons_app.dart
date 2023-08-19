@@ -11,4 +11,5 @@ class IconsApp {
   static const editar = '${pathIcons}editar.png';
   static const clock = '${pathIcons}clock.png';
   static const userDrawer = '${pathIcons}user_drawer.png';
+  static const rankPretoPequeno = '${pathIcons}rank_preto_pequeno.png';
 }

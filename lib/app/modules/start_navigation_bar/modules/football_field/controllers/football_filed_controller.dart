@@ -87,12 +87,8 @@ abstract class FootballFieldControllerImpl with Store{
     //coachList = await checkCoach(edition.toString());
     //setCoachList(list)
     //print('Lista de jogadores da api = ${playerList.length}');
-    setIsChange();
+    //setIsChange();
     return playerList;
-  }
-
-  Stream<List<FootballFieldModel>> initTeamScaleStream(int round, int team, int edition) {
-    return Stream.fromFuture(initTeamScale(round, team, edition));
   }
 
 }

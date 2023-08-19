@@ -15,7 +15,11 @@ class FootballFieldModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-    ChildRoute(RoutesModulesApp.routerRootModule, child: (_, args) => const FootballFieldPage()),  
+    ChildRoute(RoutesModulesApp.routerRootModule, child: (_, args) => FootballFieldPage(
+      edition: args.params['edition'], 
+      round: args.params['round'], 
+      team: args.params['team'],
+    )),  
   ];
 
 }

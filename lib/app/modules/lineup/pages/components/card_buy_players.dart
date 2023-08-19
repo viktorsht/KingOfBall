@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/lineup/models/lu_player_lineup_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/stories/football_field_store.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
+import 'package:rei_da_bola/design_system/icons/icons_app.dart';
 
 import '../../../../routes/routes_app.dart';
 import '../../../shared/config/config_controller.dart';
@@ -74,21 +75,23 @@ class CardBuyPlayers extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              
+              Image.asset(IconsApp.rankPretoPequeno),
               Text(
-                'B\$ ${player.score}',
+                '${player.score}',
                 //'Id=${player.score}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),
-              const Text(
-                'Preço',
+              /*const Text(
+                'pts',
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 14,
                 ),
-              ),
+              ),*/
             ],
           ),
           Observer(

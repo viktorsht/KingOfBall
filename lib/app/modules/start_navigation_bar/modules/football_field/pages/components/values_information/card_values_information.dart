@@ -10,7 +10,7 @@ class CardValuesInformation extends StatelessWidget {
   const CardValuesInformation({
     super.key, 
     required this.priceTeam, 
-    required this.restValue
+    required this.restValue,
   });
 
   @override
@@ -24,12 +24,13 @@ class CardValuesInformation extends StatelessWidget {
             priceTeam == null 
             ? WidgetLoading(width: 5, thickness: 0.5, color: colors.green,)
             : Text(
-              'Pontuação do time $priceTeam',
+              'Sua pontuação $priceTeam',
               style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold
               ),
-            )
+            ),
+            //Text('data: ${data.length}')
           ],
         ),
       );

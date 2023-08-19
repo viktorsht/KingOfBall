@@ -140,17 +140,6 @@ mixin _$FootballFieldStore on FootballFieldStoreImpl, Store {
   }
 
   @override
-  CoachModel? playerNameCoach(List<CoachModel> list) {
-    final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
-        name: 'FootballFieldStoreImpl.playerNameCoach');
-    try {
-      return super.playerNameCoach(list);
-    } finally {
-      _$FootballFieldStoreImplActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   bool isValidButton(int value) {
     final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
         name: 'FootballFieldStoreImpl.isValidButton');
