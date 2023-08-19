@@ -206,6 +206,17 @@ mixin _$ConfigController on ConfigControllerImpl, Store {
   }
 
   @override
+  void setDateTime(dynamic value) {
+    final _$actionInfo = _$ConfigControllerImplActionController.startAction(
+        name: 'ConfigControllerImpl.setDateTime');
+    try {
+      return super.setDateTime(value);
+    } finally {
+      _$ConfigControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String getDateTime() {
     final _$actionInfo = _$ConfigControllerImplActionController.startAction(
         name: 'ConfigControllerImpl.getDateTime');

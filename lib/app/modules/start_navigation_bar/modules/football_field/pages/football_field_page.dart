@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/lineup/controllers/lineup_controller.dart';
@@ -17,9 +17,7 @@ import 'components/values_information/card_values_information.dart';
 
 class FootballFieldPage extends StatelessWidget {
 
-  const FootballFieldPage({
-    super.key, 
-  });
+  const FootballFieldPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +32,12 @@ class FootballFieldPage extends StatelessWidget {
     final configController = Provider.of<ConfigController>(context);
     final lineupController = Provider.of<LineUpController>(context);
     final scoreStore = Provider.of<ScoreStore>(context);
-    //final scoreController = Provider.of<ScoreController>(context);
-    //final fieldH = 0.6773399 * height - 10;
     scoreStore.clearScore();
 
     List<int> list = [];
     int round = configController.getRound();
     int team = configController.getTeam();
     int edition = configController.getEdition();
-
     return Scaffold(
       body: Column(
         children: [
@@ -54,16 +49,13 @@ class FootballFieldPage extends StatelessWidget {
               );
             }
           ),
-          Observer(
-            builder: (context) {
-              return DateTimeCard(
-                colors: colors,
-                dateTime: calculateRemainingTimeString(configController.getDateTime()),
-              );
-            }
+          DateTimeCard(
+            colors: colors,
+            dateTime: calculateRemainingTimeString(configController.getDateTime()),
           ),
           Observer(
-            builder: (context) => FutureBuilder(
+            builder: (context) {
+              return FutureBuilder(
                 future: footballController.initTeamScale(round, team, edition),
                 builder: (context, snapshot) {
                   configController.listFootballField(footballController.playerList);
@@ -80,97 +72,81 @@ class FootballFieldPage extends StatelessWidget {
                   } else if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'),);
                   } else if (snapshot.hasData) {
-                    
-                      list = footballStore.retornaListaPlayer(configController.listMap);
-                      return SizedBox(
-                        height: height * 0.7,
-                        width: width,
-                        child: FootballField(
+                    //list = footballStore.retornaListaPlayer(configController.listMap);
+                    return SizedBox(
+                      height: height * 0.7,
+                      width: width,
+                      child: FootballField(
                         listPlayer: configController.listMap,
                         width: width,
                         height: height,
                         fieldH: fieldH,
-                          ),
+                      ),
                     );
                   } else {
-                      return SizedBox(
-                        height: height * 0.7,
+                    return SizedBox(
+                      height: height * 0.7,
+                      width: width,
+                      child: FootballField(
+                        listPlayer: configController.listMap,
                         width: width,
-                        child: FootballField(
-                          listPlayer: configController.listMap,
-                          width: width,
-                          height: height,
-                          fieldH: fieldH,
-                          ),
+                        height: height,
+                        fieldH: fieldH,
+                        ),
                     );
                   }
                 },
-              ),
+              );
+            }
           ),
-
           Observer(
-            builder: (context) => 
-                  lineupController.stateController == StateResponse.loading
-                  ? Center(child: WidgetLoading(color: colors.green, width: 6, thickness: 1))
-                  : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    style: buttons.themeButtonAppCancelar,
-                    onPressed: (){
-                      configController.clearListMap();
-                    }, 
-                    child: const Text(
-                      'CANCELAR',
-                      style: TextStyle(
-                        fontSize: 20
+            builder: (context) =>
+            lineupController.stateController == StateResponse.loading
+            ? Center(child: WidgetLoading(color: colors.green, width: 6, thickness: 1))
+            : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+            ElevatedButton(
+              style: buttons.themeButtonAppCancelar,
+              onPressed: (){
+                configController.clearListMap();
+              }, 
+              child: const Text(
+                'CANCELAR',
+                style: TextStyle(
+                  fontSize: 20
+                ),
+              )
+            ),
+            ElevatedButton(
+              style: buttons.themeButtonAppOk,
+              onPressed: () async {
+                int status = lineupController.getStatus();
+                list = footballStore.retornaListaPlayer(configController.listMap);
+                //footballStore.setIdPlayerList(list);
+                if(list.length >= 11){
+                  await lineupController.addListPlayerApi(list, round, team, status);                        
+                }
+                else{
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: const Text('Sua escalação ainda está incompleta'),
+                        backgroundColor: colors.red,
                       ),
-                    )
+                    );
+                }
+              }, 
+              child: const 
+                Text(
+                  'CONFIRMAR',
+                  style: TextStyle(
+                    fontSize: 20
                   ),
-                  Observer(
-                    builder: (context) => ElevatedButton(
-                        style: buttons.themeButtonAppOk,
-                        onPressed: () async {
-                          //if(footballStore.idPlayerList.length >= 11){
-                            int status = lineupController.getStatus();
-                            list = footballStore.retornaListaPlayer(configController.listMap);
-                            //footballStore.setIdPlayerList(list);
-                            if(list.length >= 11){
-                              await lineupController.addListPlayerApi(list, round, team, status);
-                    //        }
-                              if(lineupController.stateController == StateResponse.sucess){
-                                //print(list);
-                                //configController.clearListMap();
-                                /*ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: const Text('Sua escalação realizada!'),
-                                    backgroundColor: colors.green,
-                                  ),
-                                );*/
-                              }
-                            }
-                            else{
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: const Text('Sua escalação ainda está incompleta'),
-                                    backgroundColor: colors.red,
-                                  ),
-                                );
-                            }
-                          //}
-                        }, 
-                        child: const Text(
-                          'CONFIRMAR',
-                          style: TextStyle(
-                            fontSize: 20
-                          ),
-                        ),
-                      ),
-                    //}
-                  ),
-                ],
+                ),
               ),
-          ),
+            ],
+          )
+          )    
         ],
       )
     );

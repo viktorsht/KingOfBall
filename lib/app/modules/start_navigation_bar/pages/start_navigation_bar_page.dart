@@ -68,32 +68,34 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
           user: userController.team.user!, // pode dar problema por ser não nulo - trocar por startController.user
         ),
       ),
-      body: Center(
-        child: PageView(
-          controller: pageViewController,
-          children: [
-            Observer(
-              builder: (context) => HomePage(
-                teamGameModel: userController.team,
-                soccerMatchModel: roundTodayController.round,
-                pageController: pageViewController,
-                scoreModel: scoreController.myScoreTeam,
-              ),
+      body: Observer(
+        builder: (context) {
+          return Center(
+            child: PageView(
+              controller: pageViewController,
+              children: [
+                HomePage(
+                  teamGameModel: userController.team,
+                  soccerMatchModel: roundTodayController.round,
+                  pageController: pageViewController,
+                  scoreModel: scoreController.myScoreTeam,
+                ),
+                const TablePage(),
+                Observer(
+                  builder: (context) {
+                    configController.setEdition(roundTodayController.round.championshipEditionId!);
+                    configController.setRound(roundTodayController.round.championshipRound!.id!);
+                    configController.setTeam(userController.team.id!);
+                    configController.setDateTime(roundTodayController.round.dateTime);
+                    return const FootballFieldPage();
+                  }
+                ),
+                Container(color: Colors.yellow,),
+                const MorePage(),
+              ],
             ),
-            const TablePage(),
-            Observer(
-              builder: (context) {
-                configController.setEdition(roundTodayController.round.championshipEditionId!);
-                configController.setRound(roundTodayController.round.championshipRound!.id!);
-                configController.setTeam(userController.team.id!);
-                configController.setDateTime(roundTodayController.round.dateTime);
-                return const FootballFieldPage();
-              }
-            ),
-            Container(color: Colors.yellow,),
-            const MorePage(),
-          ],
-        ),
+          );
+        }
       ),
       bottomNavigationBar: AnimatedBuilder(
         animation: pageViewController,

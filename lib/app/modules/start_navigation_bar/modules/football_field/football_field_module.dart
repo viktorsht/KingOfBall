@@ -1,6 +1,5 @@
 
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:rei_da_bola/app/modules/shared/score/models/score_model.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/controllers/football_filed_controller.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/stories/football_field_store.dart';
 
@@ -16,10 +15,7 @@ class FootballFieldModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-    ChildRoute(RoutesModulesApp.routerRootModule, child: (_, args) => FootballFieldPage(
-        //dateTime: args.params['dateTime'],
-      )
-    ),  
+    ChildRoute(RoutesModulesApp.routerRootModule, child: (_, args) => const FootballFieldPage()),  
   ];
 
 }

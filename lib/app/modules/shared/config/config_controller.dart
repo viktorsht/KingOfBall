@@ -40,6 +40,7 @@ abstract class ConfigControllerImpl with Store{
 
   @observable
   String dateTime = '';
+  
   @action
   void setDateTime(value) => dateTime = value;
 

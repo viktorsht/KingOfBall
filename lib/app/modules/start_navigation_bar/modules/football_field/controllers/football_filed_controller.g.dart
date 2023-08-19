@@ -140,6 +140,17 @@ mixin _$FootballFieldController on FootballFieldControllerImpl, Store {
       ActionController(name: 'FootballFieldControllerImpl', context: context);
 
   @override
+  void setIsChange() {
+    final _$actionInfo = _$FootballFieldControllerImplActionController
+        .startAction(name: 'FootballFieldControllerImpl.setIsChange');
+    try {
+      return super.setIsChange();
+    } finally {
+      _$FootballFieldControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setCoachList(dynamic value) {
     final _$actionInfo = _$FootballFieldControllerImplActionController
         .startAction(name: 'FootballFieldControllerImpl.setCoachList');

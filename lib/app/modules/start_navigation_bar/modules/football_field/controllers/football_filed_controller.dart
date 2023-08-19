@@ -17,6 +17,7 @@ abstract class FootballFieldControllerImpl with Store{
   @observable
   bool isChange = false;
 
+  @action
   void setIsChange() => isChange = true;
 
   @observable
@@ -86,6 +87,12 @@ abstract class FootballFieldControllerImpl with Store{
     //coachList = await checkCoach(edition.toString());
     //setCoachList(list)
     //print('Lista de jogadores da api = ${playerList.length}');
+    setIsChange();
     return playerList;
   }
+
+  Stream<List<FootballFieldModel>> initTeamScaleStream(int round, int team, int edition) {
+    return Stream.fromFuture(initTeamScale(round, team, edition));
+  }
+
 }
