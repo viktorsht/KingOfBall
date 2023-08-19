@@ -33,11 +33,18 @@ String calculateRemainingTimeString(String dateTimeString) {
   final minutes = difference.inMinutes.remainder(60);
 
   if (days > 0) {
-    return "${days}d ${hours}h ${minutes}m";
+    if (hours > 0) {
+      return "${days}d ${hours}h ${minutes}m";
+    } else {
+      return "${days}d ${minutes}m";
+    }
   } else if (hours > 0) {
-    return "${hours}h ${minutes}m";
+    return "$hours h ${minutes}m";
+  } else if (minutes > 0) {
+    return "$minutes m";
   } else {
-    return "${minutes}m";
+    return "Tempo expirado";
   }
 }
+
 

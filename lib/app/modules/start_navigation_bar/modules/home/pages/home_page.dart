@@ -5,7 +5,6 @@ import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/models
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/components/card_profile/card_profile.dart';
 import 'package:rei_da_bola/app/modules/shared/models/soccer_match_model.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
-import '../../../../../../design_system/widgets/widget_loading.dart';
 import '../../../../../../shared/format_date_time.dart';
 import '../../../../shared/score/models/score_model.dart';
 import '../../../../shared/score/stories/score_store.dart';
@@ -72,17 +71,16 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 30,),
           Observer(
-            builder:(_) => 
-            soccerMatchModel.championshipRound?.name == null
-            ? WidgetLoading(width: 5, thickness: 0.5, color: colors.black,)
-            : NextRoundButton(
-              colors: colors, 
-              heightNextRoundButton: 80,
-              widthNextRoundButton: width,
-              onPressed: (){},
-              numberRound: soccerMatchModel.championshipRound!.name!,
-              timeRound: calculateRemainingTimeString(soccerMatchModel.dateTime!),
-            ),
+            builder: (context) {
+              return NextRoundButton(
+                colors: colors, 
+                heightNextRoundButton: 80,
+                widthNextRoundButton: width,
+                onPressed: (){},
+                numberRound: soccerMatchModel.championshipRound?.name != null ? soccerMatchModel.championshipRound!.name! : '',
+                timeRound: soccerMatchModel.dateTime != null ? calculateRemainingTimeString(soccerMatchModel.dateTime!) : '',//calculateRemainingTimeString(soccerMatchModel.dateTime!),
+              );
+            }
           )
         ],
       )
