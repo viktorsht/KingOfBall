@@ -63,23 +63,23 @@ class DrawerPage extends StatelessWidget {
             title: const Text('Home'),
             onTap: () {
               // Implement your navigation logic here
-              Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
+              Modular.to.pushNamed(RoutesModulesApp.routerStartNavigationBarModule);
               //Navigator.pop(context); // Close the drawer
             },
           ),
           ListTile(
             leading: const Icon(Icons.account_box),
-            title: const Text('Trocar de conta'),
+            title: const Text('Sair'),
             onTap:(){
               exitApp.changeAccount();
               configController.clearListMap();
             } 
-          ),
+          ),/*
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Sair'),
             onTap: exitApp.exitToApp,
-          ),
+          ),*/
         ],
       ),
     );
