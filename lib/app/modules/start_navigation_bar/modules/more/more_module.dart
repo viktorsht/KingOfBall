@@ -31,7 +31,9 @@ class MoreModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-    ChildRoute('/', child: (_, args) => const MorePage()),
+    ChildRoute('/', child: (_, args) => MorePage(
+      edition: args.params['edition'],
+    )),
   ];
 }
 

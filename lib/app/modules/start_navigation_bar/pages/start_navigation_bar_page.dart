@@ -98,8 +98,12 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
                     );
                   }
                 ),
-                Container(color: Colors.yellow,),
-                const MorePage(),
+                //Container(color: Colors.yellow,),
+                Observer(
+                  builder: (context) {
+                    return MorePage(edition: roundTodayController.round.championshipEditionId!);
+                  }
+                ),
               ],
             ),
           );

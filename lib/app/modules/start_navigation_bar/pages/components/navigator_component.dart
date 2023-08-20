@@ -42,10 +42,6 @@ class NavigatorComponent extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.info),
-              label: 'Top 3',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.more_horiz),
               label: 'Mais',
             ),
           ],
