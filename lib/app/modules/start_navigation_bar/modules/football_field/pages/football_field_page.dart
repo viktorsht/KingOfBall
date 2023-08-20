@@ -53,8 +53,9 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
     scoreStore.clearScore();
     //print('footballController.playerList: ${footballController.playerList}');
     if(footballController.playerList != []){
-      configController.listFootballField(footballController.playerList);
+      //print('object');
     }
+    configController.listFootballField(footballController.playerList);
     configController.clearIdChange();
     configController.setChangeFalse();
     List<int> list = [];
@@ -63,7 +64,12 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
     //int round = configController.getRound();
     //int team = configController.getTeam();
     //int edition = configController.getEdition();
-    return Scaffold(
+
+    return listAux == null 
+    ? const Center(
+      child: WidgetLoading(width: 5,thickness: 0.9,color: Colors.green,),
+    )
+    : Scaffold(
       body: Column(
         children: [
           Observer(
@@ -81,6 +87,9 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
           Observer(
             builder: (context) {
               scoreStore.clearScore();
+              configController.setRound(widget.round);
+              configController.setEdition(widget.edition);
+              configController.setTeam(widget.team);
               return SizedBox(
                 width: width,
                 height: height * 0.7,
@@ -106,9 +115,11 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
                   children: [
             ElevatedButton(
               style: buttons.themeButtonAppCancelar,
-              onPressed: (){
+              onPressed: footballController.playerList == []
+              ? (){
                 configController.clearListMap();
-              }, 
+              }
+              : null, 
               child: const Text(
                 'CANCELAR',
                 style: TextStyle(
@@ -120,8 +131,9 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
               style: buttons.themeButtonAppOk,
               onPressed: () async {
                 int status = lineupController.getStatus();
-                list = footballStore.retornaListaPlayer(configController.listMap);
+                list = footballStore.retornaListaPlayer(configController.listMap.toList());
                 //footballStore.setIdPlayerList(list);
+                //print(list);
                 if(list.length >= 11){
                   await lineupController.addListPlayerApi(list,widget.round, widget.team, status);
                   if(lineupController.stateController == StateResponse.sucess){

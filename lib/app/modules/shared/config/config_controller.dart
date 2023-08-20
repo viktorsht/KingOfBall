@@ -192,7 +192,6 @@ abstract class ConfigControllerImpl with Store{
             position: element.playerLineup?.playerEdition?.player?.position?.name!,
             abbPosition: element.playerLineup?.playerEdition?.player?.position?.abb!,
           );
-          //print('object1234');
           setListMap(body);
         }/*
         else{
@@ -256,7 +255,6 @@ abstract class ConfigControllerImpl with Store{
       //setListMap(body)
       //int indice = listMap.indexOf(body);
       int indice = indiceList(idChange);
-      //print(indice);
       listMap[indice] = body;
 
     }

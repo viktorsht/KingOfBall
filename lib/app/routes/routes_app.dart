@@ -14,5 +14,6 @@ class RoutesModulesApp {
   static const routerLineUpModule = '/lineup';
   static const routerRegisterTeamEditionModule = '/registerTeamEdition';
   static const routerFootbolFielModule = '/footebolfield';
+  static const routerRankingModule = '/routerRankingModule';
 
 }

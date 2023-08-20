@@ -3,7 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/shared/config/config_controller.dart';
 import 'package:rei_da_bola/app/modules/shared/config/models/config_model.dart';
-import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/controllers/football_filed_controller.dart';
 import '../../../../../../../design_system/colors/colors_app.dart';
 import '../../../../../../routes/routes_app.dart';
 
@@ -20,7 +19,7 @@ class PlayerProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
-    final footballController = Provider.of<FootballFieldController>(context);
+    //final footballController = Provider.of<FootballFieldController>(context);
     final configController = Provider.of<ConfigController>(context);
     final String position = player.position!;
     return Dialog(
@@ -81,7 +80,7 @@ class PlayerProfileCard extends StatelessWidget {
                       RoutesModulesApp.routerLineUpModule,
                       arguments: {
                         'position': position,
-                        'round': footballController.round,
+                        'round': configController.getEdition(),
                         'edition' : configController.getEdition()
                       },
                     );

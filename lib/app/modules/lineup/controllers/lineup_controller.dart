@@ -77,8 +77,8 @@ abstract class LineUpControllerImpl with Store{
             teamGameEditionId: team
           );
           await lineUpServices.postRegisterLineUp(token, body);
-          stateController = StateResponse.sucess;
         }
+        stateController = StateResponse.sucess;
       } catch (e) {
         stateController = StateResponse.error;
       }

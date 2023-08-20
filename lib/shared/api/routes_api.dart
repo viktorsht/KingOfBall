@@ -18,6 +18,7 @@ class RoutersApi{
   static String coach =  '${Api.urlApi}app/lineup/coach?filter=championship_edition_id:=:';
   static String matchGameLineupPost = '${Api.urlApi}matchGameLineup';
   static String score = '${Api.urlApi}app/home/home?team_game_edition_id=';
+  static String ranking= '${Api.urlApi}app/ranking/ranking?championship_edition_id=';
 
   String positionName(String position, String roundId, String editionId) => 
   '${Api.urlApi}app/lineup/player?filter=soccerMatch|championshipEdition.id:=:$editionId;soccerMatch.championship_round_id:=:$roundId;playerEdition|player|position.name:=:$position';

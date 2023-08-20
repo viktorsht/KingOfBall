@@ -6,7 +6,6 @@ import 'package:rei_da_bola/app/modules/shared/score/controllers/score_controlle
 import 'package:rei_da_bola/app/modules/shared/user/controller/user_controller.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/football_field/pages/football_field_page.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/pages/home_page.dart';
-import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/table/pages/table_page.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/pages/components/navigator_component.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/stories/navigation_store.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
@@ -14,6 +13,7 @@ import 'package:rei_da_bola/design_system/images/images_app.dart';
 import '../../shared/round_roday/controller/round_today_controller.dart';
 import '../modules/drawer/pages/drawer_page.dart';
 import '../modules/more/pages/more_page.dart';
+import '../modules/ranking/pages/ranking_page.dart';
 
 
 class StartNavigationBarPage extends StatefulWidget {
@@ -80,7 +80,11 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
                   pageController: pageViewController,
                   scoreModel: scoreController.myScoreTeam,
                 ),
-                const TablePage(),
+                Observer(
+                  builder: (context) {
+                    return RankingPage(edition: roundTodayController.round.championshipEditionId!);
+                  }
+                ),
                 Observer(
                   builder: (context) {
                     configController.setEdition(roundTodayController.round.championshipEditionId!);

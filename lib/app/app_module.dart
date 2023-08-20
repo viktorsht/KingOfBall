@@ -4,7 +4,7 @@ import 'package:rei_da_bola/app/modules/lineup/lineup_module.dart';
 import 'package:rei_da_bola/app/modules/login/login_module.dart';
 import 'package:rei_da_bola/app/modules/register_user/register_module.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/home/home_module.dart';
-import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/table/table_modular.dart';
+import 'package:rei_da_bola/app/modules/start_navigation_bar/modules/ranking/ranking_module.dart';
 import 'package:rei_da_bola/app/modules/start_navigation_bar/pages/start_navigation_bar_page.dart';
 import 'package:rei_da_bola/app/modules/team_virtual/team_virtual_module.dart';
 import 'package:rei_da_bola/shared/api/api_headers.dart';
@@ -58,12 +58,12 @@ class AppModule extends Module {
     ModuleRoute(RoutesModulesApp.routerTeamVirtualModule, module: TeamVirtualModule()),
     ModuleRoute(RoutesModulesApp.routerHomeModule, module: HomeModule()),
     ModuleRoute(RoutesModulesApp.routerDrawerModule, module: DrawerModule()),
-    ModuleRoute(RoutesModulesApp.routerTableModule, module: TableModule()),
     ModuleRoute(RoutesModulesApp.routerMoreModule, module: MoreModule()),
     ModuleRoute(RoutesModulesApp.routerRegisterTeamEditionModule, module: TeamEditionModule()),
     ModuleRoute(RoutesModulesApp.routerLineUpModule, module: LineUpModule()),
     ModuleRoute(RoutesModulesApp.routerUpdateUserModule, module: UpdateUserModule()),
     ModuleRoute(RoutesModulesApp.routerFootbolFielModule, module: FootballFieldModule()),
+    ModuleRoute(RoutesModulesApp.routerRankingModule, module: RankingModule()),
 
   ];
 }

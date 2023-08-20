@@ -34,9 +34,10 @@ class CardRanking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      //padding: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         color: color.whiteLigth,
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(20),
       ),
       height: 80,
       child: Row(
@@ -45,6 +46,7 @@ class CardRanking extends StatelessWidget {
             pathImage,
             height: 60,
           ),
+          const SizedBox(width: 10,),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,19 +54,19 @@ class CardRanking extends StatelessWidget {
               Text(
                 titleText, 
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold
                 ),
               ),
               Text(
-                subTitleText,  
+                '@$subTitleText',  
                 style: const TextStyle(
                   fontSize: 12,
-                  fontWeight: FontWeight.normal
+                  fontWeight: FontWeight.bold
                 ),
               ),
               Text(
-                subSubTitleText,  
+                '$subSubTitleText pts',  
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
@@ -79,7 +81,7 @@ class CardRanking extends StatelessWidget {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                textEnd, 
+                '$textEnd°', 
                 style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold
