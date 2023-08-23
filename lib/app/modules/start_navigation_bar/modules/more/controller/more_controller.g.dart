@@ -120,11 +120,11 @@ mixin _$MoreController on MoreControllerImpl, Store {
   }
 
   @override
-  void setNumRodadas() {
+  void setNumRodadas(dynamic value) {
     final _$actionInfo = _$MoreControllerImplActionController.startAction(
         name: 'MoreControllerImpl.setNumRodadas');
     try {
-      return super.setNumRodadas();
+      return super.setNumRodadas(value);
     } finally {
       _$MoreControllerImplActionController.endAction(_$actionInfo);
     }

@@ -68,9 +68,16 @@ class CardProfile extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Modular.to.navigate(RoutesModulesApp.routerUpdateUserModule);
+            Modular.to.navigate(
+              RoutesModulesApp.routerUpdateUserModule, 
+              arguments:{
+                'team' : teamGameModel.id.toString(),
+                'name' : teamGameModel.name,
+                'abb' : teamGameModel.abb
+              },
+            );
           },
-          child: Image.asset(IconsApp.editar)
+          child: Image.asset(IconsApp.editar,)
         ),
       ],
     );

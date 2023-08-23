@@ -14,7 +14,6 @@ import '../models/football_field_model.dart';
 import '../stories/football_field_store.dart';
 import 'components/date_time_card.dart';
 import 'components/football_field/football_field.dart';
-import 'components/values_information/card_values_information.dart';
 
 class FootballFieldPage extends StatefulWidget {
   final int round;
@@ -52,9 +51,6 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
     final scoreStore = Provider.of<ScoreStore>(context);
     scoreStore.clearScore();
     //print('footballController.playerList: ${footballController.playerList}');
-    if(footballController.playerList != []){
-      //print('object');
-    }
     configController.listFootballField(footballController.playerList);
     configController.clearIdChange();
     configController.setChangeFalse();
@@ -72,18 +68,11 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
     : Scaffold(
       body: Column(
         children: [
-          Observer(
-            builder: (context) {
-              return CardValuesInformation(
-                priceTeam: scoreStore.getScoreAsString(),
-                restValue: scoreStore.getRestAsString(),
-              );
-            }
-          ),
+          const SizedBox(height: 80,),
           DateTimeCard(
             colors: colors,
             dateTime: calculateRemainingTimeString(configController.getDateTime()),
-          ),
+          ),/*
           Observer(
             builder: (context) {
               scoreStore.clearScore();
@@ -94,7 +83,7 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
                 width: width,
                 height: height * 0.7,
                 child: 
-                  footballController.stateController == StateResponse.loading
+                  footballController.stateController != StateResponse.sucess
                   ? const Center(
                     child: WidgetLoading(width: 5,thickness: 0.9,color: Colors.green,),
                   )
@@ -104,6 +93,52 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
                     height: height,
                     fieldH: fieldH,
                   ),
+              );
+            }
+          ),*/
+          Observer(
+            builder: (context) {
+              return FutureBuilder(
+                future: footballController.initTeamScale(widget.round, widget.team, widget.edition),
+                builder: (context, snapshot) {
+                  configController.listFootballField(footballController.playerList);
+                  configController.clearIdChange();
+                  configController.setChangeFalse();
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return SizedBox(
+                      height: height * 0.7,
+                      width: width,
+                      child: const Center(
+                        child: WidgetLoading(width: 6,thickness: 1,color: Colors.green,),
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'),);
+                  } else if (snapshot.hasData) {
+                    //list = footballStore.retornaListaPlayer(configController.listMap);
+                    return SizedBox(
+                      height: height * 0.7,
+                      width: width,
+                      child: FootballField(
+                        listPlayer: configController.listMap,
+                        width: width,
+                        height: height,
+                        fieldH: fieldH,
+                      ),
+                    );
+                  } else {
+                    return SizedBox(
+                      height: height * 0.7,
+                      width: width,
+                      child: FootballField(
+                        listPlayer: configController.listMap,
+                        width: width,
+                        height: height,
+                        fieldH: fieldH,
+                        ),
+                    );
+                  }
+                },
               );
             }
           ),

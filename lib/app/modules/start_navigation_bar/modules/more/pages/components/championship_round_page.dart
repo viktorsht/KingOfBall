@@ -22,7 +22,7 @@ class ChampionshipRoundPage extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(top: 20, bottom: 8.0, left: 8.0, right: 8.0),
           child: Text(
             '$roundº Rodada',
             style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),

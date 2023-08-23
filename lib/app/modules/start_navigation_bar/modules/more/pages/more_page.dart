@@ -63,7 +63,7 @@ class _MorePageState extends State<MorePage> {
                   return Column(
                     children: [
                       SizedBox(
-                        height: height/2,
+                        height: height * .3,
                         child: PageView.builder(
                           controller: _pageController,
                           itemCount: controllerMore.numRodadas,
@@ -78,7 +78,7 @@ class _MorePageState extends State<MorePage> {
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text(
-                          'Top 3 jogadores',
+                          'Top 3 equipes',
                           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                         ),
                       ),

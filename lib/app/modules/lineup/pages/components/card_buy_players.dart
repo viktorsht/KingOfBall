@@ -117,7 +117,7 @@ class CardBuyPlayers extends StatelessWidget {
                 //Modular.to.pushNamed(RoutesModulesApp.routerFootbolFielModule);
               },
               child: const Text(
-                "COMPRAR",
+                "Selecionar",
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold

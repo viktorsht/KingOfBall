@@ -8,7 +8,7 @@ class Pontuations extends StatelessWidget {
   final ColorsAppDefault colors;
   final double height;
   final double width;
-  final String? scoreValue ;
+  final String? scoreValue;
 
 
   const Pontuations({

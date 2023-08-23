@@ -18,7 +18,6 @@ class FootballFieldServices{
       headers: headers,
     );
     final jsonList = jsonDecode(response.body) as List;
-    //print(jsonList);
 
     return jsonList.map((json) => FootballFieldModel.fromJson(json)).toList();
 
@@ -36,7 +35,6 @@ class FootballFieldServices{
       headers: headers,
     );
     final jsonList = jsonDecode(response.body) as List;
-
     return jsonList.map((json) => CoachModel.fromJson(json)).toList();
 
   }  

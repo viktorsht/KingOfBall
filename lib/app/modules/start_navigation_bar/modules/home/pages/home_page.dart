@@ -31,9 +31,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = ColorsAppDefault();
     final scoreStore = Provider.of<ScoreStore>(context);
-    if(scoreModel.patrimony != null && scoreModel.patrimony!.isNotEmpty){
-      scoreStore.setScore(scoreModel.patrimony?[0].score);
-    }
+    scoreStore.setScore(scoreModel.patrimony);
     double width = MediaQuery.of(context).size.width * 0.9;
     return Scaffold(
       body: Column(
@@ -54,7 +52,7 @@ class HomePage extends StatelessWidget {
                 height: 100,
                 width: width,
                 scoreValue: scoreModel.patrimony != null && scoreModel.patrimony!.isNotEmpty
-                ? scoreModel.patrimony![0].score
+                ? scoreModel.patrimony
                 : "0.00"
               ),              
             ],

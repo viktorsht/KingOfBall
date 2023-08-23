@@ -20,7 +20,7 @@ import 'modules/start_navigation_bar/modules/drawer/drawer_module.dart';
 import 'modules/start_navigation_bar/modules/football_field/football_field_module.dart';
 import 'modules/start_navigation_bar/modules/more/more_module.dart';
 import 'modules/champion_ship/team_edition.dart';
-import 'modules/update_user/update_user_module.dart';
+import 'modules/update_team/update_user_module.dart';
 
 class AppModule extends Module {
   @override
@@ -61,7 +61,7 @@ class AppModule extends Module {
     ModuleRoute(RoutesModulesApp.routerMoreModule, module: MoreModule()),
     ModuleRoute(RoutesModulesApp.routerRegisterTeamEditionModule, module: TeamEditionModule()),
     ModuleRoute(RoutesModulesApp.routerLineUpModule, module: LineUpModule()),
-    ModuleRoute(RoutesModulesApp.routerUpdateUserModule, module: UpdateUserModule()),
+    ModuleRoute(RoutesModulesApp.routerUpdateUserModule, module: UpdateTeamModule()),
     ModuleRoute(RoutesModulesApp.routerFootbolFielModule, module: FootballFieldModule()),
     ModuleRoute(RoutesModulesApp.routerRankingModule, module: RankingModule()),
 

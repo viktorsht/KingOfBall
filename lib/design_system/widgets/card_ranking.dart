@@ -36,7 +36,7 @@ class CardRanking extends StatelessWidget {
     return Container(
       //padding: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-        color: color.whiteLigth,
+        color: color.white,
         borderRadius: BorderRadius.circular(20),
       ),
       height: 80,

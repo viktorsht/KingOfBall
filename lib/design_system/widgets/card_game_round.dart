@@ -40,7 +40,7 @@ class CardGameRound extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-          color: color.whiteLigth,
+          color: color.white,
           borderRadius: BorderRadius.circular(25),
         ),
         height: 70,

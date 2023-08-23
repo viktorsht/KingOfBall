@@ -15,6 +15,8 @@ import 'modules/start_navigation_bar/modules/football_field/stories/football_fie
 import 'modules/start_navigation_bar/modules/home/controller/card_profile_controller.dart';
 import 'modules/team_virtual/modules/register/controller/register_team_virtual_controller.dart';
 import 'modules/team_virtual/modules/register/stories/team_virtual_register_store.dart';
+import 'modules/update_team/controllers/update_team_controller.dart';
+import 'modules/update_team/stories/update_team_store.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -36,6 +38,8 @@ class AppWidget extends StatelessWidget {
         Provider<FootballFieldStore>(create: (_) => FootballFieldStore()),
         Provider<ScoreController>(create: (_) => ScoreController()),
         Provider<ScoreStore>(create: (_) => ScoreStore()),
+        Provider<UpdateTeamController>(create: (_) => UpdateTeamController()),
+        Provider<UpdateTeamStore>(create: (_) => UpdateTeamStore()),
       ],
       child: MaterialApp.router(
         title: 'Rei da Bola',

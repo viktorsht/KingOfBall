@@ -57,22 +57,6 @@ mixin _$FootballFieldController on FootballFieldControllerImpl, Store {
     });
   }
 
-  late final _$coachListAtom =
-      Atom(name: 'FootballFieldControllerImpl.coachList', context: context);
-
-  @override
-  List<CoachModel> get coachList {
-    _$coachListAtom.reportRead();
-    return super.coachList;
-  }
-
-  @override
-  set coachList(List<CoachModel> value) {
-    _$coachListAtom.reportWrite(value, super.coachList, () {
-      super.coachList = value;
-    });
-  }
-
   late final _$footballFieldServicesAtom = Atom(
       name: 'FootballFieldControllerImpl.footballFieldServices',
       context: context);
@@ -117,14 +101,6 @@ mixin _$FootballFieldController on FootballFieldControllerImpl, Store {
         .run(() => super.checkTeamScale(round, team));
   }
 
-  late final _$checkCoachAsyncAction =
-      AsyncAction('FootballFieldControllerImpl.checkCoach', context: context);
-
-  @override
-  Future<List<CoachModel>> checkCoach(String edition) {
-    return _$checkCoachAsyncAction.run(() => super.checkCoach(edition));
-  }
-
   late final _$initTeamScaleAsyncAction = AsyncAction(
       'FootballFieldControllerImpl.initTeamScale',
       context: context);
@@ -151,11 +127,11 @@ mixin _$FootballFieldController on FootballFieldControllerImpl, Store {
   }
 
   @override
-  void setCoachList(dynamic value) {
+  void setPlayerList(dynamic value) {
     final _$actionInfo = _$FootballFieldControllerImplActionController
-        .startAction(name: 'FootballFieldControllerImpl.setCoachList');
+        .startAction(name: 'FootballFieldControllerImpl.setPlayerList');
     try {
-      return super.setCoachList(value);
+      return super.setPlayerList(value);
     } finally {
       _$FootballFieldControllerImplActionController.endAction(_$actionInfo);
     }
@@ -178,7 +154,6 @@ mixin _$FootballFieldController on FootballFieldControllerImpl, Store {
 stateController: ${stateController},
 isChange: ${isChange},
 playerList: ${playerList},
-coachList: ${coachList},
 footballFieldServices: ${footballFieldServices},
 round: ${round}
     ''';

@@ -28,7 +28,7 @@ abstract class MoreControllerImpl with Store{
   TokenManager tokenManager = TokenManager();
 
   @action
-  void setNumRodadas() => numRodadas++;
+  void setNumRodadas(value) => numRodadas = value;
 
   @action
   void countRound(List<SoccerMatchModel> list){
@@ -36,7 +36,7 @@ abstract class MoreControllerImpl with Store{
     for (var i = 0; i < list.length; i++) {
       if(!rodada.contains(list[i].championshipRoundId)){
         rodada.add(list[i].championshipRoundId!);
-        setNumRodadas();
+        setNumRodadas(list[i].championshipRoundId);
       }
     }
   } 
@@ -58,12 +58,11 @@ abstract class MoreControllerImpl with Store{
 
   @action
   Future<void> initMore() async {
-    numRodadas = 0;
+    setNumRodadas(0);
     listSoccerMatch = await listaRodadas();
     setList(listSoccerMatch); // necessário estar aqui
     countRound(listSoccerMatch);
-    //setNumRodadas(listSoccerMatch.length);
-    //print(numRodadas);
+    //setNumRodadas(numRodadas/2);
   }
   
 }
