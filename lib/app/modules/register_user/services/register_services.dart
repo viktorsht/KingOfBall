@@ -14,7 +14,7 @@ class RegisterServices{
     final url = Uri.parse(RoutersApi.register);
     final response = await http.post(
       url,
-      headers: headersApi.headers,
+      headers: headersApi.headersSimple,
       body: jsonEncode(body.toJson()),
     );
 

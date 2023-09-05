@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PasswordLook extends StatelessWidget {
-  final Function() onPressed;
+  final VoidCallback onPressed;
   final IconData iconData;
 
   const PasswordLook({

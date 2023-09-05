@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 import 'package:rei_da_bola/app/modules/register_user/controllers/register_user_controller.dart';
-import 'package:rei_da_bola/app/modules/register_user/stories/register_store.dart';
+import 'package:rei_da_bola/app/modules/register_user/models/register_user_model.dart';
 import 'package:rei_da_bola/app/routes/routes_app.dart';
 import 'package:rei_da_bola/shared/api/state_response.dart';
 import 'package:rei_da_bola/app/modules/shared/components/password_look.dart';
@@ -15,21 +15,46 @@ import '../../../../../design_system/widgets/widget_form_field.dart';
 import '../../../../../design_system/widgets/widget_text_app.dart';
 import '../../../../design_system/widgets/widget_loading.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+
+  bool isViewPassword = false;
+  final formKey = GlobalKey<FormState>();
+  FormState get form => formKey.currentState!;
+  final colors = ColorsAppDefault();
+
+  void showSnackBar(String message, Color color, Color colorText){
+    final snackBar = SnackBar(
+      content: Text(message, style: TextStyle(color: colorText),),
+      duration: const Duration(seconds: 3),
+      backgroundColor: color,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   @override
   Widget build(BuildContext context) {
 
     final colors = ColorsAppDefault();
-    final store = Provider.of<RegisterStore>(context);
     final registerController = Provider.of<RegisterController>(context);
-    final formKey = GlobalKey<FormState>();
 
-    String msgUser = 'Ocorreu um erro inesperado, tente mais tarde';
+    final registerUserModel = RegisterUserModel.empty();
+
+    void setIsViewPassword(){
+      setState(() {
+        isViewPassword = !isViewPassword;
+      });
+    }
 
     return Form(
       key: formKey,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Scaffold(
         backgroundColor: colors.green,
         body: Center(
@@ -41,58 +66,64 @@ class RegisterPage extends StatelessWidget {
                 const SizedBox(height: 10,),
                 const WidgetTextApp(widgetText: 'Registrar',),
                 const SizedBox(height: 30,),
-                Observer(
-                  builder: (_) => WidgetFormField(
+                Padding(
+                  padding: const EdgeInsets.only(right: 16, left: 16),
+                  child: WidgetFormField(
                     hint: 'Nome',
-                    onChanged: store.setFirstNameUser,
                     prefix: Image.asset(IconsApp.user),
-                    obscure: false,
-                    enable: true,
+                    value: registerUserModel.firstName.toString(),
+                    validator: (v) => registerUserModel.firstName.validator(),
+                    onChanged: registerUserModel.setFirstName,
                   ),
                 ),
-                const SizedBox(height: 16,),
-                Observer(
-                  builder: (_) => WidgetFormField(
-                    hint: 'Sobrenome',
-                    onChanged: store.setLastNameUser,
-                    prefix: Image.asset(IconsApp.user),
-                    obscure: false,
-                    enable: true,
-                  ),
+                const SizedBox(height: 8,),
+                Padding(
+                  padding: const EdgeInsets.only(right: 16, left: 16),
+                  child: WidgetFormField(
+                      hint: 'Sobrenome',
+                      prefix: Image.asset(IconsApp.user),
+                      value: registerUserModel.lastName.toString(),
+                      validator:(v) => registerUserModel.lastName.validator(),
+                      onChanged: registerUserModel.setLastName,
+                    ),
                 ),
-                const SizedBox(height: 16,),
-                Observer(
-                  builder: (_) => WidgetFormField(
+                const SizedBox(height: 8,),
+                Padding(
+                  padding: const EdgeInsets.only(right: 16, left: 16),
+                  child: WidgetFormField(
                     hint: 'Nome de usuário',
-                    onChanged: store.setNick,
                     prefix: Image.asset(IconsApp.arroba),
-                    obscure: false,
-                    enable: true,
+                    value: registerUserModel.nick.toString(),
+                    validator: (v) => registerUserModel.lastName.validator(),
+                    onChanged: registerUserModel.setNick,
                   ),
                 ),
-                const SizedBox(height: 16,),
-                Observer(
-                  builder: (_) => WidgetFormField(
+                const SizedBox(height: 8,),
+                Padding(
+                  padding: const EdgeInsets.only(right: 16, left: 16),
+                  child: WidgetFormField(
                     hint: 'Email',
-                    onChanged: store.setEmail,
+                    keyboardType: TextInputType.emailAddress,
                     prefix: Image.asset(IconsApp.email),
-                    obscure: false,
-                    enable: true,
+                    value: registerUserModel.email.toString(),
+                    validator: (v) => registerUserModel.email.validator(),
+                    onChanged: registerUserModel.setEmail,
                   ),
                 ),
-                const SizedBox(height: 16,),
-                Observer(
-                  builder: (_) => WidgetFormField(
+                const SizedBox(height: 8,),
+                Padding(
+                  padding: const EdgeInsets.only(right: 16, left: 16),
+                  child: WidgetFormField(
                     hint: 'Senha',
-                    onChanged: store.setPassword,
+                    keyboardType: TextInputType.emailAddress,
                     prefix: Image.asset(IconsApp.password),
-                    obscure: !store.passwordLook,
-                    enable: true,
+                    obscure: !isViewPassword,
+                    value: registerUserModel.password.toString(),
+                    validator: (v) => registerUserModel.password.validator(),
+                    onChanged: registerUserModel.setPassword,
                     suffix: PasswordLook(
-                      onPressed: store.togglePasswordLook,
-                      iconData: store.passwordLook ? 
-                      Icons.remove_red_eye_outlined
-                      : Icons.remove_red_eye_rounded 
+                      onPressed: setIsViewPassword,
+                      iconData: isViewPassword ? Icons.remove_red_eye_outlined : Icons.remove_red_eye_rounded,
                     ),
                   ),
                 ),
@@ -100,64 +131,31 @@ class RegisterPage extends StatelessWidget {
                 Observer(
                   builder:(_) {
                     return registerController.stateController == StateResponse.loading
-                    ? const WidgetLoading(width: 5, thickness: 0.9)
+                    ? const WidgetLoading(width: 6, thickness: 1)
                     : TextButton(
                       onPressed: () async {
-                        if(!store.isValidFields){
-                          msgUser = 'Campos não preenchidos';
-                        }
-                        else if (!store.isEmailValid){
-                          msgUser = 'Email inválido ou não inserido';
-                        }
-                        else if (!store.isPasswordValid){
-                          msgUser = 'A senha inválida! Use mais de 8 dígitos, caractere especial, uma letra maiúscula e um número';
-                        }
-                        else if(store.isFormValid){
-                          await registerController.registerUser(
-                            store.firstNameUser, 
-                            store.lastNameUser, 
-                            store.nick, 
-                            store.email, 
-                            store.password);
+                        final valid = form.validate();
+                        if(valid){
+                          await registerController.registerUser(registerUserModel);
                           if(registerController.stateController == StateResponse.sucess){
-                            final snackBar = SnackBar(
-                              content: Text('Cadastro concluído com sucesso!', style: TextStyle(color: colors.black),),
-                              duration: const Duration(seconds: 3),
-                              backgroundColor: colors.white,
-                            );
-                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            showSnackBar('Cadastro concluído!', colors.white, colors.black);
                             await Future.delayed(const Duration(seconds: 3));
-                            //store.clearValues(); // talve possa me gerar aluns bugs se eu apagar ou não os campos e querer usar depois
-                            //registerController.cleanFiels();
                             Modular.to.navigate(RoutesModulesApp.routerLoginModule);
-                            //Modular.to.navigate(RoutesModulesApp.routerTeamVirtualModule);
                           }
                           else if(registerController.stateController == StateResponse.error){
-                            if(registerController.hasEmail && registerController.hasNick){
-                              msgUser = "Email e nome de usuário em uso";
+                            if(registerController.hasEmail == true && registerController.hasNick == true){
+                              showSnackBar('Email e nome de usuário em uso', colors.red, colors.white);
                             }
                             else if(registerController.hasNick == true){
-                              msgUser = 'Nome de usuário não disponível';
+                              showSnackBar('Nome de usuário não disponível', colors.red, colors.white);
                             }
                             else if(registerController.hasEmail == true){
-                              msgUser = 'Email já está em uso em outra conta';
+                              showSnackBar('Email já está em uso em outra conta', colors.red, colors.white);
                             }
                           }
                         }
-                        if(registerController.stateController != StateResponse.sucess){
-                          // quero evitar o bug de colocar o SnackBar de sucesso e depois de um erro qualquer 
-                          final snackBar = SnackBar(
-                            content: Text(
-                              msgUser,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16
-                              ),
-                            ),      
-                            duration: const Duration(seconds: 3),
-                            backgroundColor: colors.red,
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        else{
+                          showSnackBar('Campos inválidos', colors.red, colors.white);
                         }
                       },
                       child: Row(
@@ -167,7 +165,7 @@ class RegisterPage extends StatelessWidget {
                           const SizedBox(width: 10,),
                           Image.asset(ImagesApp.entrarWhite),
                         ],
-                      )
+                      ),
                     );
                   }
                 ),
@@ -180,7 +178,6 @@ class RegisterPage extends StatelessWidget {
                     }, 
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      //crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           "Já tenho conta: ",

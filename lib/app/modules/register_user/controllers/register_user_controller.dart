@@ -52,16 +52,17 @@ abstract class RegisterControllerImpl with Store{
   }
 
   @action
-  Future<RegisterUserSucessModel> registerUser(String firstNameUser, String lastNameUser, String nick, String email, String password) async {
+  Future<RegisterUserSucessModel> registerUser(RegisterUserModel body) async {
     stateController = StateResponse.loading;
     final registerService = RegisterServices();
     RegisterUserSucessModel retorno = RegisterUserSucessModel();
-    final body = RegisterUserModel(firstName: firstNameUser,lastName: lastNameUser,nick: nick,email: email,password: password);
+    //final body = RegisterUserModel(firstName: firstNameUser,lastName: lastNameUser,nick: nick,email: email,password: password);
     try {
       retorno = await registerService.postRegisterUserApi(body);
       stateController = StateResponse.sucess;
     } catch (e) {
       stateController = StateResponse.error;
+      print(e.toString());
       contarElementosNoJSON(e);
       //rethrow;
       //final erro = Errors.fromJson(e.toString());

@@ -14,7 +14,7 @@ class LoginServices{
     final response = await http.post(
       url,
       body: jsonEncode(body.toJson()),
-      headers: headersApi.headers,
+      headers: headersApi.headersSimple,
     );
     final json = jsonDecode(response.body);
     return json['token'];
@@ -26,7 +26,7 @@ class LoginServices{
     final response = await http.post(
       url,
       body: jsonEncode(body),
-      headers: headersApi.headers,
+      headers: headersApi.headersSimple,
     );
 
     final json = jsonDecode(response.body);
@@ -35,14 +35,7 @@ class LoginServices{
   
   Future<TeamGameModel> getCheckTeamVirtual(String token, String idUser) async {
     final url = Uri.parse('${RoutersApi.checkIdUser}$idUser');
-    final headers = {
-      'Authorization': 'Bearer $token', 
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    };
-
-    final response = await http.get(url, headers: headers);
-
+    final response = await http.get(url, headers: headersApi.headersToken(token));
     final json = jsonDecode(response.body);
     return TeamGameModel.fromJson(json[0]);
   }

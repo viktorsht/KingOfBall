@@ -1,18 +1,40 @@
+import 'package:rei_da_bola/app/value_object/email.dart';
+import 'package:rei_da_bola/app/value_object/password.dart';
+
 class LoginModel {
-  String? email;
-  String? password;
+  Email _email;
+  Password _password;
 
-  LoginModel({this.email, this.password});
+  Email get email => _email;
+  void setEmail(String value) => _email = Email(value);
 
-  LoginModel.fromJson(Map<String, dynamic> json) {
-    email = json['email'];
-    password = json['password'];
+  Password get password => _password;
+  void setPassword(String value) => _password = Password(value);
+
+  LoginModel({
+    required String email, 
+    required String password
+  }) :  _email = Email(email),
+        _password = Password(password);
+  
+  factory LoginModel.empty(){
+    return LoginModel(
+      email: '', 
+      password: ''
+    );
+  }
+
+  static LoginModel fromJson(Map<String, dynamic> json) {
+    return LoginModel(
+      email: json['email'],
+      password: json['password']
+    );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['email'] = email;
-    data['password'] = password;
+    data['email'] = email.toString();
+    data['password'] = password.toString();
     return data;
   }
 }

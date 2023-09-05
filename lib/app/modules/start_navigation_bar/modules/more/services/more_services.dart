@@ -13,7 +13,7 @@ class MoreServices{
     final url = Uri.parse('${RoutersApi.soccerMatch}?token=$token');
     final response = await http.get(
       url,
-      headers: headersApi.headers,
+      headers: headersApi.headersSimple,
     );
 
     final list = jsonDecode(response.body) as List;

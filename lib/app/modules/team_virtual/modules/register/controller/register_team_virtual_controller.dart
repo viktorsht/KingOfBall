@@ -56,9 +56,9 @@ abstract class RegisterTeamVirtualControllerImpl with Store{
   TokenManager tokenManager = TokenManager();
 
   @action
-  Future<RegisterTeamVirtualSucessModel> registerTeamVirtual(String name, String abb, int userId) async {
+  Future<RegisterTeamVirtualSucessModel> registerTeamVirtual(RegisterTeamVirtualModel body) async {
     stateController = StateResponse.loading;
-    final body = RegisterTeamVirtualModel(name: name,abb: abb,userId: userId);
+    //final body = RegisterTeamVirtualModel(name: name,abb: abb,userId: userId);
     RegisterTeamVirtualSucessModel retorno = RegisterTeamVirtualSucessModel();
     String? token = await tokenManager.getToken();
     if(token != null){
@@ -66,6 +66,7 @@ abstract class RegisterTeamVirtualControllerImpl with Store{
         retorno = await registerService.postRegisterTeamVirtualApi(body, token);
         stateController = StateResponse.sucess;
       } catch (e) {
+        print('Erro : : : $e');
         stateController = StateResponse.error;
         contarElementosNoJSON(e);
       }

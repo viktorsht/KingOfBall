@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:rei_da_bola/shared/api/api_headers.dart';
 
 import '../../../../../../shared/api/routes_api.dart';
 import '../../../../shared/models/error.dart';
@@ -8,18 +9,18 @@ import '../model/register_team_virtual_sucess_model.dart';
 
 class RegisterTeamVirtualServices{
 
+  final headersApi = DefaultHeadersApi();
+
   Future<RegisterTeamVirtualSucessModel> postRegisterTeamVirtualApi(RegisterTeamVirtualModel body, String token) async {
     final url = Uri.parse(RoutersApi.teamGame);
-    final headers = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Authorization': 'Bearer $token',
-  };
+    print(url);
+    print(body.toJson());
     final response = await http.post(
       url,
       body: jsonEncode(body.toJson()),
-      headers: headers,
+      headers: headersApi.headersToken(token),
     );
+    print(response.statusCode);
     if(response.statusCode == 201){
       final json = jsonDecode(response.body);
       return RegisterTeamVirtualSucessModel.fromJson(json);

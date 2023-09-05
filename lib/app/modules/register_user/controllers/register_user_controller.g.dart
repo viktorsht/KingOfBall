@@ -77,10 +77,8 @@ mixin _$RegisterController on RegisterControllerImpl, Store {
       AsyncAction('RegisterControllerImpl.registerUser', context: context);
 
   @override
-  Future<RegisterUserSucessModel> registerUser(String firstNameUser,
-      String lastNameUser, String nick, String email, String password) {
-    return _$registerUserAsyncAction.run(() =>
-        super.registerUser(firstNameUser, lastNameUser, nick, email, password));
+  Future<RegisterUserSucessModel> registerUser(RegisterUserModel body) {
+    return _$registerUserAsyncAction.run(() => super.registerUser(body));
   }
 
   late final _$RegisterControllerImplActionController =

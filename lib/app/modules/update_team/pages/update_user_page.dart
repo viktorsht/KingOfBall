@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
+import 'package:rei_da_bola/app/modules/team_virtual/modules/register/model/register_team_virtual_model.dart';
 import '../../../../design_system/colors/colors_app.dart';
 import '../../../../design_system/icons/icons_app.dart';
 import '../../../../design_system/images/images_app.dart';
@@ -24,7 +25,6 @@ class UpdateTeamPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final colors = ColorsAppDefault();
-    const double height = 12;
     final formKey = GlobalKey<FormState>();
 
     final store = Provider.of<UpdateTeamStore>(context);
@@ -40,6 +40,8 @@ class UpdateTeamPage extends StatelessWidget {
     teamAbbController.text = abb;
     store.setNameTeam(name);
     store.setAbbTeam(abb);
+
+    final registerTeamVirtualModel = RegisterTeamVirtualModel.empty();
 
     return Form(
       key: formKey,
@@ -71,28 +73,27 @@ class UpdateTeamPage extends StatelessWidget {
               children: [
                 const WidgetTextApp(widgetText: 'Meus Dados',),
                 const SizedBox(height: 30,),
-                Observer(
-                  builder: (_) => WidgetFormField(
-                    hint: 'Nome do time',
-                    controller: teamNameController,
-                    onChanged: store.setNameTeam,
-                    prefix: Image.asset(IconsApp.team),
-                    obscure: false,
-                    enable: true,
-                  ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 16, left: 16),
+                  child: WidgetFormField(
+                      hint: 'Nome do time',
+                      prefix: Image.asset(IconsApp.team),
+                      value: registerTeamVirtualModel.name.toString(),
+                      validator: (v) => registerTeamVirtualModel.name.validator(),
+                      onChanged: registerTeamVirtualModel.setName,
+                    ),
                 ),
-                const SizedBox(height: height,),
-                Observer(
-                  builder: (_) => WidgetFormField(
+                const SizedBox(height: 8,),
+                Padding(
+                  padding: const EdgeInsets.only(right: 16, left: 16),
+                  child: WidgetFormField(
                     hint: 'Abreviação do time',
-                    controller: teamAbbController,
-                    onChanged: store.setAbbTeam,
                     prefix: Image.asset(IconsApp.team),
-                    obscure: false,
-                    enable: true,
+                    value: registerTeamVirtualModel.abb.toString(),
+                    validator: (v) => registerTeamVirtualModel.abb.validator(),
+                    onChanged: registerTeamVirtualModel.setAbreviacaoTeam,
                   ),
                 ),
-                const SizedBox(height: height,),
                 Observer(
                   builder:(_) {
                     return updateTeamController.stateController == StateResponse.loading

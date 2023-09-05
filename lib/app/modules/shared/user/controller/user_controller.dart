@@ -45,7 +45,6 @@ abstract class UserControllerImpl with Store{
 
   @action
   Future<TeamGameModel> checkTeamVirtual(String token, String id) async {
-    //List<TeamGameModel> team = [];
     TeamGameModel retorno = TeamGameModel();
     stateTeamController = StateResponse.loading;
     try {

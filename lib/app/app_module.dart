@@ -37,7 +37,7 @@ class AppModule extends Module {
     ChildRoute(
       RoutesModulesApp.routerRootModule,
       child: (_, __) => FutureBuilder<bool>(
-        future: Modular.get<AuthController>().checkTokenValidity(),
+        future: Modular.get<AuthController>().checkAuthenticated(),
         builder: (_, snapshot){
           return snapshot.connectionState == ConnectionState.waiting ? const LoadingApp() : snapshot.hasData 
           ? snapshot.data! ? const StartNavigationBarPage() : const StartInfoPage()

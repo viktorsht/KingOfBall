@@ -130,9 +130,9 @@ mixin _$RegisterTeamVirtualController
 
   @override
   Future<RegisterTeamVirtualSucessModel> registerTeamVirtual(
-      String name, String abb, int userId) {
+      RegisterTeamVirtualModel body) {
     return _$registerTeamVirtualAsyncAction
-        .run(() => super.registerTeamVirtual(name, abb, userId));
+        .run(() => super.registerTeamVirtual(body));
   }
 
   late final _$RegisterTeamVirtualControllerImplActionController =

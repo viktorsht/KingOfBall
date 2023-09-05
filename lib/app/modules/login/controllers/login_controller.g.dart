@@ -113,29 +113,44 @@ mixin _$LoginController on LoginControllerImpl, Store {
     });
   }
 
+  late final _$tokenManagerAtom =
+      Atom(name: 'LoginControllerImpl.tokenManager', context: context);
+
+  @override
+  TokenManager get tokenManager {
+    _$tokenManagerAtom.reportRead();
+    return super.tokenManager;
+  }
+
+  @override
+  set tokenManager(TokenManager value) {
+    _$tokenManagerAtom.reportWrite(value, super.tokenManager, () {
+      super.tokenManager = value;
+    });
+  }
+
   late final _$loginAsyncAction =
       AsyncAction('LoginControllerImpl.login', context: context);
 
   @override
-  Future<String> login(String email, String password) {
-    return _$loginAsyncAction.run(() => super.login(email, password));
+  Future<void> login(LoginModel body) {
+    return _$loginAsyncAction.run(() => super.login(body));
   }
 
   late final _$userIdMeAsyncAction =
       AsyncAction('LoginControllerImpl.userIdMe', context: context);
 
   @override
-  Future<String> userIdMe(String token) {
-    return _$userIdMeAsyncAction.run(() => super.userIdMe(token));
+  Future<void> userIdMe() {
+    return _$userIdMeAsyncAction.run(() => super.userIdMe());
   }
 
   late final _$checkTeamVirtualAsyncAction =
       AsyncAction('LoginControllerImpl.checkTeamVirtual', context: context);
 
   @override
-  Future<TeamGameModel> checkTeamVirtual(String token, String id) {
-    return _$checkTeamVirtualAsyncAction
-        .run(() => super.checkTeamVirtual(token, id));
+  Future<TeamGameModel> checkTeamVirtual() {
+    return _$checkTeamVirtualAsyncAction.run(() => super.checkTeamVirtual());
   }
 
   late final _$LoginControllerImplActionController =
@@ -161,6 +176,7 @@ stateMeController: ${stateMeController},
 token: ${token},
 idUser: ${idUser},
 loginService: ${loginService},
+tokenManager: ${tokenManager},
 isOkLoading: ${isOkLoading}
     ''';
   }

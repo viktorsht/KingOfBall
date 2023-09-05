@@ -17,7 +17,7 @@ class CardProfileServices{
     final response = await http.post(
       url,
       body: jsonEncode(body),
-      headers: headersApi.headers,
+      headers: headersApi.headersSimple,
     );
 
     final json = jsonDecode(response.body);
@@ -26,14 +26,7 @@ class CardProfileServices{
 
   Future<TeamGameModel> getInfoProfileUser(String token) async {
     final url = Uri.parse(RoutersApi.teamGame);
-    final headers = {
-      'Authorization': 'Bearer $token', 
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    };
-
-    final response = await http.get(url, headers: headers);
-
+    final response = await http.get(url, headers: headersApi.headersToken(token));
     final json = jsonDecode(response.body);
     return TeamGameModel.fromJson(json[0]);
   }
