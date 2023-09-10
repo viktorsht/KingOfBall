@@ -15,11 +15,26 @@ import '../controllers/update_team_controller.dart';
 import '../models/team_game_update.dart';
 import '../stories/update_team_store.dart';
 
-class UpdateTeamPage extends StatelessWidget {
+class UpdateTeamPage extends StatefulWidget {
   final String team;
   final String name;
   final String abb;
   const UpdateTeamPage({super.key, required this.team, required this.name, required this.abb});
+
+  @override
+  State<UpdateTeamPage> createState() => _UpdateTeamPageState();
+}
+
+class _UpdateTeamPageState extends State<UpdateTeamPage> {
+
+  void showSnackBar(String message, Color color, Color colorText){
+    final snackBar = SnackBar(
+      content: Text(message, style: TextStyle(color: colorText),),
+      duration: const Duration(seconds: 3),
+      backgroundColor: color,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +48,12 @@ class UpdateTeamPage extends StatelessWidget {
     final TextEditingController teamAbbController = TextEditingController();
 
 
-    String msgUser = 'Ocorreu um erro inesperado, tente mais tarde';
     String msgButton = 'Confirmar';
 
-    teamNameController.text = name;
-    teamAbbController.text = abb;
-    store.setNameTeam(name);
-    store.setAbbTeam(abb);
+    teamNameController.text = widget.name;
+    teamAbbController.text = widget.abb;
+    store.setNameTeam(widget.name);
+    store.setAbbTeam(widget.abb);
 
     final registerTeamVirtualModel = RegisterTeamVirtualModel.empty();
 
@@ -101,7 +115,6 @@ class UpdateTeamPage extends StatelessWidget {
                     : TextButton(
                       onPressed: () async {
                         if(!store.isFormValid){
-                          msgUser = 'Campos não preenchidos';
                         }
                         
                         else if(store.isFormValid){
@@ -110,44 +123,29 @@ class UpdateTeamPage extends StatelessWidget {
                           }
                           else{
                             String sMethod = "patch";
-                            if(store.nameTeam != name && store.abbTeam != abb){
+                            if(store.nameTeam != widget.name && store.abbTeam != widget.abb){
                               final body = TeamGameUpdate(name: store.nameTeam, abb: store.abbTeam, sMethod: sMethod);
-                              await updateTeamController.updateTeam(team, body);
+                              await updateTeamController.updateTeam(widget.team, body);
                             }
-                            else if(store.nameTeam == name && store.abbTeam != abb){
+                            else if(store.nameTeam == widget.name && store.abbTeam != widget.abb){
                               final body = TeamGameUpdate(abb: store.abbTeam, sMethod: sMethod);
-                              await updateTeamController.updateTeam(team, body);
+                              await updateTeamController.updateTeam(widget.team, body);
                             }
-                            else if (store.nameTeam != name && store.abbTeam == abb){
+                            else if (store.nameTeam != widget.name && store.abbTeam == widget.abb){
                               final body = TeamGameUpdate(name: store.nameTeam, sMethod: sMethod);
-                              await updateTeamController.updateTeam(team, body);
+                              await updateTeamController.updateTeam(widget.team, body);
                             }
                             if(updateTeamController.stateController == StateResponse.sucess){
-                              final snackBar = SnackBar(
-                                content: Text('Cadastro concluído com sucesso!', style: TextStyle(color: colors.black),),
-                                duration: const Duration(seconds: 3),
-                                backgroundColor: colors.white,
-                              );
-                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              showSnackBar('Cadastro concluído com sucesso!', colors.white, colors.black);
                               //Modular.to.navigate(RoutesModulesApp.routerTeamVirtualModule);
                             }
                             updateTeamController.stateController = StateResponse.start;
                           }
                         }
                         if(updateTeamController.stateController != StateResponse.sucess){
-                          // quero evitar o bug de colocar o SnackBar de sucesso e depois de um erro qualquer 
-                          final snackBar = SnackBar(
-                            content: Text(
-                              msgUser,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16
-                              ),
-                            ),      
-                            duration: const Duration(seconds: 3),
-                            backgroundColor: colors.red,
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          // quero evitar o bug de colocar o SnackBar de sucesso e depois de um erro qualquer
+                          showSnackBar('Cadastro concluído com sucesso!', colors.red, colors.white);
+                          
                         }
                         
                       },

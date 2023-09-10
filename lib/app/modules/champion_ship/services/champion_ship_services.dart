@@ -1,41 +1,34 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import '../../../../../../shared/api/routes_api.dart';
+import '../../../../shared/api/api_headers.dart';
+import '../../../../shared/auth/auth_controller.dart';
+import '../../../../shared/client/http/client_http.dart';
 import '../models/champion_ship_models.dart';
 import '../models/team_game_edition_model.dart';
 import '../models/team_game_edition_sucess_model.dart';
 
 class ChampionShipServices{
 
-  Future<List<ChampionShipEditionModel>> getChampionShipServices(String token) async {
-    final url = Uri.parse('${RoutersApi.championshipEdition}?token=$token');
-    final headers = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
-    };
-    final response = await http.get(
-      url,
-      headers: headers,
-    );
+  final headersApi = DefaultHeadersApi();
+  final httpService = HttpService();
+  final auth = AuthController();
 
+  Future<List<ChampionShipEditionModel>> getChampionShipServices(String token) async {
+    final response = await httpService.get(RoutersApi.championshipEdition, headersApi.headersToken(token));
+    if(response.statusCode == 401){
+      final data = await auth.refreshToken();
+      if(data != null) getChampionShipServices(data);
+    }
     final list = jsonDecode(response.body) as List;
     return list.map((json) => ChampionShipEditionModel.fromJson(json)).toList();
   } 
   
   Future<TeamGameEditionSucessModel> postTeamGameEdition(String token, TeamGameEditionModel body) async {
-    final url = Uri.parse(RoutersApi.teamGameEdition);
-    final headers = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
-    };
-    final response = await http.post(
-      url,
-      headers: headers,
-      body: jsonEncode(body)
-    );
-
+    final response = await httpService.post(RoutersApi.teamGameEdition, body.toJson(),headersApi.headersToken(token));
+    if(response.statusCode == 401){
+      final data = await auth.refreshToken();
+      if(data != null) postTeamGameEdition(data, body);
+    }
     final json = jsonDecode(response.body);
     return TeamGameEditionSucessModel.fromJson(json);
   }

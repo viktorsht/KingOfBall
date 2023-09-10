@@ -5,3 +5,10 @@ class StateResponse{
   static String start = 'start';
 
 }
+
+abstract class StateRequest{}
+
+class LoadingState implements StateRequest{}
+class SucessState implements StateRequest{}
+class ErrorState implements StateRequest{}
+class InitialState implements StateRequest{}

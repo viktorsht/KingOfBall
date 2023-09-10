@@ -11,16 +11,15 @@ part 'login_controller.g.dart';
 class LoginController = LoginControllerImpl with _$LoginController;
 
 abstract class LoginControllerImpl with Store{
-
   
   @observable
-  String stateController = StateResponse.start;
+  StateRequest stateController = InitialState();
 
   @observable
-  String stateTeamController = StateResponse.start;
+  StateRequest stateTeamController = InitialState();
 
   @observable
-  String stateMeController = StateResponse.start;
+  StateRequest stateMeController = InitialState();
 
   @observable
   String token = '';
@@ -29,7 +28,7 @@ abstract class LoginControllerImpl with Store{
   String idUser = '';
 
   @computed
-  bool get isOkLoading => stateController == StateResponse.loading || stateTeamController == StateResponse.loading;
+  bool get isOkLoading => stateController == LoadingState() || stateTeamController == LoadingState();
 
   @observable
   LoginServices loginService = LoginServices();
@@ -38,48 +37,37 @@ abstract class LoginControllerImpl with Store{
   TokenManager tokenManager = TokenManager();
 
   @action
-  void setStateController(String value) => stateController = value;
-
-  @action
   Future<void> login(LoginModel body) async {
-    stateController = StateResponse.loading;
-    //final body = LoginModel(email: email, password: password);
+    stateController = LoadingState();
     try {
       token = await loginService.postLoginApi(body);
       await tokenManager.setToken(token);
-      //print(token);
-      stateController = StateResponse.sucess;
+      stateController = SucessState();
     } catch (e) {
-      stateController = StateResponse.error;
-      token = '';
+      stateController = ErrorState();
     }
-    //return token;
   }
 
   @action
   Future<void> userIdMe() async {
-    stateMeController = StateResponse.loading;
+    stateMeController = LoadingState();
     try {
-      print(token);
       idUser = (await loginService.checkIdUser(token)).toString();
-      print(idUser);
-      stateMeController = StateResponse.sucess;
+      stateMeController = SucessState();
     } catch (e) {
-      stateMeController = StateResponse.error;
+      stateMeController = ErrorState();
     }
-    //return idUser;
   }
 
   @action
   Future<TeamGameModel> checkTeamVirtual() async {
     TeamGameModel team = TeamGameModel();
-    stateTeamController = StateResponse.loading;
+    stateTeamController = LoadingState();
     try {
       team = await loginService.getCheckTeamVirtual(token, idUser);
-      print(team.id);
-      stateTeamController = StateResponse.sucess;
+      stateTeamController = SucessState();
     } catch (e) {
-      stateTeamController = StateResponse.error;
+      stateTeamController = ErrorState();
     }
     return team;
   }

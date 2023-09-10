@@ -21,13 +21,13 @@ mixin _$LoginController on LoginControllerImpl, Store {
       Atom(name: 'LoginControllerImpl.stateController', context: context);
 
   @override
-  String get stateController {
+  StateRequest get stateController {
     _$stateControllerAtom.reportRead();
     return super.stateController;
   }
 
   @override
-  set stateController(String value) {
+  set stateController(StateRequest value) {
     _$stateControllerAtom.reportWrite(value, super.stateController, () {
       super.stateController = value;
     });
@@ -37,13 +37,13 @@ mixin _$LoginController on LoginControllerImpl, Store {
       Atom(name: 'LoginControllerImpl.stateTeamController', context: context);
 
   @override
-  String get stateTeamController {
+  StateRequest get stateTeamController {
     _$stateTeamControllerAtom.reportRead();
     return super.stateTeamController;
   }
 
   @override
-  set stateTeamController(String value) {
+  set stateTeamController(StateRequest value) {
     _$stateTeamControllerAtom.reportWrite(value, super.stateTeamController, () {
       super.stateTeamController = value;
     });
@@ -53,13 +53,13 @@ mixin _$LoginController on LoginControllerImpl, Store {
       Atom(name: 'LoginControllerImpl.stateMeController', context: context);
 
   @override
-  String get stateMeController {
+  StateRequest get stateMeController {
     _$stateMeControllerAtom.reportRead();
     return super.stateMeController;
   }
 
   @override
-  set stateMeController(String value) {
+  set stateMeController(StateRequest value) {
     _$stateMeControllerAtom.reportWrite(value, super.stateMeController, () {
       super.stateMeController = value;
     });
@@ -151,20 +151,6 @@ mixin _$LoginController on LoginControllerImpl, Store {
   @override
   Future<TeamGameModel> checkTeamVirtual() {
     return _$checkTeamVirtualAsyncAction.run(() => super.checkTeamVirtual());
-  }
-
-  late final _$LoginControllerImplActionController =
-      ActionController(name: 'LoginControllerImpl', context: context);
-
-  @override
-  void setStateController(String value) {
-    final _$actionInfo = _$LoginControllerImplActionController.startAction(
-        name: 'LoginControllerImpl.setStateController');
-    try {
-      return super.setStateController(value);
-    } finally {
-      _$LoginControllerImplActionController.endAction(_$actionInfo);
-    }
   }
 
   @override

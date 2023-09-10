@@ -27,8 +27,19 @@ class FootballFieldPage extends StatefulWidget {
 }
 
 class _FootballFieldPageState extends State<FootballFieldPage> {
+
+  void showSnackBar(String message, Color color, Color colorText){
+    final snackBar = SnackBar(
+      content: Text(message, style: TextStyle(color: colorText),),
+      duration: const Duration(seconds: 3),
+      backgroundColor: color,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   final footballController = FootballFieldController();
   Future<List<FootballFieldModel>>? listAux;
+
   @override
   void initState() {
     super.initState();
@@ -72,7 +83,7 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
           DateTimeCard(
             colors: colors,
             dateTime: calculateRemainingTimeString(configController.getDateTime()),
-          ),/*
+          ),
           Observer(
             builder: (context) {
               scoreStore.clearScore();
@@ -95,7 +106,8 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
                   ),
               );
             }
-          ),*/
+          ),
+          /*
           Observer(
             builder: (context) {
               return FutureBuilder(
@@ -141,7 +153,7 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
                 },
               );
             }
-          ),
+          ),*/
           Observer(
             builder: (context) => lineupController.stateController == StateResponse.loading
             ? Center(child: WidgetLoading(color: colors.green, width: 6, thickness: 1))
@@ -172,21 +184,11 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
                 if(list.length >= 11){
                   await lineupController.addListPlayerApi(list,widget.round, widget.team, status);
                   if(lineupController.stateController == StateResponse.sucess){
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: const Text('Sua escalação foi enviada'),
-                        backgroundColor: colors.green,
-                      ),
-                    );
+                    showSnackBar('Sua escalação foi enviada', colors.green, colors.white);
                   }  
                 }
                 else{
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: const Text('Sua escalação ainda está incompleta'),
-                        backgroundColor: colors.red,
-                      ),
-                    );
+                  showSnackBar('Sua escalação ainda está incompleta', colors.red, colors.white);
                 }
               }, 
               child: const 

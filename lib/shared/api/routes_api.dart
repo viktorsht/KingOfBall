@@ -4,7 +4,7 @@ class RoutersApi{
   
   static String login = '${Api.urlApi}login';
   static String register = '${Api.urlApi}register';
-  static String refesh = '${Api.urlApi}refresh';
+  static String refresh = '${Api.urlApi}refresh';
   static String me = '${Api.urlApi}me';
   static String soccerMatch = '${Api.urlApi}soccerMatch';
   static String teamGame = '${Api.urlApi}teamGame';

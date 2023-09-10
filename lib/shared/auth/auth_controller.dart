@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:rei_da_bola/shared/api/api_headers.dart';
 import 'package:rei_da_bola/shared/api/routes_api.dart';
 import 'package:rei_da_bola/shared/auth/token_model.dart';
@@ -15,7 +17,8 @@ class AuthController {
     if(storedToken != null){
       isAuthenticated = await verifyTokenValidity(storedToken);
       if(isAuthenticated == false){
-        isAuthenticated = await refreshToken(storedToken);
+        final token = await refreshToken();
+        if(token != null)isAuthenticated = true;
       }
     }
     return isAuthenticated;
@@ -24,21 +27,30 @@ class AuthController {
   Future<bool> verifyTokenValidity(String token) async {
     final body = TokenModel(token: token);
     try {
-      await httpService.post(RoutersApi.me, body.toJson(), headersApi.headersSimple);
-      return true;
+      final response = await httpService.post(RoutersApi.me, body.toJson(), headersApi.headersSimple);
+      if(response.statusCode == 200) return true;
+      return false;
     } catch (e) {
       return false;
     }
   }
 
-  Future<bool> refreshToken(String token) async {
-    final body = TokenModel(token: token);
-    try {
-      final data = await httpService.post(RoutersApi.refesh, body.toJson(), headersApi.headersSimple);
-      await _tokenManager.setToken(data['token']);
-      return true;
-    } catch (e) {
-      return false;
+  Future<String?> refreshToken() async {
+    String? token = await _tokenManager.getToken();
+    if(token != null){
+      final body = TokenModel(token: token);
+      try {
+        final response = await httpService.post(RoutersApi.refresh, body.toJson(), headersApi.headersSimple);
+        if(response.statusCode == 200){
+          final data = jsonDecode(response.body);
+          await _tokenManager.setToken(data['token']);
+          return data['token'];
+        }
+        return null;
+      } catch (e) {
+        return null;
+      }
     }
+    return null;
   }
 }

@@ -1,7 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:rei_da_bola/app/modules/shared/models/error.dart';
 import 'package:rei_da_bola/app/modules/register_user/models/register_user_model.dart';
-import 'package:rei_da_bola/app/modules/register_user/models/register_user_sucess_model.dart';
 
 import '../../../../shared/api/state_response.dart';
 import '../services/register_services.dart';
@@ -14,10 +13,7 @@ abstract class RegisterControllerImpl with Store{
 
   
   @observable
-  String stateController = StateResponse.start;
-
-  @action
-  void setStateController(String value) => stateController = value;
+  StateRequest stateController = InitialState();
 
   @observable
   bool hasEmail = false;
@@ -30,7 +26,7 @@ abstract class RegisterControllerImpl with Store{
 
   @action
   void cleanFiels(){
-    stateController = StateResponse.start;
+    stateController = InitialState();
     hasEmail = false;
     hasNick = false;
   }
@@ -39,12 +35,9 @@ abstract class RegisterControllerImpl with Store{
   void contarElementosNoJSON(dynamic exception) {
     if (exception is ErrorRegisterExceptionModel) {
       Map<String, dynamic> errors = exception.errors;
-
-
       if (errors.containsKey('nick')) {
         hasNick = true;
       }
-
       if (errors.containsKey('email')) {
         hasEmail = true;
       }
@@ -52,21 +45,15 @@ abstract class RegisterControllerImpl with Store{
   }
 
   @action
-  Future<RegisterUserSucessModel> registerUser(RegisterUserModel body) async {
-    stateController = StateResponse.loading;
+  Future<void> registerUser(RegisterUserModel body) async {
+    stateController = LoadingState();
     final registerService = RegisterServices();
-    RegisterUserSucessModel retorno = RegisterUserSucessModel();
-    //final body = RegisterUserModel(firstName: firstNameUser,lastName: lastNameUser,nick: nick,email: email,password: password);
     try {
-      retorno = await registerService.postRegisterUserApi(body);
-      stateController = StateResponse.sucess;
+      await registerService.postRegisterUserApi(body);
+      stateController = SucessState();
     } catch (e) {
-      stateController = StateResponse.error;
-      print(e.toString());
+      stateController = ErrorState();
       contarElementosNoJSON(e);
-      //rethrow;
-      //final erro = Errors.fromJson(e.toString());
     }
-    return retorno;
   }
 }

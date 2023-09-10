@@ -12,18 +12,17 @@ import '../../../../shared/config/config_controller.dart';
 
 class DrawerPage extends StatelessWidget {
   
-  final ColorsAppDefault colors;
   final UserModel? user;
   
   const DrawerPage({
     super.key, 
-    required this.colors, 
     required this.user
   });
 
   @override
   Widget build(BuildContext context) {
     final exitApp = ExitApp();
+    final colors = ColorsAppDefault();
     final configController = Provider.of<ConfigController>(context);
     return Drawer(
       backgroundColor: colors.whiteLigth,

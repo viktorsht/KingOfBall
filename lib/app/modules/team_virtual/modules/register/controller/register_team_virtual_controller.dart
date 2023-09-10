@@ -66,7 +66,6 @@ abstract class RegisterTeamVirtualControllerImpl with Store{
         retorno = await registerService.postRegisterTeamVirtualApi(body, token);
         stateController = StateResponse.sucess;
       } catch (e) {
-        print('Erro : : : $e');
         stateController = StateResponse.error;
         contarElementosNoJSON(e);
       }

@@ -13,13 +13,13 @@ mixin _$RegisterController on RegisterControllerImpl, Store {
       Atom(name: 'RegisterControllerImpl.stateController', context: context);
 
   @override
-  String get stateController {
+  StateRequest get stateController {
     _$stateControllerAtom.reportRead();
     return super.stateController;
   }
 
   @override
-  set stateController(String value) {
+  set stateController(StateRequest value) {
     _$stateControllerAtom.reportWrite(value, super.stateController, () {
       super.stateController = value;
     });
@@ -77,23 +77,12 @@ mixin _$RegisterController on RegisterControllerImpl, Store {
       AsyncAction('RegisterControllerImpl.registerUser', context: context);
 
   @override
-  Future<RegisterUserSucessModel> registerUser(RegisterUserModel body) {
+  Future<void> registerUser(RegisterUserModel body) {
     return _$registerUserAsyncAction.run(() => super.registerUser(body));
   }
 
   late final _$RegisterControllerImplActionController =
       ActionController(name: 'RegisterControllerImpl', context: context);
-
-  @override
-  void setStateController(String value) {
-    final _$actionInfo = _$RegisterControllerImplActionController.startAction(
-        name: 'RegisterControllerImpl.setStateController');
-    try {
-      return super.setStateController(value);
-    } finally {
-      _$RegisterControllerImplActionController.endAction(_$actionInfo);
-    }
-  }
 
   @override
   void cleanFiels() {

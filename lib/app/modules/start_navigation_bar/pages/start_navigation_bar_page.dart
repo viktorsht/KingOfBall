@@ -74,10 +74,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
               ),
             ),
             drawer: Observer(
-              builder: (context) => DrawerPage(
-                colors: colors,
-                user: userController.team.user!, // pode dar problema por ser não nulo - trocar por startController.user
-              ),
+              builder: (context) => DrawerPage(user: userController.team.user!),
             ),
             body: Observer(
               builder: (context) {
@@ -122,10 +119,7 @@ class _StartNavigationBarPageState extends State<StartNavigationBarPage> {
             bottomNavigationBar: AnimatedBuilder(
               animation: pageViewController,
               builder: (context, snapshot) {
-                return NavigatorComponent(
-                  color: colors,
-                  pageController: pageViewController,
-                );
+                return NavigatorComponent(pageController: pageViewController);
               }
             )
           );

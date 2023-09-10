@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final loginController = Provider.of<LoginController>(context);
+    final controller = Provider.of<LoginController>(context);
     void setIsViewPassword(){
       setState(() {
         isViewPassword = !isViewPassword;
@@ -98,30 +98,30 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 16,),
                 Observer(
                   builder: (_){
-                    return loginController.isOkLoading
+                    return controller.stateController is LoadingState || controller.stateTeamController is LoadingState
                     ? const WidgetLoading(width: 6, thickness: 1) 
                     : TextButton(
                       onPressed: () async {
                         final valid = form.validate();
                         if(valid) {
-                          await loginController.login(user);
-                          if(loginController.stateController == StateResponse.sucess){
-                            await loginController.userIdMe();
-                            final team = await loginController.checkTeamVirtual();
-                            if(loginController.stateTeamController == StateResponse.sucess){
+                          await controller.login(user);
+                          if(controller.stateController is SucessState){
+                            await controller.userIdMe();
+                            final team = await controller.checkTeamVirtual();
+                            if(controller.stateTeamController is SucessState){
                               final cardHome = CardProfileController();
                               cardHome.setTeamGameModel(team);
                               Modular.to.navigate(RoutesModulesApp.routerStartNavigationBarModule);
                             }
-                            else if(loginController.stateTeamController != StateResponse.sucess){
+                            else if (controller.stateTeamController is ErrorState){
                               Modular.to.navigate(
                                 RoutesModulesApp.routerTeamVirtualModule, 
-                                arguments: int.parse(loginController.idUser)
+                                arguments: int.parse(controller.idUser)
                               );
                             }
                           }
                           else{
-                            showSnackBar('Email ou senha incorretos');
+                            showSnackBar('${controller.stateController} - Email ou senha incorretos');
                           }
                         }
                         else{

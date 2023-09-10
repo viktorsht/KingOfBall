@@ -42,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
 
     final colors = ColorsAppDefault();
-    final registerController = Provider.of<RegisterController>(context);
+    final controller = Provider.of<RegisterController>(context);
 
     final registerUserModel = RegisterUserModel.empty();
 
@@ -130,26 +130,26 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 16,),
                 Observer(
                   builder:(_) {
-                    return registerController.stateController == StateResponse.loading
+                    return controller.stateController is LoadingState
                     ? const WidgetLoading(width: 6, thickness: 1)
                     : TextButton(
                       onPressed: () async {
                         final valid = form.validate();
                         if(valid){
-                          await registerController.registerUser(registerUserModel);
-                          if(registerController.stateController == StateResponse.sucess){
+                          await controller.registerUser(registerUserModel);
+                          if(controller.stateController is SucessState){
                             showSnackBar('Cadastro concluído!', colors.white, colors.black);
                             await Future.delayed(const Duration(seconds: 3));
                             Modular.to.navigate(RoutesModulesApp.routerLoginModule);
                           }
-                          else if(registerController.stateController == StateResponse.error){
-                            if(registerController.hasEmail == true && registerController.hasNick == true){
+                          else if(controller.stateController is ErrorState){
+                            if(controller.hasEmail == true && controller.hasNick == true){
                               showSnackBar('Email e nome de usuário em uso', colors.red, colors.white);
                             }
-                            else if(registerController.hasNick == true){
+                            else if(controller.hasNick == true){
                               showSnackBar('Nome de usuário não disponível', colors.red, colors.white);
                             }
-                            else if(registerController.hasEmail == true){
+                            else if(controller.hasEmail == true){
                               showSnackBar('Email já está em uso em outra conta', colors.red, colors.white);
                             }
                           }

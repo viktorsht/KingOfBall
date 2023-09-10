@@ -4,29 +4,28 @@ import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
 class NavigatorComponent extends StatelessWidget {
 
-  final ColorsAppDefault color;
   final PageController pageController;
   
   const NavigatorComponent({
     super.key, 
-    required this.color, 
     required this.pageController
   });
 
   @override
   Widget build(BuildContext context) {
+    final colors = ColorsAppDefault();
     return Observer(
       builder: (_) => Theme(
         data: Theme.of(context).copyWith(
-          canvasColor: color.green
+          canvasColor: colors.green
         ),
         child: BottomNavigationBar(
           //backgroundColor: color.green,
           type: BottomNavigationBarType.fixed,
           currentIndex: pageController.page?.round() ?? 0,
           onTap: (index) => pageController.jumpToPage(index),
-          selectedItemColor: color.white,
-          unselectedItemColor: color.white54,
+          selectedItemColor: colors.white,
+          unselectedItemColor: colors.white54,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

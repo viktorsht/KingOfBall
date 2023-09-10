@@ -1,7 +1,7 @@
 name: rei_da_bola
 description: A new Flutter project.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev cupertino_icons: ^1.0.2
 
 version: 1.7.0
 
@@ -12,7 +12,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
   intl: ^0.18.1
   flutter_modular: ^5.0.3
   mobx: ^2.2.0
@@ -20,6 +19,7 @@ dependencies:
   provider: ^6.0.5
   http: ^0.13.6
   shared_preferences: ^2.2.0
+  flutter_secure_storage: ^9.0.0
   flutter_native_splash: ^2.3.2
   flutter_launcher_icons: ^0.13.1
 

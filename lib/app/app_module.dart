@@ -34,6 +34,7 @@ class AppModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
+    
     ChildRoute(
       RoutesModulesApp.routerRootModule,
       child: (_, __) => FutureBuilder<bool>(
@@ -49,9 +50,9 @@ class AppModule extends Module {
 /*
     ChildRoute(
       RoutesModulesApp.routerRootModule, 
-      child: (_, __) => const UpdateUserPage(), 
-    ),
-*/
+      child: (_, __) => const StartInfoPage(), 
+    ),*/
+
     ModuleRoute(RoutesModulesApp.routerLoginModule, module: LoginModule()),
     ModuleRoute(RoutesModulesApp.routerRegisterModule, module: RegisterModule()),
     ModuleRoute(RoutesModulesApp.routerStartNavigationBarModule, module: StartNavigationBarModule()),

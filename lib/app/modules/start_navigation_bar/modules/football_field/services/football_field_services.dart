@@ -1,42 +1,37 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import '../../../../../../shared/api/api_headers.dart';
 import '../../../../../../shared/api/routes_api.dart';
+import '../../../../../../shared/auth/auth_controller.dart';
+import '../../../../../../shared/client/http/client_http.dart';
 import '../models/coach_model.dart';
 import '../models/football_field_model.dart';
 
 class FootballFieldServices{
   final router = RoutersApi();
+  final headersApi = DefaultHeadersApi();
+  final httpService = HttpService();
+  final auth = AuthController();
+
   Future<List<FootballFieldModel>> getTeamScaleServices(String token, String round, String team) async {
-    final url = Uri.parse(router.matchGameLineup(round, team));
-    final headers = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
-    };
-    final response = await http.get(
-      url,
-      headers: headers,
-    );
+    final url = router.matchGameLineup(round, team);
+    final response = await httpService.get(url,headersApi.headersToken(token));
+    if(response.statusCode == 401){
+      final data = await auth.refreshToken();
+      if(data != null) getTeamScaleServices(data, round, team);
+    }
     final jsonList = jsonDecode(response.body) as List;
-
     return jsonList.map((json) => FootballFieldModel.fromJson(json)).toList();
-
   }
 
   Future<List<CoachModel>> getCoachServices(String token, String edition) async {
-    final url = Uri.parse('${RoutersApi.coach}$edition');
-    final headers = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
-    };
-    final response = await http.get(
-      url,
-      headers: headers,
-    );
+    final url = '${RoutersApi.coach}$edition';
+    final response = await httpService.get(url,headersApi.headersToken(token));
+    if(response.statusCode == 401){
+      final data = await auth.refreshToken();
+      if(data != null) getCoachServices(data, edition);
+    }
     final jsonList = jsonDecode(response.body) as List;
     return jsonList.map((json) => CoachModel.fromJson(json)).toList();
-
   }  
   
 }
