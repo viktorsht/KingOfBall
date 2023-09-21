@@ -4,7 +4,7 @@ import 'package:rei_da_bola/app/modules/lineup/models/register_lineup_model.dart
 import '../../../../../../../../design_system/images/images_app.dart';
 import '../../../../../../../../shared/api/state_response.dart';
 import '../../../../../../../../shared/token/token_manager.dart';
-import '../models/lu_player_lineup_model.dart';
+import '../models/player_lineup_model.dart';
 import '../services/lineup_services.dart';
 
 part 'lineup_controller.g.dart';
@@ -45,13 +45,13 @@ abstract class LineUpControllerImpl with Store{
   void setList(value) => listLineUp = value;
   
   @action
-  Future<List<PlayerLineUpModel>> playersForPosition(String position, String round, String edition) async {
+  Future<List<PlayerLineUpModel>> playersForPosition(String position) async {
     List<PlayerLineUpModel> list = [];
     stateController = StateResponse.loading;
     String? token = await tokenManager.getToken();
     if(token != null){
       try{
-        list = await lineUpServices.getPlayersApiServices(token, position, round, edition);
+        list = await lineUpServices.getPlayersApiServices(token, position);
         stateController = StateResponse.sucess;
       } catch(e){
         stateController = StateResponse.error;
@@ -67,17 +67,15 @@ abstract class LineUpControllerImpl with Store{
   Future<void> addListPlayerApi(List<int> listId, int round, int team, int status) async {
     stateController = StateResponse.loading;
     String? token = await tokenManager.getToken();
+    print(listId);
     if(token != null){
       try {
-        for(var element in listId){
-          final body = RegisterLineUpModel(
-            playerLineupId: element,
-            championshipRoundId: round,
-            status: status,
-            teamGameEditionId: team
-          );
-          await lineUpServices.postRegisterLineUp(token, body);
-        }
+        final body = RegisterLineUpModel(
+          gameLineup: listId,
+          championshipRoundId: round,
+          teamGameEditionId: team
+        );
+        await lineUpServices.postRegisterLineUp(token, body);
         stateController = StateResponse.sucess;
       } catch (e) {
         stateController = StateResponse.error;
@@ -108,8 +106,7 @@ abstract class LineUpControllerImpl with Store{
   Future<void> initBuy(String position, int round, int edition1) async {
     List<PlayerLineUpModel> list = [];
     setRound(round);
-    list = await playersForPosition(position, round.toString(), edition1.toString());
-    //print("Jogadores $position ${list[0].score}- ${list.length}");
+    list = await playersForPosition(position);
     setList(list);
   }
 }

@@ -101,15 +101,14 @@ mixin _$FootballFieldController on FootballFieldControllerImpl, Store {
         .run(() => super.checkTeamScale(round, team));
   }
 
-  late final _$initTeamScaleAsyncAction = AsyncAction(
-      'FootballFieldControllerImpl.initTeamScale',
+  late final _$fechTeamScaleAsyncAction = AsyncAction(
+      'FootballFieldControllerImpl.fechTeamScale',
       context: context);
 
   @override
-  Future<List<FootballFieldModel>> initTeamScale(
-      int round, int team, int edition) {
-    return _$initTeamScaleAsyncAction
-        .run(() => super.initTeamScale(round, team, edition));
+  Future<void> fechTeamScale(int round, int team, int edition) {
+    return _$fechTeamScaleAsyncAction
+        .run(() => super.fechTeamScale(round, team, edition));
   }
 
   late final _$FootballFieldControllerImplActionController =

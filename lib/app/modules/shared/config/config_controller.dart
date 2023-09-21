@@ -1,5 +1,5 @@
 import 'package:mobx/mobx.dart';
-import '../../lineup/models/lu_player_lineup_model.dart';
+import '../../lineup/models/player_lineup_model.dart';
 import '../../start_navigation_bar/modules/football_field/models/football_field_model.dart';
 import 'models/config_model.dart';
 
@@ -74,63 +74,6 @@ abstract class ConfigControllerImpl with Store{
     return estaNaLista;
   }
 
-/*
-  @observable
-  int goleiro = 1;
-
-  @observable
-  int zagueiro = 2;
-
-  @observable
-  int lateral= 2;
-
-  @observable
-  int meia = 3;
-
-  @observable
-  int atacante = 3;
-
-  @action
-  bool get isGoleiro => goleiro == 1;
-
-  @action
-  bool get isLateral => lateral == 2;
-
-  @action
-  bool get isZagueiro => zagueiro == 2;
-
-  @action
-  bool get isMeia => meia == 3;
-
-  @action
-  bool get isAtacante => atacante == 3;
-  @action
-  bool incrementPosition(String position){
-    bool retorno = false;
-    if(position == 'GOL' && isGoleiro){
-      goleiro++;
-      retorno = true;
-    }
-    if(position == 'ZAG' && isZagueiro){
-      zagueiro++;
-      retorno = true;
-    }
-    if(position == 'LAT' && isLateral){
-      lateral++;
-      retorno = true;
-    }
-    if(position == 'MEI' && isMeia){
-      meia++;
-      retorno = true;
-    }
-    if(position == 'ATA' && isAtacante){
-      atacante++;
-      retorno = true;
-    }
-    return retorno;
-  }
-*/
-
   @action
   bool validarEscalacao(String posicao) {
     int limiteZagueiros = 2;
@@ -186,19 +129,13 @@ abstract class ConfigControllerImpl with Store{
         if(verificaId(element.id!) == false){
           final body = ConfigLineUpPlayer(
             id: element.id,
-            score: element.score,
-            firstName:element.playerLineup?.playerEdition?.player?.firstName!,
-            lastName: element.playerLineup?.playerEdition?.player?.lastName!,
-            position: element.playerLineup?.playerEdition?.player?.position?.name!,
-            abbPosition: element.playerLineup?.playerEdition?.player?.position?.abb!,
+            firstName:element.playerEdition?.player?.firstName!,
+            lastName: element.playerEdition?.player?.lastName!,
+            position: element.playerEdition?.player?.position?.name!,
+            abbPosition: element.playerEdition?.player?.position?.abb!,
           );
           setListMap(body);
-        }/*
-        else{
-          if(decrementPosition(element.playerLineup!.playerEdition!.player!.position!.abb!) == false){
-            setListMap(body);
-          }
-        }*/
+        }
       }
     }
   }
@@ -241,19 +178,16 @@ abstract class ConfigControllerImpl with Store{
   void listPlayerLineUp(PlayerLineUpModel element){
     final body = ConfigLineUpPlayer(
       id: element.id,
-      score: element.score,
-      firstName:element.playerEdition?.player?.firstName!,
-      lastName: element.playerEdition?.player?.lastName!,
-      position: element.playerEdition?.player?.position?.name!,
-      abbPosition: element.playerEdition?.player?.position?.abb!,
+      firstName:element.player?.firstName!,
+      lastName: element.player?.lastName!,
+      position: element.player?.position?.name!,
+      abbPosition: element.player?.position?.abb!,
     );
     if(verificaId(body.id!) == false && getIsChange == false){
       //print(body.id);
       setListMap(body);
     }
     if(verificaId(idChange) == true && getIsChange == true){
-      //setListMap(body)
-      //int indice = listMap.indexOf(body);
       int indice = indiceList(idChange);
       listMap[indice] = body;
 

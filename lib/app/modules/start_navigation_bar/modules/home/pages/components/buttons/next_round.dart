@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import 'package:rei_da_bola/design_system/images/images_app.dart';
 
-import '../../../../../../../../design_system/icons/icons_app.dart';
 import '../../../../../../../../design_system/widgets/widget_loading.dart';
+import '../../../../../../../../design_system/widgets/date_time_card.dart';
 
 class NextRoundButton extends StatelessWidget {
   final ColorsAppDefault colors;
@@ -50,21 +50,7 @@ class NextRoundButton extends StatelessWidget {
                   fontWeight: FontWeight.bold
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Image.asset(IconsApp.clock),
-                  const SizedBox(width: 8,),
-                  Text(
-                    "$timeRound restantes",
-                    style: TextStyle(
-                      color: colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                ],
-              ),
+              DateTimeCard(colors: colors, dateTime: timeRound!,),
             ],
           ),
           Image.asset(ImagesApp.apitoWhite),

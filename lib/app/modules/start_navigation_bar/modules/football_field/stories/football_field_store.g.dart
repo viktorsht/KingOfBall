@@ -73,17 +73,6 @@ mixin _$FootballFieldStore on FootballFieldStoreImpl, Store {
   }
 
   @override
-  String playerTec(List<CoachModel> list) {
-    final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
-        name: 'FootballFieldStoreImpl.playerTec');
-    try {
-      return super.playerTec(list);
-    } finally {
-      _$FootballFieldStoreImplActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String player1(List<ConfigLineUpPlayer> list, String position) {
     final _$actionInfo = _$FootballFieldStoreImplActionController.startAction(
         name: 'FootballFieldStoreImpl.player1');

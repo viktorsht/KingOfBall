@@ -34,7 +34,6 @@ abstract class FootballFieldControllerImpl with Store{
     List<FootballFieldModel> retorno = [];
     TokenManager tokenManager = TokenManager();
     String? token = await tokenManager.getToken();
-    //print("object");
     if(token != null){
       try {
         retorno = await footballFieldServices.getTeamScaleServices(token, round, team);
@@ -56,11 +55,9 @@ abstract class FootballFieldControllerImpl with Store{
   void setRound(value) => round = value;
 
   @action
-  Future<List<FootballFieldModel>> initTeamScale(int round, int team, int edition) async {
-    setRound(round);
+  Future<void> fechTeamScale(int round, int team, int edition) async {
     playerList = await checkTeamScale(round.toString(), team.toString());
     setPlayerList(playerList);
-    return playerList;
   }
 
 }
