@@ -6,7 +6,6 @@ import 'package:rei_da_bola/app/modules/shared/config/config_controller.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 import '../../../../../../../routes/routes_app.dart';
 import '../../../../../../shared/config/models/config_model.dart';
-import '../../../../../../shared/score/stories/score_store.dart';
 import '../profile_player.dart';
 
 class Player extends StatelessWidget {
@@ -32,7 +31,6 @@ class Player extends StatelessWidget {
     final double heightFinal = MediaQuery.of(context).size.height;
     double height = 0.18181818 * (0.6773399 * heightFinal);
     final colors = ColorsAppDefault();
-    final scoreStore = Provider.of<ScoreStore>(context);
     final configController = Provider.of<ConfigController>(context);
     int round = configController.getRound();
     int edition = configController.getEdition();
@@ -44,10 +42,8 @@ class Player extends StatelessWidget {
         children: [
           Observer(
             builder: (context) {
-              if(player?.score != null){
-                scoreStore.incrementScore(player!.score!);
-              }
               return IconButton(
+                //iconSize: 60,
                 onPressed: () {
                   player?.firstName != null 
                   ? showDialog(
@@ -67,7 +63,7 @@ class Player extends StatelessWidget {
                 },
                 icon: Image.asset(
                   image,
-                  height: position == 'Goleiro' ? height - 60.0 : height - 60,
+                  height: position == 'Goleiro' ? height - 50.0 : /*height -*/ 60,
                 ),
               );
             }
@@ -86,7 +82,7 @@ class Player extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 5.0, right: 5.0),
                   child: Text(
                     player!.firstName!,
-                    style: const TextStyle(color: Colors.white),
+                    style: TextStyle(color: colors.white),
                     textAlign: TextAlign.center,
                   ),
                 ),

@@ -283,6 +283,17 @@ mixin _$ConfigController on ConfigControllerImpl, Store {
   }
 
   @override
+  bool equalList(List<FootballFieldModel> list) {
+    final _$actionInfo = _$ConfigControllerImplActionController.startAction(
+        name: 'ConfigControllerImpl.equalList');
+    try {
+      return super.equalList(list);
+    } finally {
+      _$ConfigControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   bool validarEscalacao(String posicao) {
     final _$actionInfo = _$ConfigControllerImplActionController.startAction(
         name: 'ConfigControllerImpl.validarEscalacao');

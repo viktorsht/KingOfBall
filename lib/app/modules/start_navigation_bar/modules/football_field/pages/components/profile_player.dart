@@ -48,10 +48,6 @@ class PlayerProfileCard extends StatelessWidget {
               title: Text('Nome: ${player.firstName} ${player.lastName}'),
             ),
             ListTile(
-              leading: const Icon(Icons.attach_money),
-              title: Text('Última pontuação: ${player.score}'),
-            ),
-            ListTile(
               leading: const Icon(Icons.pin_drop),
               title: Text('Posição: $position'),
             ),

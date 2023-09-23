@@ -1,23 +1,25 @@
-import 'package:rei_da_bola/app/modules/shared/models/player_model.dart';
+import '../../shared/models/team_edition.dart';
+import '../../shared/models/player_model.dart';
 
-class PlayerEditionModel {
+class PlayerLineUpModel {
   int? id;
   int? playerId;
   int? teamEditionId;
   String? createdAt;
   String? updatedAt;
   PlayerModel? player;
+  TeamEdition? teamEdition;
 
-  PlayerEditionModel(
+  PlayerLineUpModel(
       {this.id,
       this.playerId,
       this.teamEditionId,
       this.createdAt,
       this.updatedAt,
       this.player,
-      });
+      this.teamEdition});
 
-  PlayerEditionModel.fromJson(Map<String, dynamic> json) {
+  PlayerLineUpModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     playerId = json['player_id'];
     teamEditionId = json['team_edition_id'];
@@ -25,6 +27,9 @@ class PlayerEditionModel {
     updatedAt = json['updated_at'];
     player =
         json['player'] != null ? PlayerModel.fromJson(json['player']) : null;
+    teamEdition = json['team_edition'] != null
+        ? TeamEdition.fromJson(json['team_edition'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -36,6 +41,9 @@ class PlayerEditionModel {
     data['updated_at'] = updatedAt;
     if (player != null) {
       data['player'] = player!.toJson();
+    }
+    if (teamEdition != null) {
+      data['team_edition'] = teamEdition!.toJson();
     }
     return data;
   }

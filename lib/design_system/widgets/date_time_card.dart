@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rei_da_bola/design_system/colors/colors_app.dart';
 
-import '../../../../../../../design_system/icons/icons_app.dart';
+import '../icons/icons_app.dart';
 
 class DateTimeCard extends StatelessWidget {
   final ColorsAppDefault colors;

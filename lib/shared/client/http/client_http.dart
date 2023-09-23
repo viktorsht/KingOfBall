@@ -14,31 +14,7 @@ class HttpService implements Client{
 
   @override
   Future<dynamic> post(String url, Map<String, dynamic> data, Map<String, String> headers) async {
-    final response = await client.post(
-      Uri.parse(url),
-      headers: headers,
-      body: json.encode(data),
-    );
+    final response = await client.post(Uri.parse(url), headers: headers, body: json.encode(data));
     return response;
-  }
-
-  Future<void> put(String url, Map<String, dynamic> data) async {
-    final response = await client.put(
-      Uri.parse(url),
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode(data),
-    );
-
-    if (response.statusCode != 204) {
-      throw Exception('Failed to update resource');
-    }
-  }
-
-  Future<void> delete(String url) async {
-    final response = await client.delete(Uri.parse(url));
-
-    if (response.statusCode != 204) {
-      throw Exception('Failed to delete resource');
-    }
   }
 }

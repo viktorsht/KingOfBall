@@ -141,10 +141,9 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
       AsyncAction('LineUpControllerImpl.playersForPosition', context: context);
 
   @override
-  Future<List<PlayerLineUpModel>> playersForPosition(
-      String position, String round, String edition) {
+  Future<List<PlayerLineUpModel>> playersForPosition(String position) {
     return _$playersForPositionAsyncAction
-        .run(() => super.playersForPosition(position, round, edition));
+        .run(() => super.playersForPosition(position));
   }
 
   late final _$addListPlayerApiAsyncAction =
@@ -155,6 +154,16 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
       List<int> listId, int round, int team, int status) {
     return _$addListPlayerApiAsyncAction
         .run(() => super.addListPlayerApi(listId, round, team, status));
+  }
+
+  late final _$updateListPlayerApiAsyncAction =
+      AsyncAction('LineUpControllerImpl.updateListPlayerApi', context: context);
+
+  @override
+  Future<void> updateListPlayerApi(
+      List<int> listId, int round, int team, int status) {
+    return _$updateListPlayerApiAsyncAction
+        .run(() => super.updateListPlayerApi(listId, round, team, status));
   }
 
   late final _$initBuyAsyncAction =

@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                             }
                           }
                           else{
-                            showSnackBar('${controller.stateController} - Email ou senha incorretos');
+                            showSnackBar('Email ou senha incorretos');
                           }
                         }
                         else{

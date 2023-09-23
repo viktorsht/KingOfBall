@@ -59,7 +59,7 @@ class FootballField extends StatelessWidget {
                   position: "Lateral",
                 ),
                 Player(
-                  image: storeTeam.player3(listPlayer, 'ZAG'),
+                  image: storeTeam.player2(listPlayer, 'ZAG'),
                   player: storeTeam.playerName(listPlayer, 'ZAG'),
                   top: 0.23636364 * fieldH,
                   right: 0.29333333 * width,
@@ -67,7 +67,7 @@ class FootballField extends StatelessWidget {
                   position: "Zagueiro",
                 ),
                 Player(
-                  image: storeTeam.player2(listPlayer, 'ZAG'),
+                  image: storeTeam.player3(listPlayer, 'ZAG'),
                   player: storeTeam.playerName(listPlayer, 'ZAG'),
                   top: 0.23636364 * fieldH,
                   right: 0.0,
@@ -83,7 +83,7 @@ class FootballField extends StatelessWidget {
                   position: "Lateral",
                 ),
                 Player(
-                  image: storeTeam.player3(listPlayer, 'MEI'),
+                  image: storeTeam.player2(listPlayer, 'MEI'),
                   player: storeTeam.playerName(listPlayer, 'MEI'),
                   top: 0.47272727 * fieldH,
                   right: 0.16333333 * width,
@@ -91,7 +91,7 @@ class FootballField extends StatelessWidget {
                   position: "Meio-campista",
                 ),
                 Player(
-                  image: storeTeam.player2(listPlayer, 'MEI'),
+                  image: storeTeam.player3(listPlayer, 'MEI'),
                   player: storeTeam.playerName(listPlayer, 'MEI'),
                   top: 0.45454545 * fieldH,
                   right: 0.01333333 * width,
@@ -107,7 +107,7 @@ class FootballField extends StatelessWidget {
                   position: "Meio-campista",
                 ),
                 Player(
-                  image: storeTeam.player3(listPlayer, 'ATA'),
+                  image: storeTeam.player2(listPlayer, 'ATA'),
                   player: storeTeam.playerName(listPlayer, 'ATA'),
                   top: 0.69090909 * fieldH,
                   right: 0.29333333 * width,
@@ -115,7 +115,7 @@ class FootballField extends StatelessWidget {
                   position: "Atacante",
                 ),
                 Player(
-                  image: storeTeam.player2(listPlayer, 'ATA'),
+                  image: storeTeam.player3(listPlayer, 'ATA'),
                   player: storeTeam.playerName(listPlayer, 'ATA'),
                   top: 0.69090909 * fieldH,
                   right: 0.44 * width,
