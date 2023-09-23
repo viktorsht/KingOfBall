@@ -57,10 +57,6 @@ abstract class FootballFieldControllerImpl with Store{
   @action
   Future<void> fechTeamScale(int round, int team, int edition) async {
     playerList = await checkTeamScale(round.toString(), team.toString());
-<<<<<<< HEAD
-=======
-    setPlayerList(playerList);
->>>>>>> bb3d9c9a911a953d5a1c5e18e617bbefc212a283
   }
 
 }

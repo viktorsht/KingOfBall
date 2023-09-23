@@ -9,10 +9,6 @@ import '../../../../../../design_system/buttons/app_butons.dart';
 import '../../../../../../design_system/colors/colors_app.dart';
 import '../../../../../../design_system/widgets/widget_loading.dart';
 import '../../../../../../shared/format_date_time.dart';
-<<<<<<< HEAD
-=======
-import '../../../../shared/score/stories/score_store.dart';
->>>>>>> bb3d9c9a911a953d5a1c5e18e617bbefc212a283
 import '../stories/football_field_store.dart';
 import '../../../../../../design_system/widgets/date_time_card.dart';
 import 'components/football_field/football_field.dart';
@@ -45,10 +41,7 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
   void initState() {
     footballController.fechTeamScale(widget.round,widget.team,widget.edition);
     super.initState();
-<<<<<<< HEAD
-=======
     footballController.fechTeamScale(widget.round,widget.team,widget.edition);
->>>>>>> bb3d9c9a911a953d5a1c5e18e617bbefc212a283
   }
 
   @override
@@ -63,7 +56,6 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
     final footballStore = Provider.of<FootballFieldStore>(context);
     final configController = Provider.of<ConfigController>(context);
     final lineupController = Provider.of<LineUpController>(context);
-<<<<<<< HEAD
 
     //configController.listFootballField(footballController.playerList);
 
@@ -73,17 +65,6 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
     //configController.clearListMap();
 
 
-=======
-    final scoreStore = Provider.of<ScoreStore>(context);
-    
-    configController.listFootballField(footballController.playerList);
-    configController.clearIdChange();
-    configController.setChangeFalse();
-
-    List<int> list = [];
-    list = footballStore.retornaListaPlayer(configController.listMap);
-
->>>>>>> bb3d9c9a911a953d5a1c5e18e617bbefc212a283
     return Scaffold(
       body: Column(
         children: [
@@ -124,7 +105,6 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
             }
           ),
           Observer(
-<<<<<<< HEAD
             builder: (context) => Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -171,46 +151,6 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
                   child: lineupController.stateController == StateResponse.loading
                     ? const Center(child: WidgetLoading(width: 3, thickness: 0.8))
                     : const Text('CONFIRMAR', style: TextStyle(fontSize: 20)),
-=======
-            builder: (context) => lineupController.stateController == StateResponse.loading
-            ? Center(child: WidgetLoading(color: colors.green, width: 6, thickness: 1))
-            : Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-            ElevatedButton(
-              style: buttons.themeButtonAppCancelar,
-              onPressed:(){
-                configController.clearListMap();
-              },
-              child: const Text(
-                'CANCELAR',
-                style: TextStyle(
-                  fontSize: 20
-                ),
-              )
-            ),
-            ElevatedButton(
-              style: buttons.themeButtonAppOk,
-              onPressed: () async {
-                int status = lineupController.getStatus();
-                list = footballStore.retornaListaPlayer(configController.listMap.toList());
-                if(list.length >= 11){
-                  await lineupController.addListPlayerApi(list,widget.round, widget.team, status);
-                  if(lineupController.stateController == StateResponse.sucess){
-                    showSnackBar('Sua escalação foi enviada', colors.green, colors.white);
-                  }  
-                }
-                else{
-                  showSnackBar('Sua escalação ainda está incompleta', colors.red, colors.white);
-                }
-              }, 
-              child: const 
-                Text(
-                  'CONFIRMAR',
-                  style: TextStyle(
-                    fontSize: 20
-                  ),
->>>>>>> bb3d9c9a911a953d5a1c5e18e617bbefc212a283
                 ),
               ],
             )
