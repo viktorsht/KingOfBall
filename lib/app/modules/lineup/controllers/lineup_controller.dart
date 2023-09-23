@@ -52,7 +52,11 @@ abstract class LineUpControllerImpl with Store{
     String? token = await tokenManager.getToken();
     if(token != null){
       try{
+<<<<<<< HEAD
         list = await lineUpServices.getLineUpService(token, position);
+=======
+        list = await lineUpServices.getPlayersApiServices(token, position);
+>>>>>>> bb3d9c9a911a953d5a1c5e18e617bbefc212a283
         stateController = StateResponse.sucess;
       } catch(e){
         stateController = StateResponse.error;
@@ -68,7 +72,11 @@ abstract class LineUpControllerImpl with Store{
   Future<void> addListPlayerApi(List<int> listId, int round, int team, int status) async {
     stateController = StateResponse.loading;
     String? token = await tokenManager.getToken();
+<<<<<<< HEAD
     //print(listId);
+=======
+    print(listId);
+>>>>>>> bb3d9c9a911a953d5a1c5e18e617bbefc212a283
     if(token != null){
       try {
         final body = RegisterLineUpModel(
@@ -76,6 +84,7 @@ abstract class LineUpControllerImpl with Store{
           championshipRoundId: round,
           teamGameEditionId: team
         );
+<<<<<<< HEAD
         int retorno = await lineUpServices.postLineUpService(token, body);
         if(retorno == 201 || retorno == 200){
           stateController = StateResponse.sucess;
@@ -83,6 +92,10 @@ abstract class LineUpControllerImpl with Store{
         else{
           stateController = StateResponse.error;
         }
+=======
+        await lineUpServices.postRegisterLineUp(token, body);
+        stateController = StateResponse.sucess;
+>>>>>>> bb3d9c9a911a953d5a1c5e18e617bbefc212a283
       } catch (e) {
         stateController = StateResponse.error;
       }

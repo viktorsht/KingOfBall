@@ -72,6 +72,7 @@ abstract class ConfigControllerImpl with Store{
     return false;
   }
 
+<<<<<<< HEAD
   @action
   bool equalList(List<FootballFieldModel> list){
     for(var element in list){
@@ -80,6 +81,8 @@ abstract class ConfigControllerImpl with Store{
     return true;
   }
 
+=======
+>>>>>>> bb3d9c9a911a953d5a1c5e18e617bbefc212a283
   @action
   bool validarEscalacao(String posicao) {
     int limiteZagueiros = 2;
@@ -141,11 +144,15 @@ abstract class ConfigControllerImpl with Store{
             abbPosition: element.playerEdition?.player?.position?.abb!,
           );
           setListMap(body);
+<<<<<<< HEAD
         }/*
         else{
           int indice = indiceList(idChange);
           listMap[indice] = body;
         }*/
+=======
+        }
+>>>>>>> bb3d9c9a911a953d5a1c5e18e617bbefc212a283
       }
     }
   }
