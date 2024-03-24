@@ -118,18 +118,21 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
                 ElevatedButton(
                   style: buttons.themeButtonAppOk,
                   onPressed: () async {
+
+                    await footballController.fechTeamScale(widget.round,widget.team,widget.edition);
+                    lineupController.initState(); 
                     
                     int status = lineupController.getStatus();
                     List<int> idList = footballStore.retornaListaPlayer(configController.listMap.toList());
                     bool listEqual = configController.equalList(footballController.playerList);
 
-                    if(footballController.playerList == []){
+                    if(footballController.playerList.isEmpty && idList.length >= 11){
                       // cadastroar o time a primeira vez
                       await lineupController.addListPlayerApi(footballStore.idPlayerList,widget.round, widget.team, status);
                     }
                     else{
                       // atualizar o time
-                      if(idList.length >= 11 && listEqual == false){
+                      if(idList.length >= 11 && listEqual == false && footballController.playerList.isNotEmpty){
                         // requisição para atualizar a lista na api
                         await lineupController.updateListPlayerApi(footballStore.idPlayerList,widget.round, widget.team, status);
                       }

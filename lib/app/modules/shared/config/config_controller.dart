@@ -75,9 +75,9 @@ abstract class ConfigControllerImpl with Store{
   @action
   bool equalList(List<FootballFieldModel> list){
     for(var element in list){
-      if(verificaId(element.id!) == false) return false;
+      if(verificaId(element.id!) == true) return true;
     }
-    return true;
+    return false;
   }
 
   @action

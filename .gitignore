@@ -44,4 +44,7 @@ app.*.map.json
 /android/app/release
 
 key.properties
-android/app/keystore-kingofball.jks
+android/app/upload-keystore.jks
+
+upload_certificate.pem
+

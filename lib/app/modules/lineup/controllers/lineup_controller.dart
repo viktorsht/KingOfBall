@@ -16,6 +16,11 @@ abstract class LineUpControllerImpl with Store{
   @observable
   String stateController = StateResponse.start;
 
+  @action
+  void initState(){
+    stateController = StateResponse.start;
+  }
+
   @observable
   TokenManager tokenManager = TokenManager();
 

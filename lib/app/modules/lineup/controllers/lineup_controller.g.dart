@@ -179,6 +179,17 @@ mixin _$LineUpController on LineUpControllerImpl, Store {
       ActionController(name: 'LineUpControllerImpl', context: context);
 
   @override
+  void initState() {
+    final _$actionInfo = _$LineUpControllerImplActionController.startAction(
+        name: 'LineUpControllerImpl.initState');
+    try {
+      return super.initState();
+    } finally {
+      _$LineUpControllerImplActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   int generateNumber() {
     final _$actionInfo = _$LineUpControllerImplActionController.startAction(
         name: 'LineUpControllerImpl.generateNumber');

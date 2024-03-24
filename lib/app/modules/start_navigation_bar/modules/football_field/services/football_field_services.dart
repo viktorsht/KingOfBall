@@ -13,6 +13,7 @@ class FootballFieldServices{
 
   Future<List<FootballFieldModel>> getTeamScaleServices(String token, String round, String team) async {
     final url = router.matchGameLineup(round, team);
+    print(url);
     final response = await httpService.get(url,headersApi.headersToken(token));
     final jsonList = jsonDecode(response.body) as List;
     return jsonList.map((json) => FootballFieldModel.fromJson(json)).toList();
