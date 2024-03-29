@@ -1,3 +1,3 @@
 class Api {
-  static String urlApi = 'https://reidabola.1bertojunior.com/api/v1/';
+  static String urlApi = 'http://reidabola.1bertojunior.com:8000/api/v1/';
 }
